@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-//test
+//test2
 function sendProduct(Component) {
   return class SendProduct extends React.Component {
     constructor(props) {
