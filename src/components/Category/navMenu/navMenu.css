@@ -1,0 +1,49 @@
+.navMenu {
+  width: 15em;
+  margin-left: 0.8em;
+  margin-top: 5.5em;
+}
+.navMenu h2 {
+  font: 1.25em 'Open Sans';
+  font-weight: 600;
+}
+.navMenu > div {
+  margin-bottom: 1em;
+}
+.navMenu > div a:first-child{
+  width: 12.5em;
+}
+.navMenu a {
+  position: relative;
+  display: inline-block;
+  font: 1.125em 'Open Sans';
+  font-weight: 300;
+  color: #484848;
+}
+.navMenu a p {
+  position: absolute;
+  display: inline-block;
+  margin: 0.3em 0 0 0.3em;
+  font-size: 0.77em;
+  color: #9c9c9c;
+}
+.navMenu .childCategory {
+  display: block;
+  font: 1em 'Open Sans';
+  font-weight: 300;
+  margin-left: 1em;
+}
+.navMenu .active {
+  font-weight: 600;
+}
+.navMenu .active::before{
+  content: "▶";
+  position: absolute;
+  left: -1.05em;
+  color: #ffaf0a;
+}
+@media screen and (max-width: 767px ){
+  .navMenu {
+    display: none;
+  }
+}

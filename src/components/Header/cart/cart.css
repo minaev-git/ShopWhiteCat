@@ -1,0 +1,64 @@
+.cart {
+  max-width: 4.25em;
+  margin-top: 1.35em;
+  padding-left: 0.43em;
+  padding-top: 0.5em;
+  overflow: hidden;
+  box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.23);
+  border-radius: 2px;
+  background-color: #08a8b0;
+}
+.cart img {
+  width: 1.4em;
+  height: 1.4em;
+}
+.cart p {
+  display: inline-block;
+  width: 2em;
+  position: relative;
+  bottom:0.2em;
+  text-align: center;
+  color: white;
+  font: 1em "Oswald";
+}
+@media screen and (max-width: 1199px) {
+  .cart p {
+    width: 1.5em;
+    bottom: 0.3em;
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  .cart {
+    margin-left: -20px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .cart {
+    margin: 0.24em -1em 0 0;
+    box-shadow: none;
+  }
+  .cart img {
+    width: 1.8125em;
+    height: 1.8125em;
+  }
+  .cart p {
+    display: inline-block;
+    bottom: 1.3em;
+    right: 0.9em;
+    margin-bottom: 0;
+    background-color: #ffaf0a;
+    border-radius: 100%;
+  }
+}
+@media screen and (max-width: 575px) {
+  .cart {
+    margin-left: -1em;
+  }
+}
+@media screen and (max-width: 359px) {
+  .cart {
+    margin-left: -1.1em;
+  }
+}
+
+

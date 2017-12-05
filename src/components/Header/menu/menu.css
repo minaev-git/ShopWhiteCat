@@ -1,0 +1,82 @@
+.menu {
+  margin-top: 0;
+  padding-left: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  background-color: #ededed;
+  border-radius: 2px;
+  box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.23);
+}
+.menu a {
+  list-style: none;
+  text-decoration: none;
+  color: #555555;
+}
+.menu > a {
+  text-align: center;
+  padding: 1.4em 0 1em 0;
+  flex-basis: 12.1875em;
+  font: 1.125em 'Oswald';
+  font-weight: 400;
+}
+.menu > a li {
+  position: relative;
+}
+.menu > a:hover{
+  color: #01a9b1;
+  transition: 0.3s;
+  box-shadow: 1px 1px 2px -1px rgba(0, 0, 0, 0.23);
+  text-decoration: underline;
+  background-color: white;
+}
+.menu a:hover .submenu {
+  opacity: 1;
+  visibility: visible;
+  transition-delay: 0s;
+}
+.submenu {
+  z-index: 10;
+  display: flex;
+  width: 25em;
+  position: absolute;
+  top: 2.3em;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s, visibility 0s;
+  box-shadow: 1px 1px 1px -1px rgba(0, 0, 0, 0.23);
+  background-color: white;
+  border-bottom: 0.26em solid #01a9b1;
+}
+.reverse {
+  right: 0;
+  flex-direction: row-reverse;
+}
+.submenu img {
+  display: inline-block;
+  width: 11.9375em;
+  height: 10.5625em;
+  margin: 1em 0 1em 1.5em;
+  vertical-align: bottom;
+}
+.submenu ul {
+  display: inline-block;
+  width: 7.6em;
+  vertical-align: top;
+  text-align: start;
+  margin: 1.625em 2em 1.9375em 1.875em;
+  padding-left: 0;
+}
+.submenu ul a {
+  text-align: start;
+  font: 1.0625em 'Oswald';
+  line-height: 1.8em;
+  font-weight: 300;
+}
+.submenu li {
+  border-bottom: 1px solid #ededed;
+}
+.submenu ul a:hover {
+  text-decoration: underline;
+  color: #01a9b1;
+}

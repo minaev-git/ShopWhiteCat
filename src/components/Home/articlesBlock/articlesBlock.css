@@ -1,0 +1,29 @@
+.articles {
+  white-space: pre-line;
+  margin-left: 7.5em;
+  max-width: 46em;
+}
+.articles h3 {
+  font: 1.5625em 'Open Sans';
+  font-weight: 600;
+  margin-bottom: 0;
+}
+.articles .date {
+  font: 0.75em 'Open Sans';
+  font-weight: 300;
+  margin-bottom: 2.2em;
+}
+.articles p {
+  font: 1em 'Lora',serif;
+  color: #303030;
+  line-height: 1.7em;
+}
+@media screen and (max-width: 767px){
+  .articles {
+    margin-left: 1em;
+    margin-right: 1em;
+  }
+  .articles p {
+    font: 1.1em 'Lora';
+  }
+}

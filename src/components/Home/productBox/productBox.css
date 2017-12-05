@@ -1,0 +1,116 @@
+.productBox {
+  display: inline-block;
+  position: relative;
+  width: 16.37em;
+  min-height: 15em;
+  padding: 0.4em 0 6em 0;
+  background-color: #ededed;
+}
+.productBox a{
+  color: #000000;
+}
+.productBox h3 {
+  margin: 0 0 0.5em 0;
+  height: 2.2em;
+  padding: 0 0.02em ;
+  text-align: center;
+  font: 1em 'Oswald';
+  font-weight: 400;
+  line-height: 1.25em;
+}
+.productBox div {
+  width: 100%;
+  background-color: white;
+  text-align: center;
+}
+.productBox img {
+  width: 9.125em;
+  height: 12.5em;
+}
+.productBox p {
+  position: absolute;
+  right: 0.6em;
+  bottom: 1.6em;
+  font: 1.5em 'Oswald';
+  color: #979797;
+  text-decoration: line-through;
+}
+.productBox .salePrice {
+  text-decoration: none;
+  color: #ff100a;
+  font-weight: 500;
+  font-size: 1.875em;
+  bottom: 1.9em;
+  right: 0.25em;
+}
+.productBox button {
+  position: absolute;
+  right: 0.6em;
+  bottom: 1em;
+  width: 5.61em;
+  height: 1.52em;
+  border: 1px solid #000000;
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+  background-color: white;
+  font: 1.3125em 'Oswald';
+  font-weight: 600;
+  line-height: 0.1em;
+}
+.productBox button:hover {
+  color: #08a8b0;
+  border-color: #08a8b0;
+}
+@media screen and (max-width: 1199px) {
+  .productBox {
+    width: 15.67em;
+  }
+}
+@media screen and (max-width: 991px) {
+  .productBox{
+    width: 12.7em;
+  }
+}
+@media screen and (max-width: 767px) {
+  .productBox{
+    width: 100%;
+    margin-left: 1.1em;
+    padding-bottom: 2em;
+    background-color: white;
+  }
+  .productBox:nth-child(-n+3){
+    border: 3px solid #ffaf0a;
+  }
+  .productBox:nth-child(n+4){
+    border: 3px solid #08a8b0;
+  }
+  .productBox div {
+    width: 9.125em;
+    height: 12.5em;
+    margin: 1em 0 0 0.5em;
+    text-align: start;
+  }
+  .productBox img {
+    width: 9.125em;
+    height: 12.5em;
+  }
+  .productBox h3 {
+    position: absolute;
+    left: 0;
+    margin: 2em 0 0 10em;
+    text-align: start;
+  }
+}
+@media screen and (min-width: 360px) and (max-width: 767px) {
+  .productBox p {
+    font-size: 1.5625em;
+    right: 6.2em;
+    bottom: -0.7em;
+  }
+  .productBox .salePrice {
+    font-size: 1.875em;
+    bottom: 0.1em;
+    right: 4.9em;
+  }
+}

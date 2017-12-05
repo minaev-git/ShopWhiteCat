@@ -1,0 +1,114 @@
+.search {
+  margin-top: 1.35em;
+  padding: 0.72em;
+  background-color: #08a8b0;
+  box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.23);
+  border-radius: 2px;
+}
+.search input {
+  width: 90%;
+  padding: 0.8em 0.8em;
+  border-style: none;
+  border-radius: 2px;
+  font: 0.85em 'Open Sans';
+}
+.search button {
+  padding-left: 0.6em;
+  height: 1.2em;
+  width: 1.2em;
+  margin-left: 1%;
+  display: inline-block;
+  cursor: pointer;
+  background-color: #08a8b0;
+  border: none;
+  outline:none;
+}
+.search svg {
+  width: 1.1875em;
+  height: 1.1875em;
+  position: relative;
+  top: 0.25em;
+  fill: #FFFF;
+}
+.hiddenSearch {
+  height: 0;
+  overflow: hidden;
+}
+@media screen and (max-width: 767px) {
+  .search {
+    box-shadow: none;
+    margin-top: 0.2em;
+    margin-right: -1em;
+    padding-left: 3em;
+  }
+  .search input {
+    display: none;
+  }
+  .search button {
+    width: 2.5em;
+    height: 1.8125em;
+    display: inline-block;
+  }
+  .search svg {
+    width: 1.8125em;
+    height: 1.8125em;
+  }
+  .hiddenSearch {
+    height: 4em;
+    width: 34.2em;
+    min-width: 14em;
+    top: 0;
+    left: 50%;
+    margin-left: -15em;
+    position: fixed;
+    z-index: 1;
+    background-color: #08a8b0;
+  }
+  .hiddenSearch input {
+    border: none;
+    outline: none;
+    width: 90%;
+    height: 100%;
+    padding: 0 1.2em;
+    background-color: #08a8b0;
+    color: white;
+    font: 1em 'Open Sans';
+    font-weight: 300;
+  }
+  .hiddenSearch button {
+    border: none;
+    outline: none;
+    float: right;
+    padding-right: 1em;
+    margin-top: 1em;
+    background-color: #08a8b0;
+    cursor: pointer;
+  }
+  .hiddenSearch input::placeholder {
+    color: white;
+  }
+  .hiddenSearch img {
+    width: 1.8125em;
+    height: 1.8125em;
+  }
+}
+@media screen and (max-width: 576px){
+  .search {
+    margin-right: 0;
+    padding-left: 25%;
+  }
+  .hiddenSearch {
+    width: auto;
+    margin-left: 0;
+    left: 4.5em;
+    right: 0;
+  }
+  .hiddenSearch input {
+    width: 75%;
+  }
+}
+@media screen and (max-width: 359px) {
+  .search {
+    padding-left: 10%;
+  }
+}

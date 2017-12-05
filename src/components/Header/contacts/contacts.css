@@ -1,0 +1,22 @@
+.contacts {
+  margin: 1.35em -0.6em 1.25em 0.9em;
+  padding: 0.5625em 0;
+  box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.23);
+  background-color: #08a8b0;
+  border-radius: 2px;
+  color: white;
+}
+.contacts p {
+  max-width: 10.71em;
+  margin: 0 auto;
+  font: 0.875em 'Oswald',sans-serif;
+  font-weight: 400;
+  line-height: 1.714em;
+}
+.contacts img {
+  vertical-align: top;
+  margin-top: 0.35em;
+  width: 1em;
+  font-size: 1.14em;
+  margin-right: 1.07em;
+}

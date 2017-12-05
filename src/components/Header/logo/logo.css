@@ -1,0 +1,62 @@
+.logoBox {
+  background-color: #08a8b0;
+  margin: 1.35em -1.5em 0 0;
+  padding: 0.125em 0 0.5625em 0 ;
+  box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.23);
+  border-radius: 2px;
+}
+.logoBox img {
+  width: 2.1875em;
+  height: 2.9375em;
+  display: inline-block;
+  margin: 0.125em 0.5625em 0em 0.75em;
+}
+.logoBox h1 {
+  vertical-align: top;
+  color: white;
+  display: inline-block;
+  font: 1.5625em 'Oswald';
+  font-weight: 600;
+  line-height: 0.68em ;
+}
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+  .logoBox {
+    padding-top: 0.35em;
+  }
+  .logoBox img {
+    width: 1.8em;
+    height: 2.45em;
+    margin-right: 0.25em;
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 991px)  {
+  .logoBox {
+    margin-right: -1.6em;
+    padding: 0.68em 0 0.58em 0;
+  }
+  .logoBox h1 {
+    font-size: 1.25em;
+  }
+  .logoBox img {
+    width: 1.6em;
+    height: 2.3em;
+    margin-right: 0.25em;
+    margin-left: 0.4em;
+  }
+}
+@media screen and (max-width: 767px) {
+  .logoBox {
+    box-shadow: none;
+    margin-top: 0;
+  }
+}
+@media screen and (max-width: 575px){
+  .logoBox {
+    margin: 0 -1em 0 -1em;
+  }
+}
+@media screen and (max-width: 359px){
+  .miniPhone {
+    flex: 0 0 55%;
+  }
+}

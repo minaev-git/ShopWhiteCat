@@ -1,0 +1,21 @@
+.category {
+  width: 100%;
+  margin-bottom: 1.5em;
+}
+.category a {
+  width: 100%;
+  display: inline-block;
+  padding: 0.5em 0;
+  border-bottom: 1px solid #dddddd;
+  color: black;
+  font: 1.2em 'Oswald';
+}
+.category a:first-child{
+  border-top: 1px solid #dddddd;
+}
+.category p {
+  font: 1.2em 'Oswald';
+  line-height: 0;
+  float: right;
+  margin: 0.5em 1em;
+}

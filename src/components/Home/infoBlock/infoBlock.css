@@ -1,0 +1,23 @@
+.infoBlock{
+  margin-bottom: 2.5em;
+}
+.infoBlock > div {
+  margin-top: 2.5em;
+}
+.infoBlock > div:first-child {
+  margin-top: 7em;
+}
+.infoBlock > div:last-of-type {
+  margin-top: 7em;
+}
+@media screen and (max-width: 767px){
+  .infoBlock > div {
+    margin-top: 2em;
+  }
+  .infoBlock > div:first-child {
+    margin-top: 2em;
+  }
+  .infoBlock > div:last-of-type {
+    margin-top: 2em;
+  }
+}

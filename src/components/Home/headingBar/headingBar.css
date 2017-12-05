@@ -1,0 +1,29 @@
+.headingBlock {
+  width: 100%;
+  padding: 0.25em 2.4em;
+  background-color: #08a8b0;
+  box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.23);
+  border-radius: 2px;
+}
+.headingBlock h2{
+  display: inline-block;
+  color: white;
+  font: 1.5625em "Oswald";
+  font-weight: 600;
+  line-height: 0.8em;
+  margin: 0 0 0.2em 1.7em;
+}
+.headingBlock img{
+  height: 1.5em;
+  width: 1.5em;
+  margin-top: 0.14em;
+  display: inline-block;
+}
+@media screen and (max-width: 767px){
+  .headingBlock {
+    padding: 0.25em 1.5em;
+  }
+  .headingBlock h2{
+    margin-left: 1em;
+  }
+}

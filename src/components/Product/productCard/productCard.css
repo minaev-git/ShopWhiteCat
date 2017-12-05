@@ -1,0 +1,5 @@
+.productCard {
+  display: flex;
+  border: 1px solid red;
+  flex-direction: row;
+}

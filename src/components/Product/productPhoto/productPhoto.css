@@ -1,0 +1,22 @@
+.productPhoto > img {
+  width: 17.875em;
+  height: 23.25em;
+  vertical-align: top;
+  box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.04);
+}
+.alternativeImage {
+  display: inline-block;
+}
+.alternativeImage > img {
+  display: block;
+  opacity: 0.3;
+  width: 5.375em;
+  height: 7.5em;
+  cursor: pointer;
+}
+.alternativeImage > img:hover {
+  outline: 2px solid #08a8b0;
+}
+.alternativeImage .active{
+  opacity: 1;
+}

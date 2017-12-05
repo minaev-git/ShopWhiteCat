@@ -1,0 +1,10 @@
+:global{
+  body {
+    overflow-x:hidden;
+    background-color: #ededed;
+    min-width: 320px;
+  }
+  a {
+    text-decoration: none;
+  }
+}

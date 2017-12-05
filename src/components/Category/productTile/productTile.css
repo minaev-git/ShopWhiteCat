@@ -1,0 +1,112 @@
+.productTile {
+  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.15);
+  margin-bottom: 1em;
+}
+.productTile a img {
+  display: inline-block;
+  width: 11.25em;
+  height: 14.875em;
+}
+.productTile h3 {
+  display: inline-block;
+  margin-top: 0;
+  max-width: 23em;
+  font: 1.125em 'Open Sans';
+  font-weight: 600;
+  color: #444444;
+}
+.productTile form {
+  display: inline-block; 
+  position: relative;
+  width: 38em;
+  vertical-align: top;
+  margin: 0 0 0 1em;
+  padding-top: 1em;
+}
+.productTile form > p{
+  min-height: 4em;
+}
+.productTile form img {
+  float: right;
+  max-width: 8.45em;
+  max-height: 7.5em;
+}
+.productTile p {
+  max-width: 30.78em;
+  word-wrap: break-word;
+  font: 0.875em 'Open Sans';
+  font-weight: 300;
+}
+.productTile .bottomElement {
+  padding-bottom: 1em;
+  text-align: right;
+}
+.productTile button {
+  margin: 2em 1em 0 0;
+  padding: 0 1.5em;
+  cursor: pointer;
+  border: 1px solid #000000;
+  border-radius: 2px;
+  outline: none;
+  background-color: #fffefe;
+  font: 1.3125em 'Oswald';
+}
+.productTile button:hover {
+  color: #08a8b0;
+  border: 1px solid #08a8b0;
+}
+@media screen and (max-width: 1199px){
+  .productTile form {
+    width: 36em;
+  }
+}
+@media screen and (max-width: 991px){
+  .productTile form {
+    width: 25.9em;
+  }
+  .productTile form > img {
+    display: none;
+  }
+}
+@media screen and (max-width: 767px){
+  .productTile {
+    display: flex;
+    min-height: 16em;
+    position: relative;
+  }
+  .productTile a img {
+    width: 8.9376em;
+    height: 11.8125em;
+  }
+  .productTile h3 {
+    width: 100%;
+    font-size: 1em;
+  }
+  .productTile form {
+    width: 100%;
+    margin: 0 1em 0 0;
+  }
+  .productTile .bottomElement {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+  .customRadio span {
+    width: 1.45em;
+    height: 1.45em;
+  }
+  .customRadio input[type=radio]:checked + span:after{
+    position: absolute;
+    top: 0.25em;
+    left: 0.36em;
+    content: '\2714';
+    color: white;
+  }
+  .productTile button {
+    margin: 0 0 0 0;
+  }
+  .productTile form > p {
+    display: none;
+  }
+}

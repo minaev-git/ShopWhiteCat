@@ -1,0 +1,13 @@
+.home {
+  margin-right: -15px;
+  margin-left: -15px;
+}
+.photoBanner{
+  margin-bottom: 1.6em;
+}
+.spinner {
+  height: 30em;
+  display: flex;
+  justify-content: center;
+  align-items: center;  
+}

@@ -1,0 +1,44 @@
+.photoLink {
+  color: white;
+}
+.photoBanner {
+  position: relative;
+  padding-left: 1.4em;
+  background-position: center;
+  background-size: cover;
+}
+.photoBanner span {
+  display: inline-block;
+  vertical-align: top;
+}
+.photoBanner h2 {
+  font: 2.3125em 'Open Sans',sans-serif;
+  line-height: 0.54em;
+  font-weight: 600;
+}
+.photoBanner p {
+  width: 20em;
+  border-left: 5px solid #ffaf0a;
+  padding-left: 0.75em;
+  font: 1em 'Open Sans', sans-serif;
+  font-weight: 300;
+}
+.price {
+  margin: 0 1em 0.5em 0;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  font: 1.875em 'Open Sans';
+}
+.price span:first-child {
+  margin-top: -0.1em;
+  font-size: 1.15em;
+}
+@media screen and (max-width: 767px){
+  .photoBanner h2 {
+    font-size: 2em;
+  }
+  .photoBanner p {
+    font-size: 0.9em;
+  }
+}

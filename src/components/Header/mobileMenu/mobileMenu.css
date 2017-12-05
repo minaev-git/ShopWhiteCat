@@ -1,0 +1,84 @@
+.mobileMenu {
+  position: relative;
+}
+.mobileMenu button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  padding-left: 0.4em;
+  padding-top: 0.9em;
+  background-color: white;
+}
+
+.mobileMenu > button {
+  background-color: #08a8b0;
+}
+
+.mobileMenu > button img {
+  background-color: #08a8b0;
+  width: 2em;
+  height: 2em;
+}
+.hiddenMenu {
+  position: fixed;
+  overflow-x: hidden;
+  overflow-y: auto;
+  right: 0;
+  top: 0;
+  z-index: 4;
+  background-color: white;
+  font: 1.2em 'Oswald';
+  font-weight: 300;
+  height: 100%;
+  width: 100%;
+  padding: 0.2em 1em;
+  color: #353535;
+}
+.hiddenMenu button {
+  border-bottom: 1px solid #dddddd;
+  padding: 0.875em 0.8em 0.875em 0 ;
+  font: 1.2em 'Oswald';
+  font-weight: 400;
+  width: 100%;
+  text-align: start;
+}
+.hiddenMenu button p {
+  display: inline-block;
+  margin: 0;
+}
+.hiddenMenu button p:last-child{
+  float: right;
+}
+.hiddenMenu a {
+  outline: none;
+  color: #353535;
+  border-bottom: 1px solid #dddddd;
+  width: 100%;
+  padding: 0.875em 0;
+  display: block;
+}
+.hiddenMenu .closeMenu {
+  width: 1.2em;
+  height: 1.2em;
+  float: right;
+  margin: 0  0.5em 0.5em 0;
+  border-bottom: none;
+}
+.closeMenu img {
+  width: 1.2em;
+  height: 1.2em;
+}
+.catalog .back {
+  width: 1.2em;
+  height: 1.2em;
+  float: left;
+  margin: 0  0.5em 0.5em 0;
+  border-bottom: none;
+}
+.catalog .back img {
+  width: 1.2em;
+  height: 1.2em;
+}
+.catalog a:first-of-type {
+  margin-top: 3em;
+}

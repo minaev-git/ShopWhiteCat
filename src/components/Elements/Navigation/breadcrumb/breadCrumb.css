@@ -1,0 +1,16 @@
+.miniNavMenu {
+  position: absolute;
+  z-index: 1;
+}
+.miniNavMenu a {
+  font: 1em 'Open Sans';
+  color: #a0a0a0;
+  font-weight: 300;
+}
+.miniNavMenu a p {
+   display: inline-block;
+   margin: 0 0.8em;
+}
+.miniNavMenu a:last-of-type p {
+  display: none;
+}

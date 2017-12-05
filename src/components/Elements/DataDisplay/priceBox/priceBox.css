@@ -1,0 +1,40 @@
+.priceBox {
+  display: inline-block;
+}
+.priceBox .price {
+  position: relative;
+  display: inline-block;
+  text-align: right;
+  width: 3.5em;
+  margin: 0 1em 0 0;
+  font: 1.875em 'Oswald';
+  font-weight: 500;
+  text-align: end;
+}
+.priceBox .price span {
+  display: none;
+}
+.priceBox .sale {
+  position: relative;
+  display: inline-block;
+  width: 6em;
+  margin: 0 1.5em 0 0;
+  font: 1.5em 'Oswald';
+  color: #d1d1d1;
+  text-decoration: line-through;
+  font-weight: 500;
+  text-align: end;
+}
+.priceBox .sale span {
+  position: absolute;
+  bottom: 0.75em;
+  right: 0;
+  text-decoration: none;
+  font-size: 1.25em;
+  color: #f10202;
+}
+@media screen and (max-width: 767px){ 
+  .priceBox .price {
+    width: 4em;
+  }
+}
