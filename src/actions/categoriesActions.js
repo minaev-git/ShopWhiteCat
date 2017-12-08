@@ -1,158 +1,97 @@
 import axios from "axios";
-import {
-  REQUEST_CATEGORIES,
-  SUCCESS_CATEGORIES,
-  FAILURE_CATEGORIES,
-  REQUEST_CATEGORY,
-  FAILURE_CATEGORY,
-  SUCCESS_CATEGORY,
-  REQUEST_CATEGORY_LINK,
-  SUCCESS_CATEGORY_LINK,
-  FAILURE_CATEGORY_LINK
-} from "../constants/menu";
+import { createAction } from 'redux-act';
+
+const request = createAction();
+const success = createAction();
+const failure = createAction();
 
 export function getCategories() {
   return dispatch => {
-    dispatch({
-      type: REQUEST_CATEGORIES,
-      loading: true
-    });
+    dispatch(request());
     axios({
       method: "get",
       /* url: 'http://laravel.app/api/getCategories' */
-      url: "http://laravel.app/api/getCategories"
+      url: "http://192.168.0.107/api/getCategories"
     })
       .then(response => {
-        dispatch({
-          type: SUCCESS_CATEGORIES,
-          payload: response.data,
-          loading: false
-        });
+        dispatch(success(response));
       })
       .catch(error => {
-        dispatch({
-          type: FAILURE_CATEGORIES,
-          payload: error.message,
-          loading: false
-        });
+        dispatch(failure(error.message));
       });
   };
 }
 
 export function getCategory(id, sort = null) {
   return dispatch => {
-    dispatch({
-      type: REQUEST_CATEGORY,
-      loading: true
-    });
+    dispatch(request());
     axios({
       method: "get",
       /* url: `http://laravel.app/api/getCategory/${id}` */
-      url: `http://laravel.app/api/getCategory/${id}`,
+      url: `http://192.168.0.107/api/getCategory/${id}`,
       params: {
         order: sort
       }
     })
       .then(response => {
-        dispatch({
-          type: SUCCESS_CATEGORY,
-          payload: response.data,
-          loading: false
-        });
+        dispatch(success(response));
       })
       .catch(error => {
-        dispatch({
-          type: FAILURE_CATEGORY,
-          payload: error.message,
-          loading: false
-        });
+        dispatch(failure(error.message));
       });
   };
 }
 
 export function getSubCategory(id, sort = null) {
   return dispatch => {
-    dispatch({
-      type: REQUEST_CATEGORY,
-      loading: true
-    });
+    dispatch(request());
     axios({
       method: "get",
       /* url: `http://laravel.app/api/getChildCategory/${id}` */
-      url: `http://laravel.app/api/getChildCategory/${id}`,
+      url: `http://192.168.0.107/api/getChildCategory/${id}`,
       params: {
         order: sort
       }
     })
       .then(response => {
-        dispatch({
-          type: SUCCESS_CATEGORY,
-          payload: response.data,
-          loading: false
-        });
+        dispatch(success(response));
       })
       .catch(error => {
-        dispatch({
-          type: FAILURE_CATEGORY,
-          payload: error.message,
-          loading: false
-        });
+        dispatch(failure(error.message));
       });
   };
 }
 
 export function getCategoryLink(id) {
   return dispatch => {
-    dispatch({
-      type: REQUEST_CATEGORY_LINK,
-      loading: true
-    });
+    dispatch(request());
     axios({
       method: "get",
       /* url: `http://laravel.app/api/getChildCategory/${id}` */
-      url: `http://laravel.app/api/getCategoryLink/${id}`
+      url: `http://192.168.0.107/api/getCategoryLink/${id}`
     })
       .then(response => {
-        dispatch({
-          type: SUCCESS_CATEGORY_LINK,
-          payload: response.data,
-          loading: false
-        });
+        dispatch(success(response));
       })
       .catch(error => {
-        dispatch({
-          type: FAILURE_CATEGORY_LINK,
-          payload: error.message,
-          loading: false
-        });
+        dispatch(failure(error.message));
       });
   };
 }
 
 export function getChildCategoryLink(id) {
   return dispatch => {
-    dispatch({
-      type: REQUEST_CATEGORY_LINK,
-      loading: true
-    });
+    dispatch(request());
     axios({
       method: "get",
       /* url: `http://laravel.app/api/getChildCategory/${id}` */
-      url: `http://laravel.app/api/getChildCategoryLink/${id}`
+      url: `http://192.168.0.107/api/getChildCategoryLink/${id}`
     })
       .then(response => {
-        dispatch({
-          type: SUCCESS_CATEGORY_LINK,
-          payload: response.data,
-          loading: false
-        });
+        dispatch(success(response));
       })
       .catch(error => {
-        dispatch({
-          type: FAILURE_CATEGORY_LINK,
-          payload: error.message,
-          loading: false
-        });
+        dispatch(failure(error.message));
       });
   };
 }

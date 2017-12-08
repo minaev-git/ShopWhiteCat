@@ -17,6 +17,7 @@
     "react-router-redux": "^5.0.0-alpha.6",
     "react-select": "^1.0.0-rc.6",
     "redux": "^3.7.2",
+    "redux-act": "^1.5.1",
     "redux-devtools-extension": "^2.13.2",
     "redux-thunk": "^2.2.0",
     "styled-components": "^2.1.2",
@@ -62,8 +63,8 @@
     "webpack-hot-middleware": "^2.18.2"
   },
   "scripts": {
-    "build-dev": "set NODE_ENV=development&& babel-node server.js",
-    "build-prod": "set NODE_ENV=production&& webpack && babel-node server.js",
+    "build-dev": "NODE_ENV=development&& babel-node server.js",
+    "build-prod": "NODE_ENV=production&& webpack && babel-node server.js",
     "flow": "flow"
   },
   "browserslist": {

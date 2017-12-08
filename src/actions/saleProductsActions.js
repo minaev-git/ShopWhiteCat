@@ -1,32 +1,25 @@
 import axios from "axios";
-import {
-  REQUEST_SALE_PRODUCTS,
-  FAILURE_SALE_PRODUCTS,
-  SUCCESS_SALE_PRODUCTS
-} from "../constants/saleProducts";
+import { createAction } from 'redux-act';
+
+const request = createAction();
+const success = createAction();
+const failure = createAction();
 
 export function getSaleProducts() {
   return dispatch => {
-    dispatch({
-      type: REQUEST_SALE_PRODUCTS
-    });
+    dispatch(request());
     axios({
       method: "get",
       /* url: '/api/getSection/sale' */
-      url: "http://laravel.app/api/getSection/sale"
+      url: "http://192.168.0.107/api/getSection/sale"
     })
       .then(response => {
-        dispatch({
-          type: SUCCESS_SALE_PRODUCTS,
-          payload: response.data
-        });
+        dispatch(success(response));
       })
       .catch(error => {
-        dispatch({
-          type: FAILURE_SALE_PRODUCTS,
-          payload: error.message
-        });
+        dispatch(failure(error.message));
       });
   };
 }
+
 export const a = 2;
