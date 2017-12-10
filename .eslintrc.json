@@ -21,7 +21,7 @@
     "no-unused-vars": "warn",
     "constructor-super": "warn",
     "valid-typeof": "warn",
-    "linebreak-style": ["error", "unix"],
+    "linebreak-style": ["error", "windows"],
     "jsx-a11y/anchor-is-valid": [
       "error",
       {

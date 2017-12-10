@@ -1,6 +1,5 @@
 // @flow
 import React, { Component } from "react";
-import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import type { Category } from "type/category"
@@ -8,7 +7,8 @@ import BreadCrumb from "components/Elements/Navigation/breadcrumb/BreadCrumb";
 import NavMenu from "components/Category/navMenu/NavMenu";
 import Spinner from "components/Elements/Feedback/spinner/Spinner";
 import MobileMiniNav from "components/Elements/Navigation/mobileMiniNav/MobileMiniNav";
-import * as categoriesActions from "actions/categoriesActions";
+import * as actionsCategory from "redux/modules/category/category";
+import * as actionsCategoryLink from "redux/modules/category/categoryLink";
 import ProductList from "../productList/ProductList";
 import styles from "./Category.css";
 
@@ -18,12 +18,12 @@ type Props = {
 
 class CategoryPage extends Component<Props> {
   componentDidMount() {
-    this.props.categoriesActions.getCategories();
+      actionsCategory.getCategories();
     if (this.props.type === "category") {
-      this.props.categoriesActions.getCategoryLink(this.props.match.params.id);
+      actionsCategoryLink.getCategoryLink(this.props.match.params.id);
     }
     if (this.props.type === "childCategory") {
-      this.props.categoriesActions.getChildCategoryLink(
+      actionsCategoryLink.getChildCategoryLink(
         this.props.match.params.id
       );
     }
@@ -34,27 +34,26 @@ class CategoryPage extends Component<Props> {
       this.props.type === "category" &&
       this.props.match.params.id !== prevProps.match.params.id
     ) {
-      this.props.categoriesActions.getCategoryLink(this.props.match.params.id);
+      actionsCategoryLink.getCategoryLink(this.props.match.params.id);
     }
     if (
       this.props.type === "childCategory" &&
       this.props.match.params.id !== prevProps.match.params.id
     ) {
-      this.props.categoriesActions.getChildCategoryLink(
+      actionsCategoryLink.getChildCategoryLink(
         this.props.match.params.id
       );
     }
   }
 
   render() {
-    const {
-      categoriesNav = [],
-      categoryLink = {},
-      loadingCategories,
-      loadingCategoryLink
-    } = this.props.categories;
+    const categories = this.props.categories.entity;
+    const isFetchingCategories = this.props.categories.isFetching;
 
-    const miniNavMenu = loadingCategoryLink ? null : (
+    const categoryLink = this.props.categoryLink.entity;
+    const isFetchingcategoryLink = this.props.categoryLink.isFetching;
+
+    const miniNavMenu = isFetchingcategoryLink ? null : (
       <BreadCrumb
         type={this.props.type}
         idActiveCategory={this.props.match.params.id}
@@ -62,7 +61,7 @@ class CategoryPage extends Component<Props> {
       />
     );
 
-    if (loadingCategories && loadingCategoryLink) {
+    if (isFetchingCategories && isFetchingcategoryLink) {
       return (
         <div className={styles.spinner}>
           <Spinner />
@@ -82,7 +81,7 @@ class CategoryPage extends Component<Props> {
           {miniNavMenu}
         </div>
         <div className="row">
-          <NavMenu categories={categoriesNav} />
+          <NavMenu categories={categories} />
           <ProductList
             type={this.props.type}
             idActiveCategory={this.props.match.params.id}
@@ -95,13 +94,8 @@ class CategoryPage extends Component<Props> {
 
 function mapStateToProps(state) {
   return {
-    categories: state.categories
-  };
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    categoriesActions: bindActionCreators(categoriesActions, dispatch)
+    category: state.category,
+    categoryLink: state.categoryLink
   };
 }
 
@@ -125,4 +119,4 @@ CategoryPage.propTypes = {
   type: PropTypes.string.isRequired
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(CategoryPage);
+export default connect(mapStateToProps)(CategoryPage);

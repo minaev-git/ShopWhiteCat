@@ -1,22 +1,22 @@
 import React, { Component } from "react";
-import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import styles from "./product.css";
 import Spinner from "components/Elements/Feedback/spinner/Spinner"
 import ProductCard from "components/Product/productCard/ProductCard";
-import * as productsActions from "actions/productsActions";
+import * as productActions from "redux/modules/product";
+import styles from "./product.css";
 
 class Product extends Component {
 
   componentDidMount() {
-    this.props.productsActions.getProduct(this.props.match.params.id);
+    productActions.getProduct(this.props.match.params.id);
   }
 
   render() {
-    const { product = {} , loadingProduct } = this.props.products;
+    const product = this.props.product.entity;
+    const isFetchingGetProduct = this.props.product.isFetching; 
 
-    if(loadingProduct) {
+    if(isFetchingGetProduct) {
       return (
         <div className={styles.spinner}>
           <Spinner />
@@ -48,14 +48,9 @@ Product.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    products: state.products
+    product: state.product
   };
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    productsActions: bindActionCreators(productsActions, dispatch)
-  };
-}
 
-export default connect(mapStateToProps, mapDispatchToProps)(Product);
+export default connect(mapStateToProps)(Product);

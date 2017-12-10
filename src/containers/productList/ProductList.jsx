@@ -6,8 +6,8 @@ import styles from "./productList.css";
 import ProductTile from "components/Category/productTile/ProductTile";
 import BreadCrumb from "components/Elements/Navigation/breadcrumb/BreadCrumb"
 import Spinner from "components/Elements/Feedback/spinner/Spinner";
-import * as categoriesActions from "actions/categoriesActions";
-import * as productsActions from "actions/productsActions";
+import * as actionsCategory from "redux/modules/category/category";
+
 
 class ProductList extends Component {
   constructor(props, context) {
@@ -17,10 +17,10 @@ class ProductList extends Component {
   
   componentWillMount() {
     if (this.props.type === "category") {
-      this.props.categoriesActions.getCategory(this.props.idActiveCategory);
+      actionsCategory.getCategory(this.props.idActiveCategory);
     }
     if (this.props.type === "childCategory") {
-      this.props.categoriesActions.getSubCategory(this.props.idActiveCategory);
+      actionsCategory.getSubCategory(this.props.idActiveCategory);
     }
   }
 
@@ -29,13 +29,13 @@ class ProductList extends Component {
       this.props.type === "category" &&
       this.props.idActiveCategory !== prevProps.idActiveCategory
     ) {
-      this.props.categoriesActions.getCategory(this.props.idActiveCategory);
+      actionsCategory.getCategory(this.props.idActiveCategory);
     }
     if (
       this.props.type === "childCategory" &&
       this.props.idActiveCategory !== prevProps.idActiveCategory
     ) {
-      this.props.categoriesActions.getSubCategory(this.props.idActiveCategory);
+      actionsCategory.getSubCategory(this.props.idActiveCategory);
     }
   }
 
@@ -72,7 +72,8 @@ class ProductList extends Component {
   }
 
   render() {
-    const { category = {}, loadingCategory } = this.props.categories;
+    const category = this.props.category.entity;
+    const isFetchingCategories = this.props.category.isFetching;
 
     const productsBlock = (category.products || []).map(product => (
       <ProductTile
@@ -82,7 +83,7 @@ class ProductList extends Component {
       />
     ));
 
-    if (loadingCategory) {
+    if (isFetchingCategories) {
       return (
         <div className={styles.spinner}>
           <Spinner />
@@ -122,14 +123,7 @@ class ProductList extends Component {
 
 function mapStateToProps(state) {
   return {
-    categories: state.categories
-  };
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    categoriesActions: bindActionCreators(categoriesActions, dispatch),
-    productsActions: bindActionCreators(productsActions, dispatch)
+    category: state.category,
   };
 }
 
@@ -149,4 +143,4 @@ ProductList.propTypes = {
   idActiveCategory: PropTypes.string.isRequired
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProductList);
+export default connect(mapStateToProps)(ProductList);

@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import * as saleProductsAction from "actions/saleProductsActions";
+import * as saleProductsAction from "redux/modules/saleProducts";
 import MobileMiniNav from "components/Elements/Navigation/mobileMiniNav/MobileMiniNav";
 import PhotoBanner from "components/Home/photoBanner/PhotoBanner";
 import photo1 from "components/Home/photoBanner/phote1.jpg";
@@ -21,14 +20,15 @@ import styles from "./styles/Home.css";
 
 class Home extends Component {
   componentDidMount() {
-    this.props.saleProductsAction.getSaleProducts();
+    saleProductsAction.getSaleProducts();
   }
 
   render() {
-    const { saleProducts = [] } = this.props.saleProducts;
-    const { categoriesNav = [], loadingCategories } = this.props.categories;
+    const saleProducts = this.props.saleProducts.entity;
+    const categories  = this.props.categories.entity;
+    const isFetchingCategories = this.props.categories.isFetching;
 
-    if(loadingCategories) {
+    if(isFetchingCategories) {
       return (
         <div className={styles.spinner}>
           <Spinner />
@@ -83,7 +83,7 @@ class Home extends Component {
             }}
             text={textPhotoBanner.text1}
           />
-          <MobileMiniNav categories={categoriesNav} type={"category"} />
+          <MobileMiniNav categories={categories} type={"category"} />
         </div>
         <HeadingBar
           heading="Товары со скидками"
@@ -139,22 +139,13 @@ function mapStateToProps(state) {
   };
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    saleProductsAction: bindActionCreators(saleProductsAction, dispatch)
-  };
-}
-
 Home.propTypes = {
   saleProducts: PropTypes.shape({
     saleProducts: PropTypes.array
   }).isRequired,
   categories: PropTypes.shape({
     categoriesNav: PropTypes.array
-  }).isRequired,
-  saleProductsAction: PropTypes.shape({
-    getSaleProducts: PropTypes.func
   }).isRequired
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps)(Home);

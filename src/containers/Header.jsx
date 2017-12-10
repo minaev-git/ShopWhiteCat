@@ -9,7 +9,7 @@ import Cart from "components/Header/cart/Cart";
 import Info from "components/Header/info/Info";
 import Menu from "components/Header/menu/Menu";
 import MobileMenu from "components/Header/mobileMenu/MobileMenu";
-import * as categoriesActions from "actions/categoriesActions";
+import * as actionsCategories from "redux/modules/category/categories";
 import styles from "./styles/Header.css";
 
 class Header extends Component {
@@ -26,7 +26,7 @@ class Header extends Component {
   }
 
   componentWillMount() {
-    this.props.categoriesActions.getCategories();
+    this.props.actionsCategories.getCategories();
   }
 
   handleMenu() {
@@ -42,14 +42,14 @@ class Header extends Component {
   }
 
   render() {
-    const { categoriesNav = [] } = this.props.categories;
+    const categories = this.props.categories.entity;
 
     return (
       <header className="fluid-container">
         <div className="row">
           <div className={styles.mobile}>
             <MobileMenu
-              categories={categoriesNav}
+              categories={categories}
               handleMenu={this.handleMenu}
               handleCatalog={this.handleCatalog}
               isOpenMenu={this.state.isOpenMenu}
@@ -66,7 +66,7 @@ class Header extends Component {
           </div>
         </div>
         <div className="row">
-          <Menu categories={categoriesNav} />
+          <Menu categories={categories} />
         </div>
       </header>
     );
@@ -81,17 +81,14 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    categoriesActions: bindActionCreators(categoriesActions, dispatch)
-  };
+    actionsCategories: bindActionCreators(actionsCategories, dispatch)
+  }
 }
 
 Header.propTypes = {
   categories: PropTypes.shape({
-    categoriesNav: PropTypes.array,
+    categories: PropTypes.array,
     loadingCategories: PropTypes.bool
-  }).isRequired,
-  categoriesActions: PropTypes.shape({
-    getCategories: PropTypes.func
   }).isRequired
 };
 

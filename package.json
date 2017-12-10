@@ -63,8 +63,8 @@
     "webpack-hot-middleware": "^2.18.2"
   },
   "scripts": {
-    "build-dev": "NODE_ENV=development&& babel-node server.js",
-    "build-prod": "NODE_ENV=production&& webpack && babel-node server.js",
+    "build-dev": "set NODE_ENV=development&& babel-node server.js",
+    "build-prod": "set NODE_ENV=production&& webpack && babel-node server.js",
     "flow": "flow"
   },
   "browserslist": {

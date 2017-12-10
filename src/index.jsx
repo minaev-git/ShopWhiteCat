@@ -4,7 +4,7 @@ import { AppContainer } from "react-hot-loader";
 import createHistory from "history/createBrowserHistory";
 import { ConnectedRouter } from "react-router-redux";
 import { Provider } from "react-redux";
-import configureStore from "./store/configureStore";
+import configureStore from "redux/configureStore";
 import "./global/default.css";
 import "./global/grid.css";
 import "./global/responsive.css";
