@@ -8,10 +8,25 @@ import styles from "./mobileMiniNav.css";
 type Props = {
   categories: Category[],
   type: string
-}
+};
 
 const MobileMinCategory = (props: Props) => {
-  const categories = (props.categories || []).map(category => (
+  if (props.type === "childCategory") {
+    return (
+      <div className={styles.category}>
+        <Link
+          to={`/${props.type}/${transliterate(
+            props.categories.category.name
+          )}/${props.categories.category.id}`}
+          key={props.categories.category.id}
+        >
+          {props.categories.category.name}
+          <p>&gt;</p>
+        </Link>
+      </div>
+    );
+  }
+  const categories = (props.categories.child_categories || []).map(category => (
     <Link
       to={`/${props.type}/${transliterate(category.name)}/${category.id}`}
       key={category.id}

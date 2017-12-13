@@ -2,25 +2,25 @@ import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import styles from "./productList.css";
 import ProductTile from "components/Category/productTile/ProductTile";
-import BreadCrumb from "components/Elements/Navigation/breadcrumb/BreadCrumb"
+import BreadCrumb from "components/Elements/Navigation/breadcrumb/BreadCrumb";
 import Spinner from "components/Elements/Feedback/spinner/Spinner";
 import * as actionsCategory from "redux/modules/category/category";
-
+import * as actionsProduct from "redux/modules/product";
+import styles from "./productList.css";
 
 class ProductList extends Component {
   constructor(props, context) {
     super(props, context);
     this.sortProducts = this.sortProducts.bind(this);
   }
-  
-  componentWillMount() {
+
+  componentDidMount() {
     if (this.props.type === "category") {
-      actionsCategory.getCategory(this.props.idActiveCategory);
+      this.props.actionsCategory.getCategory(this.props.idActiveCategory);
     }
     if (this.props.type === "childCategory") {
-      actionsCategory.getSubCategory(this.props.idActiveCategory);
+      this.props.actionsCategory.getSubCategory(this.props.idActiveCategory);
     }
   }
 
@@ -29,13 +29,13 @@ class ProductList extends Component {
       this.props.type === "category" &&
       this.props.idActiveCategory !== prevProps.idActiveCategory
     ) {
-      actionsCategory.getCategory(this.props.idActiveCategory);
+      this.props.actionsCategory.getCategory(this.props.idActiveCategory);
     }
     if (
       this.props.type === "childCategory" &&
       this.props.idActiveCategory !== prevProps.idActiveCategory
     ) {
-      actionsCategory.getSubCategory(this.props.idActiveCategory);
+      this.props.actionsCategory.getSubCategory(this.props.idActiveCategory);
     }
   }
 
@@ -43,23 +43,23 @@ class ProductList extends Component {
     switch (typeSort) {
       case "novelty":
         if (this.props.type === "category") {
-          this.props.categoriesActions.getCategory(this.props.idActiveCategory);
+          this.props.actionsCategory.getCategory(this.props.idActiveCategory);
         }
         if (this.props.type === "childCategory") {
-          this.props.categoriesActions.getSubCategory(
+          this.props.actionsCategory.getSubCategory(
             this.props.idActiveCategory
           );
         }
         break;
       case "price":
         if (this.props.type === "category") {
-          this.props.categoriesActions.getCategory(
+          this.props.actionsCategory.getCategory(
             this.props.idActiveCategory,
             typeSort
           );
         }
         if (this.props.type === "childCategory") {
-          this.props.categoriesActions.getSubCategory(
+          this.props.actionsCategory.getSubCategory(
             this.props.idActiveCategory,
             typeSort
           );
@@ -72,14 +72,14 @@ class ProductList extends Component {
   }
 
   render() {
-    const category = this.props.category.entity;
+    const { category = { products: [] } } = this.props.category.entity;
     const isFetchingCategories = this.props.category.isFetching;
 
-    const productsBlock = (category.products || []).map(product => (
+    const productsBlock = category.products.map(product => (
       <ProductTile
         product={product}
         key={product.id}
-        addProduct={this.props.productsActions.addProduct}
+        addProduct={this.props.actionsProduct.addProduct}
       />
     ));
 
@@ -123,7 +123,14 @@ class ProductList extends Component {
 
 function mapStateToProps(state) {
   return {
-    category: state.category,
+    category: state.category
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actionsCategory: bindActionCreators(actionsCategory, dispatch),
+    actionsProduct: bindActionCreators(actionsProduct, dispatch)
   };
 }
 
@@ -143,4 +150,4 @@ ProductList.propTypes = {
   idActiveCategory: PropTypes.string.isRequired
 };
 
-export default connect(mapStateToProps)(ProductList);
+export default connect(mapStateToProps, mapDispatchToProps)(ProductList);

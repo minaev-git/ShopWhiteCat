@@ -2,58 +2,45 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import type { Category } from "type/category"
+import { bindActionCreators } from "redux";
+import type { Category } from "type/category";
 import BreadCrumb from "components/Elements/Navigation/breadcrumb/BreadCrumb";
 import NavMenu from "components/Category/navMenu/NavMenu";
 import Spinner from "components/Elements/Feedback/spinner/Spinner";
 import MobileMiniNav from "components/Elements/Navigation/mobileMiniNav/MobileMiniNav";
-import * as actionsCategory from "redux/modules/category/category";
+import * as actionsCategories from "redux/modules/category/categories";
 import * as actionsCategoryLink from "redux/modules/category/categoryLink";
 import ProductList from "../productList/ProductList";
 import styles from "./Category.css";
 
 type Props = {
   categories: Category[]
-}
+};
 
 class CategoryPage extends Component<Props> {
+
   componentDidMount() {
-      actionsCategory.getCategories();
+    this.props.actionsCategories.getCategories();
     if (this.props.type === "category") {
-      actionsCategoryLink.getCategoryLink(this.props.match.params.id);
-    }
-    if (this.props.type === "childCategory") {
-      actionsCategoryLink.getChildCategoryLink(
+      this.props.actionsCategoryLink.getCategoryLink(
         this.props.match.params.id
       );
     }
-  }
-
-  componentDidUpdate(prevProps) {
-    if (
-      this.props.type === "category" &&
-      this.props.match.params.id !== prevProps.match.params.id
-    ) {
-      actionsCategoryLink.getCategoryLink(this.props.match.params.id);
-    }
-    if (
-      this.props.type === "childCategory" &&
-      this.props.match.params.id !== prevProps.match.params.id
-    ) {
-      actionsCategoryLink.getChildCategoryLink(
+    if (this.props.type === "childCategory") {
+      this.props.actionsCategoryLink.getSubCategoryLink(
         this.props.match.params.id
       );
     }
   }
 
   render() {
-    const categories = this.props.categories.entity;
+    const { categories = {} } = this.props.categories.entity;
     const isFetchingCategories = this.props.categories.isFetching;
 
-    const categoryLink = this.props.categoryLink.entity;
-    const isFetchingcategoryLink = this.props.categoryLink.isFetching;
+    const { categoryLink } = this.props.categoryLink.entity;
+    const isFetchingСategoryLink = this.props.categoryLink.isFetching;
 
-    const miniNavMenu = isFetchingcategoryLink ? null : (
+    const miniNavMenu = isFetchingСategoryLink ? null : (
       <BreadCrumb
         type={this.props.type}
         idActiveCategory={this.props.match.params.id}
@@ -61,7 +48,7 @@ class CategoryPage extends Component<Props> {
       />
     );
 
-    if (isFetchingCategories && isFetchingcategoryLink) {
+    if (isFetchingCategories || isFetchingСategoryLink) {
       return (
         <div className={styles.spinner}>
           <Spinner />
@@ -72,10 +59,7 @@ class CategoryPage extends Component<Props> {
     return (
       <div className="fluid-container">
         <div className={`row hiddenDesktop ${styles.mobileNavChild}`}>
-          <MobileMiniNav
-            categories={categoryLink.child_categories}
-            type={"subcategory"}
-          />
+          <MobileMiniNav categories={categoryLink} type={this.props.type} />
         </div>
         <div className={`row hiddenMobile ${styles.miniNav}`}>
           {miniNavMenu}
@@ -94,8 +78,15 @@ class CategoryPage extends Component<Props> {
 
 function mapStateToProps(state) {
   return {
-    category: state.category,
-    categoryLink: state.categoryLink
+    categoryLink: state.categoryLink,
+    categories: state.categories
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actionsCategories: bindActionCreators(actionsCategories, dispatch),
+    actionsCategoryLink: bindActionCreators(actionsCategoryLink, dispatch)
   };
 }
 
@@ -119,4 +110,4 @@ CategoryPage.propTypes = {
   type: PropTypes.string.isRequired
 };
 
-export default connect(mapStateToProps)(CategoryPage);
+export default connect(mapStateToProps, mapDispatchToProps)(CategoryPage);

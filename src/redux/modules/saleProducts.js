@@ -4,9 +4,7 @@ import { combineReducers } from "redux";
 import makeIsFetching from "./fetch";
 
 const fetchSaleProductsRequest = createAction();
-const fetchSaleProductsSuccess = createAction(saleProducts => ({
-  saleProducts
-}));
+const fetchSaleProductsSuccess = createAction();
 const fetchSaleProductsFailure = createAction();
 
 export function getSaleProducts() {
@@ -18,7 +16,7 @@ export function getSaleProducts() {
       url: "http://192.168.0.107/api/getSection/sale"
     })
       .then(response => {
-        dispatch(fetchSaleProductsSuccess(response));
+        dispatch(fetchSaleProductsSuccess(response.data.products));
       })
       .catch(error => {
         dispatch(fetchSaleProductsFailure(error.message));
@@ -26,12 +24,22 @@ export function getSaleProducts() {
   };
 }
 
-const entity = createReducer({}, []).on(
+const entity = createReducer({}, {}).on(
   fetchSaleProductsSuccess,
-  saleProducts => ({ saleProducts })
+  (state, saleProducts) => ({ ...state, saleProducts })
+);
+
+const error = createReducer({}, "").on(
+  fetchSaleProductsFailure,
+  (errorMessage) => (errorMessage)
 );
 
 export const saleProducts = combineReducers({
-  isFetching: makeIsFetching(fetchSaleProductsRequest, fetchSaleProductsSuccess, fetchSaleProductsFailure),
-  entity
+  isFetching: makeIsFetching(
+    fetchSaleProductsRequest,
+    fetchSaleProductsSuccess,
+    fetchSaleProductsFailure
+  ),
+  entity,
+  error
 });

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 import PropTypes from "prop-types";
 import * as saleProductsAction from "redux/modules/saleProducts";
 import MobileMiniNav from "components/Elements/Navigation/mobileMiniNav/MobileMiniNav";
@@ -8,7 +9,7 @@ import photo1 from "components/Home/photoBanner/phote1.jpg";
 import photo2 from "components/Home/photoBanner/phote2.jpg";
 import photo3 from "components/Home/photoBanner/phote3.jpg";
 import * as textPhotoBanner from "components/Home/photoBanner/text";
-import Spinner from "components/Elements/Feedback/spinner/Spinner"
+import Spinner from "components/Elements/Feedback/spinner/Spinner";
 import HeadingBar from "components/Home/headingBar/HeadingBar";
 import saleHeadingIcon from "components/Home/headingBar/sale.svg";
 import infoHeadingIcon from "components/Home/headingBar/info.svg";
@@ -20,20 +21,21 @@ import styles from "./styles/Home.css";
 
 class Home extends Component {
   componentDidMount() {
-    saleProductsAction.getSaleProducts();
+    this.props.saleProductsAction.getSaleProducts();
   }
 
   render() {
-    const saleProducts = this.props.saleProducts.entity;
-    const categories  = this.props.categories.entity;
+    const { saleProducts = [] } = this.props.saleProducts.entity;
+    const { categories = [] } = this.props.categories.entity;
     const isFetchingCategories = this.props.categories.isFetching;
+    const isFetchingSaleProducts = this.props.saleProducts.isFetching;
 
-    if(isFetchingCategories) {
+    if (isFetchingCategories || isFetchingSaleProducts) {
       return (
         <div className={styles.spinner}>
           <Spinner />
         </div>
-      )
+      );
     }
 
     return (
@@ -83,7 +85,6 @@ class Home extends Component {
             }}
             text={textPhotoBanner.text1}
           />
-          <MobileMiniNav categories={categories} type={"category"} />
         </div>
         <HeadingBar
           heading="Товары со скидками"
@@ -139,6 +140,12 @@ function mapStateToProps(state) {
   };
 }
 
+function mapDispatchToProps(dispatch) {
+  return {
+    saleProductsAction: bindActionCreators(saleProductsAction, dispatch)
+  };
+}
+
 Home.propTypes = {
   saleProducts: PropTypes.shape({
     saleProducts: PropTypes.array
@@ -148,4 +155,4 @@ Home.propTypes = {
   }).isRequired
 };
 
-export default connect(mapStateToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

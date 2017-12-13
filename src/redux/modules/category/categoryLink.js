@@ -4,9 +4,7 @@ import { combineReducers } from "redux";
 import makeIsFetching from "../fetch";
 
 const fetchCategoryLinkRequest = createAction();
-const fetchCategoryLinkSuccess = createAction(categoryLink => ({
-  categoryLink
-}));
+const fetchCategoryLinkSuccess = createAction();
 const fetchCategoryLinkFailure = createAction();
 
 export function getCategoryLink(id) {
@@ -18,7 +16,7 @@ export function getCategoryLink(id) {
       url: `http://192.168.0.107/api/getCategoryLink/${id}`
     })
       .then(response => {
-        dispatch(fetchCategoryLinkSuccess(response));
+        dispatch(fetchCategoryLinkSuccess(response.data));
       })
       .catch(error => {
         dispatch(fetchCategoryLinkFailure(error.message));
@@ -35,7 +33,7 @@ export function getSubCategoryLink(id) {
       url: `http://192.168.0.107/api/getChildCategoryLink/${id}`
     })
       .then(response => {
-        dispatch(fetchCategoryLinkSuccess(response));
+        dispatch(fetchCategoryLinkSuccess(response.data));
       })
       .catch(error => {
         dispatch(fetchCategoryLinkFailure(error.message));
@@ -43,9 +41,14 @@ export function getSubCategoryLink(id) {
   };
 }
 
-const entity = createReducer({}, []).on(
+const entity = createReducer({}, {}).on(
   fetchCategoryLinkSuccess,
-  categoryLink => ({ categoryLink })
+  (state, categoryLink) => ({...state, categoryLink })
+);
+
+const error = createReducer({}, "").on(
+  fetchCategoryLinkFailure,
+  (errorMessage) => (errorMessage)
 );
 
 export const categoryLink = combineReducers({
@@ -54,5 +57,6 @@ export const categoryLink = combineReducers({
     fetchCategoryLinkSuccess,
     fetchCategoryLinkFailure
   ),
-  entity
+  entity,
+  error
 });

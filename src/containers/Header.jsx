@@ -42,7 +42,7 @@ class Header extends Component {
   }
 
   render() {
-    const categories = this.props.categories.entity;
+    const { categories = [] } = this.props.categories.entity;
 
     return (
       <header className="fluid-container">

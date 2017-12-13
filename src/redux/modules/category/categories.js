@@ -4,7 +4,7 @@ import { combineReducers } from "redux";
 import makeIsFetching from "../fetch";
 
 const fetchCategoriesRequest = createAction();
-const fetchCategoriesSuccess = createAction(categories => ({ categories }));
+const fetchCategoriesSuccess = createAction();
 const fetchCategoriesFailure = createAction(errorMessage => errorMessage);
 
 export function getCategories() {
@@ -16,7 +16,7 @@ export function getCategories() {
       url: "http://192.168.0.107/api/getCategories"
     })
       .then(categories => {
-        dispatch(fetchCategoriesSuccess(categories));
+        dispatch(fetchCategoriesSuccess(categories.data));
       })
       .catch(error => {
         dispatch(fetchCategoriesFailure(error.message));
@@ -24,11 +24,15 @@ export function getCategories() {
   };
 }
 
-const entity = createReducer({}, [])
-  .on(fetchCategoriesSuccess, ({ categories }) => categories)
+const entity = createReducer({}, {}).on(
+  fetchCategoriesSuccess,
+  (state, categories) => ({...state, categories})
+);
 
-const error = createReducer({}, '')
-  .on(fetchCategoriesFailure, errorMessage => errorMessage);
+const error = createReducer({}, "").on(
+  fetchCategoriesFailure,
+  (errorMessage) => (errorMessage)
+);
 
 export const categories = combineReducers({
   isFetching: makeIsFetching(

@@ -4,7 +4,7 @@ import { combineReducers } from "redux";
 import makeIsFetching from "../fetch";
 
 const fetchCategoryRequest = createAction();
-const fetchCategorySuccess = createAction(category => ({ category }));
+const fetchCategorySuccess = createAction();
 const fetchCategoryFailure = createAction();
 
 export function getCategory(id, sort = null) {
@@ -19,7 +19,7 @@ export function getCategory(id, sort = null) {
       }
     })
       .then(response => {
-        dispatch(fetchCategorySuccess(response));
+        dispatch(fetchCategorySuccess(response.data));
       })
       .catch(error => {
         dispatch(fetchCategoryFailure(error.message));
@@ -39,7 +39,7 @@ export function getSubCategory(id, sort = null) {
       }
     })
       .then(response => {
-        dispatch(fetchCategorySuccess(response));
+        dispatch(fetchCategorySuccess(response.data));
       })
       .catch(error => {
         dispatch(fetchCategoryFailure(error.message));
@@ -47,9 +47,15 @@ export function getSubCategory(id, sort = null) {
   };
 }
 
-const entity = createReducer({}, []).on(fetchCategorySuccess, category => ({
-  category
-}));
+const entity = createReducer({}, []).on(
+  fetchCategorySuccess,
+  (state, category) => ({ ...state, category })
+);
+
+const error = createReducer({}, "").on(
+  fetchCategoryFailure,
+  (errorMessage) => (errorMessage)
+);
 
 export const category = combineReducers({
   isFetching: makeIsFetching(
@@ -57,5 +63,6 @@ export const category = combineReducers({
     fetchCategorySuccess,
     fetchCategoryFailure
   ),
-  entity
+  entity,
+  error
 });
