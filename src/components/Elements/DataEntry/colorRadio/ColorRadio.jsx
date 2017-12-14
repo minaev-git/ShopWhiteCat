@@ -1,16 +1,16 @@
 // @flow
 import React, { Component } from "react";
-import type { Color } from "type/product"
-import ColorChoice from "./ColorChoice"
+import type { Color } from "type/product";
+import ColorChoice from "./ColorChoice";
 import styles from "./colorRadio.css";
 
 type Props = {
   colors: Color[],
-  onChangeColor: Function
-}
+  onChangeColor: Function,
+  classNames: string
+};
 
 export default class ColorRadio extends Component<Props> {
-  
   componentDidMount() {
     if (this.props.colors.length > 0) {
       this.props.onChangeColor(this.props.colors[0].id);
@@ -18,7 +18,6 @@ export default class ColorRadio extends Component<Props> {
   }
 
   render() {
-
     const colors = this.props.colors.map((color, index) => {
       if (index === 0) {
         return (
@@ -39,7 +38,11 @@ export default class ColorRadio extends Component<Props> {
         );
       }
       return (
-        <label htmlFor={color.id} className={styles.customRadio} key={color.id}>
+        <label
+          htmlFor={color.id}
+          className={styles.customRadio}
+          key={color.id}
+        >
           <input
             id={color.id}
             name="color"
@@ -52,7 +55,7 @@ export default class ColorRadio extends Component<Props> {
     });
 
     return (
-      <ColorChoice length={this.props.colors.length}>
+      <ColorChoice className={this.props.classNames} length={this.props.colors.length}>
         <p>Цвета</p>
         {colors}
       </ColorChoice>

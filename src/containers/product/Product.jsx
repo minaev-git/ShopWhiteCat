@@ -1,19 +1,20 @@
 import React, { Component } from "react";
+import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import Spinner from "components/Elements/Feedback/spinner/Spinner"
 import ProductCard from "components/Product/productCard/ProductCard";
-import * as productActions from "redux/modules/product";
+import * as actionsProduct from "redux/modules/product";
 import styles from "./product.css";
 
 class Product extends Component {
 
   componentDidMount() {
-    productActions.getProduct(this.props.match.params.id);
+    this.props.actionsProduct.getProduct(this.props.match.params.id);
   }
 
   render() {
-    const product = this.props.product.entity;
+    const { product = {} } = this.props.product.entity;
     const isFetchingGetProduct = this.props.product.isFetching; 
 
     if(isFetchingGetProduct) {
@@ -52,5 +53,11 @@ function mapStateToProps(state) {
   };
 }
 
+function mapDispatchToProps(dispatch) {
+  return {
+    actionsProduct: bindActionCreators(actionsProduct, dispatch)
+  }
+}
 
-export default connect(mapStateToProps)(Product);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Product);

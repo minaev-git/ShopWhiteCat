@@ -1,0 +1,10 @@
+.radio {
+  background-color: white;
+  border: 1px solid #08a8b0;
+  width: 1em;
+  height: 1em;
+  border-radius: 100%;
+}
+.active {
+  background-color: #08a8b0;
+}

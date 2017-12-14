@@ -34,10 +34,10 @@ class CategoryPage extends Component<Props> {
   }
 
   render() {
-    const { categories = {} } = this.props.categories.entity;
+    const { categories = [] } = this.props.categories.entity;
     const isFetchingCategories = this.props.categories.isFetching;
 
-    const { categoryLink } = this.props.categoryLink.entity;
+    const { categoryLink = {} } = this.props.categoryLink.entity;
     const isFetchingСategoryLink = this.props.categoryLink.isFetching;
 
     const miniNavMenu = isFetchingСategoryLink ? null : (
