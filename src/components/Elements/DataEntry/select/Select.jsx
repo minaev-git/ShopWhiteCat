@@ -85,7 +85,7 @@ export default class Select extends Component<Props, State> {
     ));
 
     return (
-      <ListBox styles={this.props.style} role="listbox">
+      <ListBox className={this.props.className} styles={this.props.style} role="listbox">
         <SelectItem styles={this.props.style} onClick={this.handleSelectClick}>
           <li>{this.state.currentValue}</li>
           <img src={arrow} alt="Открыть" />

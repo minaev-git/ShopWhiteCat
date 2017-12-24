@@ -17,7 +17,7 @@ const ProductCard = (props: Props) => (
     <div className="hiddenMobile">
       <ProductPhoto />
     </div>
-    <div className="hiddenDesktop">
+    <div className={`hiddenDesktop ${styles.mobileSlider}`}>
       <PhotoSlider photos={props.product.images} />
     </div>
     <ProductForm product={props.product} />

@@ -13,7 +13,7 @@ export function getCategory(id, sort = null) {
     axios({
       method: "get",
       /* url: `http://laravel.app/api/getCategory/${id}` */
-      url: `/api/getCategory/${id}`,
+      url: `http://192.168.0.107/api/getCategory/${id}`,
       params: {
         order: sort
       }
@@ -33,7 +33,7 @@ export function getSubCategory(id, sort = null) {
     axios({
       method: "get",
       /* url: `http://laravel.app/api/getChildCategory/${id}` */
-      url: `/api/getChildCategory/${id}`,
+      url: `http://192.168.0.107/api/getChildCategory/${id}`,
       params: {
         order: sort
       }

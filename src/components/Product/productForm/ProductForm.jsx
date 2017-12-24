@@ -31,17 +31,36 @@ const ProductForm = (props: Props) => {
     />
   ));
 
+  let selectTitle = null;
+
+  if (child_products.length >= 1) {
+    selectTitle = (
+      <p className={`hiddenDesktop ${styles.titleSelect}`}>
+        Выбрать комплектацию:
+      </p>
+    );
+  }
+
   return (
     <form className={styles.productForm} onSubmit={props.onSubmit}>
-      <p>Характеристики:</p>
-      <p>Размер: 32X31 см</p>
-      <p>Материал насадки: микрофибры, имеет внутренний слой</p>
-      <p>Выбрать комплектацию:</p>
-      <Select onChange={props.onChangeChildProduct}>{childProducts}</Select>
-      <ColorRadio classNames={styles.colorRadio} colors={colors} onChangeColor={props.onChangeColor} />
+      <div className="hiddenMobile">
+        <p>Характеристики:</p>
+        <p>Размер: 32X31 см</p>
+        <p>Материал насадки: микрофибры, имеет внутренний слой</p>
+        <p>Выбрать комплектацию:</p>
+      </div>
+      {selectTitle}
+      <Select className={styles.select} onChange={props.onChangeChildProduct}>
+        {childProducts}
+      </Select>
+      <ColorRadio
+        className={styles.colorRadio}
+        colors={colors}
+        onChangeColor={props.onChangeColor}
+      />
       <div className={styles.sendProduct}>
         <PriceBox
-          className={styles.priceBox}
+          className={{ priceBox: styles.priceBox, sale: styles.sale }}
           status={props.status}
           price={props.price}
           salePrice={props.salePrice}

@@ -20,7 +20,7 @@ export function getProduct(id) {
     dispatch(requestGetProduct());
     axios({
       method: "get",
-      url: `/api/getProduct/${id}`
+      url: `http://192.168.0.107/api/getProduct/${id}`
     })
       .then(response => {
         dispatch(successGetProduct(response.data));
@@ -36,7 +36,7 @@ export function addProduct(product) {
     dispatch(requestAddProduct());
     axios({
       method: "post",
-      url: "/api/addCart",
+      url: "http://192.168.0.107/api/addCart",
       data: { ...product }
     })
       .then(() => {
@@ -53,7 +53,7 @@ export function removeProduct(product) {
     dispatch(requestRemoveProduct());
     axios({
       method: "post",
-      url: "/api/removeCart",
+      url: "http://192.168.0.107/api/removeCart",
       data: { ...product }
     })
       .then(() => {

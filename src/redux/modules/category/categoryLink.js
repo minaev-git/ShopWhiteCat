@@ -13,7 +13,7 @@ export function getCategoryLink(id) {
     axios({
       method: "get",
       /* url: `http://laravel.app/api/getChildCategory/${id}` */
-      url: `/api/getCategoryLink/${id}`
+      url: `http://192.168.0.107/api/getCategoryLink/${id}`
     })
       .then(response => {
         dispatch(fetchCategoryLinkSuccess(response.data));
@@ -30,7 +30,7 @@ export function getSubCategoryLink(id) {
     axios({
       method: "get",
       /* url: `http://192.168.0.107/api/getChildCategory/${id}` */
-      url: `/api/getChildCategoryLink/${id}`
+      url: `http://192.168.0.107/api/getChildCategoryLink/${id}`
     })
       .then(response => {
         dispatch(fetchCategoryLinkSuccess(response.data));

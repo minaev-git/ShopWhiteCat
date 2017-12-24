@@ -7,7 +7,7 @@ import styles from "./colorRadio.css";
 type Props = {
   colors: Color[],
   onChangeColor: Function,
-  classNames: string
+  className: string
 };
 
 export default class ColorRadio extends Component<Props> {
@@ -55,8 +55,8 @@ export default class ColorRadio extends Component<Props> {
     });
 
     return (
-      <ColorChoice className={this.props.classNames} length={this.props.colors.length}>
-        <p>Цвета</p>
+      <ColorChoice className={this.props.className} length={this.props.colors.length}>
+        <p>Цвета:</p>
         {colors}
       </ColorChoice>
     );

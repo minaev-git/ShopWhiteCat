@@ -13,7 +13,7 @@ export function getCategories() {
     axios({
       method: "get",
       /* url: 'http://laravel.app/api/getCategories' */
-      url: "/api/getCategories"
+      url: "http://192.168.0.107/api/getCategories"
     })
       .then(categories => {
         dispatch(fetchCategoriesSuccess(categories.data));
