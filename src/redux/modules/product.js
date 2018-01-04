@@ -11,9 +11,6 @@ const requestAddProduct = createAction();
 const successAddProduct = createAction();
 const failureAddProduct = createAction();
 
-const requestRemoveProduct = createAction();
-const successRemoveProduct = createAction();
-const failureRemoveProduct = createAction();
 
 export function getProduct(id) {
   return dispatch => {
@@ -48,22 +45,6 @@ export function addProduct(product) {
   };
 }
 
-export function removeProduct(product) {
-  return dispatch => {
-    dispatch(requestRemoveProduct());
-    axios({
-      method: "post",
-      url: "http://192.168.0.107/api/removeCart",
-      data: { ...product }
-    })
-      .then(() => {
-        dispatch(successRemoveProduct());
-      })
-      .catch(error => {
-        dispatch(failureRemoveProduct(error.message));
-      });
-  };
-}
 
 const entity = createReducer({}, []).on(
   successGetProduct,
@@ -73,7 +54,6 @@ const entity = createReducer({}, []).on(
 const error = createReducer({}, "")
   .on(failureGetProduct, errorMessage => errorMessage)
   .on(failureAddProduct, errorMessage => errorMessage)
-  .on(failureRemoveProduct, errorMessage => errorMessage);
 
 export const product = combineReducers({
   isFetcingGetProduct: makeIsFetching(
@@ -86,13 +66,6 @@ export const product = combineReducers({
   isFetchingAddProduct: makeIsFetching(
     requestAddProduct,
     successAddProduct,
-    failureAddProduct,
-    error
-  ),
-  isFetchingRemoveProduct: makeIsFetching(
-    requestRemoveProduct,
-    successRemoveProduct,
-    failureRemoveProduct,
-    error
+    failureAddProduct
   )
 });

@@ -1,0 +1,41 @@
+.productCard {
+  position: relative;
+  margin-bottom: 2.5em;
+  width: 100%;
+}
+.productCard h4{
+  display: inline-block;
+  margin: 0.5em 0 0 1em;
+  vertical-align: top;
+  font: 1.43em "Open Sans";
+  font-weight: 400;
+  color: #444444;
+}
+.productCard img{
+  display: inline-block;
+  width: 8.625em;
+  height: 11.43em;
+}
+.productCard .price {
+  display: block;
+  position: absolute;
+  right: 50%;
+  bottom: 0;
+}
+.delete {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 5.68em;
+  height: 1.625em;
+  border-radius: 0.125em;
+  font: 1em "Oswald";
+  border: 1px solid #000000;
+  background-color: #fffefe;
+  font-weight: 400;
+}
+.delete:hover {
+  color: #08a8b0;
+  border: 1px solid #08a8b0;
+  cursor: pointer;
+}

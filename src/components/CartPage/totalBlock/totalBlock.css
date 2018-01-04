@@ -1,0 +1,33 @@
+.totalBlock {
+  box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.68);
+  width: 19em;
+  height: 18em;
+  text-align: center;
+  margin-left: 4em;
+  padding-top: 0.7em;
+}
+.total {
+  color: #444444;
+  font: 1.5em "Open Sans";
+  font-weight: 400;
+}
+.totalPrice {
+  font: 2em "Oswald";
+  font-weight: 500;
+}
+.checkOut {
+  width: 7.2em;
+  height: 1.6em;
+  margin-top: 2em;
+  font: 1.2em "Oswald";
+  background-color: white;
+  color: black;
+  font-weight: 400;
+  border: 1px solid black;
+  border-radius: 2px;
+}
+.checkOut:hover{
+  color: #08a8b0;
+  border: 1px solid #08a8b0;
+  cursor: pointer;
+}

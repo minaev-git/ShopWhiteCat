@@ -1,0 +1,9 @@
+.cartPage {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.productList {
+  flex-grow: 2;
+}
