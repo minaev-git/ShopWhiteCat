@@ -35,7 +35,7 @@
   font-weight: 400;
 }
 .delete:hover {
-  color: #08a8b0;
-  border: 1px solid #08a8b0;
+  color: #f10202;
+  border: 1px solid #f10202;
   cursor: pointer;
 }

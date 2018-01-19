@@ -20,7 +20,7 @@ type Props = {
 };
 
 const ProductForm = (props: Props) => {
-  const { child_products = [], colors = [] } = props.product;
+  const { child_products = [], colors = [], seo_description } = props.product;
 
   const childProducts = child_products.map(childProduct => (
     <Option
@@ -45,9 +45,9 @@ const ProductForm = (props: Props) => {
     <form className={styles.productForm} onSubmit={props.onSubmit}>
       <div className="hiddenMobile">
         <p>Характеристики:</p>
-        <p>Размер: 32X31 см</p>
-        <p>Материал насадки: микрофибры, имеет внутренний слой</p>
-        <p>Выбрать комплектацию:</p>
+        <p className={styles.specification}>
+          {seo_description}
+        </p>
       </div>
       {selectTitle}
       <Select className={styles.select} onChange={props.onChangeChildProduct}>

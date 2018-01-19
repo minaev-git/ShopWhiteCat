@@ -9,9 +9,9 @@ import NavMenu from "components/Category/navMenu/NavMenu";
 import Spinner from "components/Elements/Feedback/spinner/Spinner";
 import MobileMiniNav from "components/Elements/Navigation/mobileMiniNav/MobileMiniNav";
 import * as actionsCategories from "redux/modules/category/categories";
-import * as actionsCategoryLink from "redux/modules/category/categoryLink";
-import ProductList from "../productList/ProductList";
-import styles from "./Category.css";
+import * as actionsSubCategoryLink from "redux/modules/category/subCategoryLink";
+import SubProductList from "../subProductList/SubProductList";
+import styles from "./SubCategory.css";
 
 type Props = {
   categories: Category[]
@@ -20,14 +20,16 @@ type Props = {
 class CategoryPage extends Component<Props> {
   componentDidMount() {
     this.props.actionsCategories.getCategories();
-    this.props.actionsCategoryLink.getCategoryLink(this.props.match.params.id);
+    this.props.actionsSubCategoryLink.getSubCategoryLink(
+      this.props.match.params.id
+    );
   }
 
   render() {
     const { categories = [] } = this.props.categories.entity;
     const isFetchingCategories = this.props.categories.isFetching;
-    const categoryLink = this.props.categoryLink.entity;
-    const isFetchingСategoryLink = this.props.categoryLink.isFetching;
+    const categoryLink = this.props.subCategoryLink.entity;
+    const isFetchingСategoryLink = this.props.subCategoryLink.isFetching;
 
     const miniNavMenu = isFetchingСategoryLink ? null : (
       <BreadCrumb
@@ -55,7 +57,7 @@ class CategoryPage extends Component<Props> {
         </div>
         <div className="row">
           <NavMenu categories={categories} />
-          <ProductList
+          <SubProductList
             type={this.props.type}
             idActiveCategory={this.props.match.params.id}
           />
@@ -67,7 +69,7 @@ class CategoryPage extends Component<Props> {
 
 function mapStateToProps(state) {
   return {
-    categoryLink: state.categoryLink,
+    subCategoryLink: state.subCategoryLink,
     categories: state.categories
   };
 }
@@ -75,7 +77,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     actionsCategories: bindActionCreators(actionsCategories, dispatch),
-    actionsCategoryLink: bindActionCreators(actionsCategoryLink, dispatch),
+    actionsSubCategoryLink: bindActionCreators(actionsSubCategoryLink, dispatch)
   };
 }
 

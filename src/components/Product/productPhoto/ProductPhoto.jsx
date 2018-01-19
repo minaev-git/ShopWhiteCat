@@ -10,7 +10,7 @@ export default class ProductPhoto extends Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
-      currentImg: miniPhoto1,
+      currentImg: this.props.photos[0] || "",
       focusImg: null
     };
     this.changeImg = this.changeImg.bind(this);
@@ -31,14 +31,20 @@ export default class ProductPhoto extends Component {
   }
 
   render() {
+    const photos = (this.props.photos || []).map((photo, index) => (
+      <img onClick={this.changeImg} src={photo} alt="пяу это же тест" />
+    ));
+
     return (
       <div className={styles.productPhoto}>
-        <img src={this.state.currentImg} alt="Photo" />
-        <div className={styles.alternativeImage}>
-          <img onClick={this.changeImg} src={miniPhoto2} alt="Photo1" />
-          <img onClick={this.changeImg} src={miniPhoto1} alt="Photo1" />
-          <img onClick={this.changeImg} src={miniPhoto3} alt="Photo1" />
-        </div>
+        <img
+          className={styles.currentPhoto}
+          src={this.state.currentImg}
+          alt="Test"
+        />
+        {photos.length > 1 ? (
+          <div className={styles.alternativeImage}>{photos}</div>
+        ) : null}
       </div>
     );
   }

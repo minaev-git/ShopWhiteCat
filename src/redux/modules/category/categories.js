@@ -2,6 +2,7 @@ import axios from "axios";
 import { createAction, createReducer } from "redux-act";
 import { combineReducers } from "redux";
 import makeIsFetching from "../fetch";
+import prodAddress from '../../prodAddress'
 
 const fetchCategoriesRequest = createAction();
 const fetchCategoriesSuccess = createAction();
@@ -13,7 +14,7 @@ export function getCategories() {
     axios({
       method: "get",
       /* url: 'http://laravel.app/api/getCategories' */
-      url: "http://192.168.0.107/api/getCategories"
+      url: `${prodAddress}/api/getCategories`
     })
       .then(categories => {
         dispatch(fetchCategoriesSuccess(categories.data));

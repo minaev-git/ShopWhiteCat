@@ -2,6 +2,7 @@ import axios from "axios";
 import { createAction, createReducer } from "redux-act";
 import { combineReducers } from "redux";
 import makeIsFetching from "./fetch";
+import prodAddress from '../prodAddress'
 
 const fetchSaleProductsRequest = createAction();
 const fetchSaleProductsSuccess = createAction();

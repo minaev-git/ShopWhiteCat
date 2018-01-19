@@ -43,6 +43,11 @@ class Header extends Component {
 
   render() {
     const { categories = [] } = this.props.categories.entity;
+    const isFetching = this.props.categories.isFetching;
+
+    if(isFetching) {
+      return null
+    }
 
     return (
       <header className="fluid-container">

@@ -112,8 +112,7 @@ const ListBox = styled.ul`
 const SelectItem = styled.ul`
   overflow: hidden;
   position: relative;
-  height: 1.8em;
-  padding: 0 0 0 0;
+  padding: 0 0 0.15em 0;
   border: ${props => props.styles.border};
   width: 100%;
   cursor: pointer;
@@ -143,6 +142,8 @@ const ListItem = styled.ul`
   border: ${props => props.styles.border};
   cursor: pointer;
   li {
+    display: inline-block;
+    width: 100%;
     list-style-type: none;
   }
   li:hover {

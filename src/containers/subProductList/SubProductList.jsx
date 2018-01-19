@@ -5,9 +5,9 @@ import PropTypes from "prop-types";
 import ProductTile from "components/Category/productTile/ProductTile";
 import BreadCrumb from "components/Elements/Navigation/breadcrumb/BreadCrumb";
 import Spinner from "components/Elements/Feedback/spinner/Spinner";
-import * as actionsCategory from "redux/modules/category/category";
+import * as actionsSubCategory from "redux/modules/category/subCategory";
 import * as actionsProduct from "redux/modules/product";
-import styles from "./productList.css";
+import styles from "./SubProductList.css";
 
 class ProductList extends Component {
   constructor(props, context) {
@@ -16,19 +16,21 @@ class ProductList extends Component {
   }
 
   componentDidMount() {
-    this.props.actionsCategory.getCategory(this.props.idActiveCategory);
+    this.props.actionsSubCategory.getSubCategory(this.props.idActiveCategory);
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.idActiveCategory !== prevProps.idActiveCategory) {
-      this.props.actionsCategory.getCategory(this.props.idActiveCategory);
+      this.props.actionsSubCategory.getSubCategory(this.props.idActiveCategory);
     }
   }
 
   sortProducts(typeSort) {
     switch (typeSort) {
       case "novelty":
-        this.props.actionsCategory.getCategory(this.props.idActiveCategory);
+        this.props.actionsSubCategory.getSubCategory(
+          this.props.idActiveCategory
+        );
         break;
       case "price":
         this.props.actionsCategory.getCategory(
@@ -43,8 +45,8 @@ class ProductList extends Component {
   }
 
   render() {
-    const category = this.props.category.entity;
-    const isFetchingCategory = this.props.category.isFetching;
+    const category = this.props.subCategory.entity;
+    const isFetchingCategory = this.props.subCategory.isFetching;
 
     const productsBlock = (category.products || []).map(product => (
       <ProductTile
@@ -94,13 +96,13 @@ class ProductList extends Component {
 
 function mapStateToProps(state) {
   return {
-    category: state.category
+    subCategory: state.subCategory
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    actionsCategory: bindActionCreators(actionsCategory, dispatch),
+    actionsSubCategory: bindActionCreators(actionsSubCategory, dispatch),
     actionsProduct: bindActionCreators(actionsProduct, dispatch)
   };
 }

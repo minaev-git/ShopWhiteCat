@@ -1,0 +1,72 @@
+.productList {
+  margin-left: 1em;
+  margin-top: 2em;
+}
+.productList h2 {
+  font: 1.5em "Open Sans";
+  font-weight: 600;
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  border-bottom: 1px solid #303030;
+  padding-bottom: 0.45em;
+}
+.productList .counterProduct {
+  color: #6d6d6d;
+  font: 0.9em "Open Sans";
+  font-weight: 300;
+  position: absolute;
+  top: 0.18em;
+  margin-left: 0.5em;
+}
+.sort {
+  margin-top: 0;
+  text-align: right;
+  font: 1em "Open Sans";
+  font-weight: 300;
+}
+.sort p {
+  display: inline-block;
+  margin-top: 0;
+  margin-right: 0.5em;
+  color: #484747;
+}
+.sort button {
+  display: inline-block;
+  margin-top: 0;
+  margin-right: 0.5em;
+  padding: 0 0 0 0;
+  cursor: pointer;
+  color: #484747;
+  border: none;
+  outline: none;
+  background-color: white;
+}
+.sort button:hover {
+  color: #08a8b0;
+}
+.miniNav {
+  display: none;
+}
+.spinner {
+  height: 30em;
+  width: 40em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@media screen and (max-width: 767px) {
+  .productList {
+    margin: 0;
+  }
+  .productList h2 {
+    margin-bottom: 0.5em;
+  }
+  .productList h2 span {
+    display: none;
+  }
+  .miniNav {
+    display: block;
+    margin-bottom: 2em;
+  }
+}

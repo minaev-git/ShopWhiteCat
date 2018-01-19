@@ -2,6 +2,7 @@ import axios from "axios";
 import { createAction, createReducer } from "redux-act";
 import { combineReducers } from "redux";
 import makeIsFetching from "../fetch";
+import prodAddress from '../../prodAddress'
 
 const fetchCategoryLinkRequest = createAction();
 const fetchCategoryLinkSuccess = createAction();
@@ -13,7 +14,7 @@ export function getCategoryLink(id) {
     axios({
       method: "get",
       /* url: `http://laravel.app/api/getChildCategory/${id}` */
-      url: `http://192.168.0.107/api/getCategoryLink/${id}`
+      url: `${prodAddress}/api/getCategoryLink/${id}`
     })
       .then(response => {
         dispatch(fetchCategoryLinkSuccess(response.data));
@@ -30,7 +31,7 @@ export function getSubCategoryLink(id) {
     axios({
       method: "get",
       /* url: `http://192.168.0.107/api/getChildCategory/${id}` */
-      url: `http://192.168.0.107/api/getChildCategoryLink/${id}`
+      url: `${prodAddress}/api/getChildCategoryLink/${id}`
     })
       .then(response => {
         dispatch(fetchCategoryLinkSuccess(response.data));
@@ -43,7 +44,7 @@ export function getSubCategoryLink(id) {
 
 const entity = createReducer({}, {}).on(
   fetchCategoryLinkSuccess,
-  (state, categoryLink) => ({...state, categoryLink })
+  (state, categoryLink) => ({...state, ...categoryLink })
 );
 
 const error = createReducer({}, "").on(

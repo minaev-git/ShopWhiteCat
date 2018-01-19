@@ -15,16 +15,16 @@ class Product extends Component {
 
   render() {
     const { product = {} } = this.props.product.entity;
-    const isFetchingGetProduct = this.props.product.isFetching; 
-
-    if(isFetchingGetProduct) {
+    const isFetchingGetProduct = this.props.product.isFetcingGetProduct;
+    
+    if (isFetchingGetProduct) {
       return (
         <div className={styles.spinner}>
           <Spinner />
         </div>
       )
     }
-    
+
     return (
       <div>
         <ProductCard product={product} />

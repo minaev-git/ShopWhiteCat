@@ -2,6 +2,7 @@ import axios from "axios";
 import { createAction, createReducer } from "redux-act";
 import { combineReducers } from "redux";
 import makeIsFetching from "../fetch";
+import prodAddress from '../../prodAddress'
 
 const requestGetCount = createAction();
 const successGetCount = createAction();
@@ -13,7 +14,7 @@ export function getCount() {
     axios({
       method: "get",
       /* url: `http://laravel.app/api/getCount}` */
-      url: `http://192.168.0.107/api/getCount`
+      url: `${prodAddress}/api/getCount`
     })
       .then(response => {
         dispatch(successGetCount(response.data));

@@ -34,6 +34,7 @@
 .productTile p {
   max-width: 30.78em;
   word-wrap: break-word;
+  white-space: pre-wrap;
   font: 0.875em 'Open Sans';
   font-weight: 300;
 }

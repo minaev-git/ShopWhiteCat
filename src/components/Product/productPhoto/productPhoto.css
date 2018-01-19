@@ -1,4 +1,5 @@
-.productPhoto > img {
+.productPhoto .currentPhoto {
+  display: inline-block;
   width: 17.875em;
   height: 23.25em;
   vertical-align: top;

@@ -5,6 +5,10 @@
   flex-direction: column;
   flex-grow: 2;
 }
+.specification {
+  max-width: 30em;
+  white-space: pre-wrap;
+}
 .productForm .colorRadio p{
   text-align: start;
   margin-left: 0.3em;

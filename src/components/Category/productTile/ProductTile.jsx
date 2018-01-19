@@ -39,7 +39,7 @@ const ProductTile = (props: Props) => {
       <Link
         to={`/product/${transliterate(props.product.name)}/${props.product.id}`}
       >
-        <img src={testProduct} alt="Тестики" />
+        <img src={JSON.parse(props.product.images)[0]} alt="Тестики" />
       </Link>
       <form onSubmit={props.onSubmit}>
         <img src={testLogo} alt="тест" />

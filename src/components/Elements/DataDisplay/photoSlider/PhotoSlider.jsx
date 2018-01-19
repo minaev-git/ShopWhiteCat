@@ -42,14 +42,11 @@ export default class PhotoSlider extends Component {
     }));
   };
 
-  changeColor = () => {};
+  changeColor = () => { };
 
   render() {
-    const slides = (this.props.photos || []).map((elm, index) => (
-      <div>
-        <img className={styles.photos} alt="test" value={index} />
-        <div>f</div>
-      </div>
+    const slides = (this.props.photos || []).map((photo, index) => (
+      <Photo src={photo} className={styles.photos} alt={photo} value={index} />
     ));
 
     const counter = (this.props.photos || []).map((elm, index, arr) => {
@@ -70,10 +67,7 @@ export default class PhotoSlider extends Component {
           className="carousel"
           swipeOptions={{ continuous: false, callback: this.swipe }}
         >
-          <Photo src={photo1} alt="test" value={1} />
-          <Photo src={photo2} alt="test" value={2} />
-          <Photo src={photo3} alt="test" value={3} />
-          <Photo src={photo4} alt="test" value={4} />
+          {slides}
         </ReactSwipe>
         <Counters>{counter}</Counters>
       </PhotoBox>

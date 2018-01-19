@@ -2,6 +2,7 @@ import axios from "axios";
 import { createAction, createReducer } from "redux-act";
 import { combineReducers } from "redux";
 import makeIsFetching from "../fetch";
+import prodAddress from '../../prodAddress'
 
 const requestMinusProductToCart = createAction();
 const successMinusProductToCart = createAction();
@@ -12,7 +13,7 @@ export function minusProductToCart(product) {
     dispatch(requestMinusProductToCart());
     axios({
       method: "post",
-      url: "http://192.168.0.107/api/minusCart",
+      url: `${prodAddress}/api/minusCart`,
       data: { ...product }
     })
       .then(() => {

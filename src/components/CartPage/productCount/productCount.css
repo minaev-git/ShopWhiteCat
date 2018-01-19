@@ -1,0 +1,14 @@
+.productCount {
+  margin-left: 1em;
+}
+.productCount button{
+  display: inline-block;
+  background-color: white;
+  border: none;
+  cursor: pointer;
+  color: #303030;
+}
+.productCount p {
+  display: inline-block;
+  color: #303030;
+}
