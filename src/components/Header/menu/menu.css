@@ -8,39 +8,47 @@
   border-radius: 2px;
   box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.23);
 }
-.menu a {
+.menu li {
   list-style: none;
   text-decoration: none;
   color: #555555;
 }
-.menu > a {
+.menu > li {
   text-align: center;
-  padding: 1.4em 0 1em 0;
+  font: 1.125em "Oswald";
   flex-basis: 12.1875em;
-  font: 1.125em 'Oswald';
   font-weight: 400;
 }
-.menu > a li {
+.menu > li > a {
+  display: inline-block;
+  padding: 1.4em 0 1em 0;
+  width: 100%;
+  color: #555555;
+}
+.menu > li {
   position: relative;
 }
-.menu > a:hover{
+.menu > li:hover {
   color: #01a9b1;
   transition: 0.3s;
   box-shadow: 1px 1px 2px -1px rgba(0, 0, 0, 0.23);
   text-decoration: underline;
   background-color: white;
 }
-.menu a:hover .submenu {
+.menu > li:hover a {
+  color: #01a9b1;
+}
+.menu li:hover .subMenu {
   opacity: 1;
   visibility: visible;
   transition-delay: 0s;
 }
-.submenu {
+.subMenu {
   z-index: 10;
   display: flex;
   width: 25em;
   position: absolute;
-  top: 2.3em;
+  top: 3.87em;
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.2s, visibility 0s;
@@ -52,14 +60,14 @@
   right: 0;
   flex-direction: row-reverse;
 }
-.submenu img {
+.subMenu img {
   display: inline-block;
   width: 11.9375em;
   height: 10.5625em;
   margin: 1em 0 1em 1.5em;
   vertical-align: bottom;
 }
-.submenu ul {
+.subMenu ul{
   display: inline-block;
   width: 7.6em;
   vertical-align: top;
@@ -67,16 +75,17 @@
   margin: 1.625em 2em 1.9375em 1.875em;
   padding-left: 0;
 }
-.submenu ul a {
+.menu .subMenu ul li a {
   text-align: start;
-  font: 1.0625em 'Oswald';
+  font: 1.0625em "Oswald";
   line-height: 1.8em;
   font-weight: 300;
+  color: #555555;
 }
-.submenu li {
+.subMenu li {
   border-bottom: 1px solid #ededed;
 }
-.submenu ul a:hover {
+.subMenu ul li a:hover {
   text-decoration: underline;
   color: #01a9b1;
 }

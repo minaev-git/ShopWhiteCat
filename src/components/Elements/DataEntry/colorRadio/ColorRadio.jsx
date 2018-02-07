@@ -19,15 +19,16 @@ export default class ColorRadio extends Component<Props> {
 
   render() {
     const colors = this.props.colors.map((color, index) => {
+      console.log(`${color.id}_${color.pivot.product_id}`)
       if (index === 0) {
         return (
           <label
-            htmlFor={color.id}
+            htmlFor={`${color.id}_${color.pivot.product_id}`}
             className={styles.customRadio}
-            key={color.id}
+            key={`${color.id}_${color.pivot.product_id}`}
           >
             <input
-              id={color.id}
+              id={`${color.id}_${color.pivot.product_id}`}
               name="color"
               type="radio"
               onClick={() => this.props.onChangeColor(color.id)}
@@ -39,12 +40,12 @@ export default class ColorRadio extends Component<Props> {
       }
       return (
         <label
-          htmlFor={color.id}
+          htmlFor={`${color.id}_${color.pivot.product_id}`}
           className={styles.customRadio}
-          key={color.id}
+          key={`${color.id}_${color.pivot.product_id}`}
         >
           <input
-            id={color.id}
+            id={`${color.id}_${color.pivot.product_id}`}
             name="color"
             type="radio"
             onClick={() => this.props.onChangeColor(color.id)}

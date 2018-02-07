@@ -44,10 +44,10 @@ const ProductForm = (props: Props) => {
   return (
     <form className={styles.productForm} onSubmit={props.onSubmit}>
       <div className="hiddenMobile">
-        <p>Характеристики:</p>
-        <p className={styles.specification}>
-          {seo_description}
-        </p>
+        <div className={styles.specification}>
+          <p>Характеристики:</p>
+          <p>{seo_description}</p>
+        </div>
       </div>
       {selectTitle}
       <Select className={styles.select} onChange={props.onChangeChildProduct}>

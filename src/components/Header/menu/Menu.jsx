@@ -7,34 +7,33 @@ const Menu = state => {
   let reverse = "";
   let childCategories = [];
   const categories = state.categories.map((category, index) => {
+    childCategories = (category.child_categories || []).map(childCategory => (
+      <li>
+        <Link
+          to={`/subcategory/${transliterate(childCategory.name)}/${
+            childCategory.id
+          }`}
+          key={childCategory.id}
+        >
+          {childCategory.name}
+        </Link>
+      </li>
+    ));
+
     reverse = index >= 3 ? styles.reverse : "";
     return (
-      <Link
-        to={`/category/${transliterate(category.name)}/${category.id}`}
-        key={category.id}
-      >
-        <li>
+      <li>
+        <Link
+          to={`/category/${transliterate(category.name)}/${category.id}`}
+          key={category.id}
+        >
           {category.name}
-          <div className={`${styles.submenu} ${reverse}`}>
-            <ul>
-              {
-                (childCategories = (category.child_categories || [])
-                  .map(childCategory => (
-                    <Link
-                      to={`/subcategory/${transliterate(
-                        childCategory.name
-                      )}/${childCategory.id}`}
-                      key={childCategory.id}
-                    >
-                      <li>{childCategory.name}</li>
-                    </Link>
-                  )))
-              }
-            </ul>
-            <img src={JSON.parse(category.image)} alt={category.name} />
-          </div>
-        </li>
-      </Link>
+        </Link>
+        <div className={`${styles.subMenu} ${reverse}`}>
+          <ul>{childCategories}</ul>
+          <img src={JSON.parse(category.image)} alt={category.name} />
+        </div>
+      </li>
     );
   });
   return (
@@ -43,7 +42,5 @@ const Menu = state => {
     </div>
   );
 };
-
-//Исправить 
 
 export default Menu;

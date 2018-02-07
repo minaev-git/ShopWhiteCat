@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import transliterate from "global/transliterate";
@@ -7,63 +7,76 @@ import menu from "./menu.svg";
 import close from "./close.svg";
 import back from "./back.svg";
 
-const MobileMenu = state => {
-  const closeAll = () => {
-    state.handleMenu();
-    state.handleCatalog();
+export default class MobileMenu extends Component {
+
+  state = {
+    isOpenMenu: false,
+    isOpenCatalog: false
+  }
+
+  closeAll = () => {
+    this.handleMenu();
+    this.handleCatalog();
   };
 
-  const categories = state.categories.map(category => (
-    <Link
-      to={`/Category/${transliterate(category.name)}/${category.id}`}
-      onClick={closeAll}
-      key={category.id}
-    >
-      {category.name}
-    </Link>
-  ));
+  handleMenu = () => {
+    this.setState(prevState => ({ isOpenMenu: !prevState.isOpenMenu }));
+  }
 
-  return (
-    <div className="col-sm-2 col-2 hiddenDesktop">
-      <div className={styles.mobileMenu}>
-        <button onClick={state.handleMenu}>
-          <img src={menu} alt="Меню" />
-        </button>
-        <div
-          className={styles.hiddenMenu}
-          style={{ display: state.isOpenMenu ? "block" : "none" }}
-        >
-          <button className={styles.closeMenu} onClick={state.handleMenu}>
-            <img src={close} alt="Закрыть" />
+  handleCatalog = () => {
+    this.setState(prevState => ({ isOpenCatalog: !prevState.isOpenCatalog }));
+  }
+
+  render() {
+
+    const categories = this.props.categories.map(category => (
+      <Link
+        to={`/Category/${transliterate(category.name)}/${category.id}`}
+        onClick={this.closeAll}
+        key={category.id}
+      >
+        {category.name}
+      </Link>
+    ));
+
+    return (
+      <div className="col-sm-2 col-2 hiddenDesktop">
+        <div className={styles.mobileMenu}>
+          <button onClick={this.handleMenu}>
+            <img src={menu} alt="Меню" />
           </button>
-          <button onClick={state.handleCatalog}>
-            <p>Каталог товаров</p>
-            <p>&gt;</p>
-          </button>
-          <Link to="/Category" onClick={state.handleMenu}>
-            Доставка и оплата
-          </Link>
-          <Link to="/">Доставка и оплата</Link>
-          <Link to="/">Подарки</Link>
-          <Link to="/">Доставка и оплата</Link>
-        </div>
-        <div
-          className={`${styles.hiddenMenu} ${styles.catalog}`}
-          style={{ display: state.isOpenCatalog ? "block" : "none" }}
-        >
-          <button className={styles.back} onClick={state.handleCatalog}>
-            <img src={back} alt="Закрыть" />
-          </button>
-          <button className={styles.closeMenu} onClick={closeAll}>
-            <img src={close} alt="Закрыть" />
-          </button>
-          {categories}
+          <div
+            className={styles.hiddenMenu}
+            style={{ display: this.state.isOpenMenu ? "block" : "none" }}
+          >
+            <button className={styles.closeMenu} onClick={this.handleMenu}>
+              <img src={close} alt="Закрыть" />
+            </button>
+            <button onClick={this.handleCatalog}>
+              <p>Каталог товаров</p>
+              <p>&gt;</p>
+            </button>
+            <Link to="/Category" onClick={this.handleMenu}>
+              Доставка и оплата
+            </Link>
+            <Link to="/">Доставка и оплата</Link>
+            <Link to="/">Подарки</Link>
+            <Link to="/">Доставка и оплата</Link>
+          </div>
+          <div
+            className={`${styles.hiddenMenu} ${styles.catalog}`}
+            style={{ display: this.state.isOpenCatalog ? "block" : "none" }}
+          >
+            <button className={styles.back} onClick={this.handleCatalog}>
+              <img src={back} alt="Закрыть" />
+            </button>
+            <button className={styles.closeMenu} onClick={this.closeAll}>
+              <img src={close} alt="Закрыть" />
+            </button>
+            {categories}
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
 };
-
-//Исправить 
-
-export default MobileMenu;

@@ -17,13 +17,10 @@ export default class MobileDropDown extends Component {
       return (
         <div className={styles.dropDown}>
           <button onClick={this.toOpenDropDown}>
-            Характеристики<span className={styles.closeArrow}>&gt;</span>
+            {this.props.title}<span className={styles.closeArrow}>&gt;</span>
           </button>
           <p>
-            Салфетка для стекла — одно самых любимых и необходимых дома изделий.
-            Она без лишних хлопот, за один проход сделает Ваше окно неузнаваемо
-            чистым. И не только окно — зеркало, полировка вашей мебели,
-            хрустальные подвески люстры — все засверкает и заблестит.
+            {this.props.text}
           </p>
         </div>
       );

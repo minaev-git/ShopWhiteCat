@@ -13,32 +13,9 @@ import * as actionsCategories from "redux/modules/category/categories";
 import styles from "./styles/Header.css";
 
 class Header extends Component {
-  constructor(props, context) {
-    super(props, context);
-    this.state = {
-      isOpenMenu: false,
-      isOpenCatalog: false,
-      isOpenSearch: false
-    };
-    this.handleMenu = this.handleMenu.bind(this);
-    this.handleCatalog = this.handleCatalog.bind(this);
-    this.handleSearch = this.handleSearch.bind(this);
-  }
 
   componentWillMount() {
     this.props.actionsCategories.getCategories();
-  }
-
-  handleMenu() {
-    this.setState(prevState => ({ isOpenMenu: !prevState.isOpenMenu }));
-  }
-
-  handleCatalog() {
-    this.setState(prevState => ({ isOpenCatalog: !prevState.isOpenCatalog }));
-  }
-
-  handleSearch() {
-    this.setState(prevState => ({ isOpenSearch: !prevState.isOpenSearch }));
   }
 
   render() {
@@ -55,17 +32,10 @@ class Header extends Component {
           <div className={styles.mobile}>
             <MobileMenu
               categories={categories}
-              handleMenu={this.handleMenu}
-              handleCatalog={this.handleCatalog}
-              isOpenMenu={this.state.isOpenMenu}
-              isOpenCatalog={this.state.isOpenCatalog}
             />
             <Logo />
             <Contacts />
-            <Search
-              handleSearch={this.handleSearch}
-              isOpen={this.state.isOpenSearch}
-            />
+            <Search />
             <Info />
             <Cart />
           </div>

@@ -10,8 +10,6 @@ import Option from "components/Elements/DataEntry/select/Option";
 import ColorRadio from "components/Elements/DataEntry/colorRadio/ColorRadio";
 import PriceBox from "components/Elements/DataDisplay/priceBox/PriceBox";
 import styles from "./productTile.css";
-import testLogo from "./testLogo.png";
-import testProduct from "./testProduct.png";
 
 type Props = {
   product: Product,
@@ -42,7 +40,7 @@ const ProductTile = (props: Props) => {
         <img src={JSON.parse(props.product.images)[0]} alt="Тестики" />
       </Link>
       <form onSubmit={props.onSubmit}>
-        <img src={testLogo} alt="тест" />
+        <img src={props.product.brand} alt="тест" />
         <Link
           to={`/product/${transliterate(props.product.name)}/${props.product
             .id}`}

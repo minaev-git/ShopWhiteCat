@@ -31,6 +31,7 @@ function sendProduct(Component) {
     }
 
     onChangeColor(id) {
+      console.log(this.state.product)
       this.setState(prevState => ({
         product: {
           ...prevState.product,
