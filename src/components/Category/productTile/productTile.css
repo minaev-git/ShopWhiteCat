@@ -19,6 +19,7 @@
   display: inline-block; 
   position: relative;
   width: 38em;
+  height: 100%;
   vertical-align: top;
   margin: 0 0 0 1em;
   padding-top: 1em;
@@ -39,11 +40,13 @@
   font-weight: 300;
 }
 .productTile .bottomElement {
+  margin-right: 1em;
+  margin-top: 2.5em;
+  vertical-align: bottom;
   padding-bottom: 1em;
   text-align: right;
 }
 .productTile button {
-  margin: 2em 1em 0 0;
   padding: 0 1.5em;
   cursor: pointer;
   border: 1px solid #000000;

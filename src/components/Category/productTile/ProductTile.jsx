@@ -1,14 +1,15 @@
 // @flow
-import React from 'react';
-import type { Element } from 'react';
+import React from "react";
+import type { Element } from "react";
 import { Link } from "react-router-dom";
-import type { Product } from 'type/product';
+import type { Product } from "type/product";
 import transliterate from "global/transliterate";
 import sendProduct from "hoc/sendProduct";
 import Select from "components/Elements/DataEntry/select/Select";
 import Option from "components/Elements/DataEntry/select/Option";
 import ColorRadio from "components/Elements/DataEntry/colorRadio/ColorRadio";
 import PriceBox from "components/Elements/DataDisplay/priceBox/PriceBox";
+import Popover from "components/Elements/DataDisplay/popover/Popover";
 import styles from "./productTile.css";
 
 type Props = {
@@ -23,14 +24,16 @@ type Props = {
 };
 
 const ProductTile = (props: Props) => {
-  const childProducts: Array<Element<any>> = props.product.child_products.map(childProduct => (
-    <Option
-      onClick={props.changeProduct(childProduct)}
-      key={childProduct.id}
-      id={childProduct.id}
-      value={childProduct.name}
-    />
-  ));
+  const childProducts: Array<Element<any>> = props.product.child_products.map(
+    childProduct => (
+      <Option
+        onClick={props.changeProduct(childProduct)}
+        key={childProduct.id}
+        id={childProduct.id}
+        value={childProduct.name}
+      />
+    )
+  );
 
   return (
     <div className={styles.productTile}>
@@ -42,8 +45,9 @@ const ProductTile = (props: Props) => {
       <form onSubmit={props.onSubmit}>
         <img src={props.product.brand} alt="тест" />
         <Link
-          to={`/product/${transliterate(props.product.name)}/${props.product
-            .id}`}
+          to={`/product/${transliterate(props.product.name)}/${
+            props.product.id
+          }`}
         >
           <h3>{props.product.name}</h3>
         </Link>
@@ -59,7 +63,9 @@ const ProductTile = (props: Props) => {
             salePrice={props.salePrice}
             price={props.price}
           />
-          <button type="submit">Купить</button>
+          <Popover>
+            <button type="submit">Купить</button>
+          </Popover>
         </div>
       </form>
     </div>
