@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import PropTypes from "prop-types";
 import ProductTile from "components/Category/productTile/ProductTile";
 import BreadCrumb from "components/Elements/Navigation/breadcrumb/BreadCrumb";
 import Spinner from "components/Elements/Feedback/spinner/Spinner";
@@ -106,21 +105,5 @@ function mapDispatchToProps(dispatch) {
     actionsProduct: bindActionCreators(actionsProduct, dispatch)
   };
 }
-
-ProductList.propTypes = {
-  categories: PropTypes.shape({
-    category: PropTypes.object,
-    loadingCategory: PropTypes.bool
-  }).isRequired,
-  categoriesActions: PropTypes.shape({
-    getCategory: PropTypes.func,
-    getSubCategory: PropTypes.func
-  }).isRequired,
-  productsActions: PropTypes.shape({
-    addProduct: PropTypes.func
-  }).isRequired,
-  type: PropTypes.string.isRequired,
-  idActiveCategory: PropTypes.string.isRequired
-};
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductList);

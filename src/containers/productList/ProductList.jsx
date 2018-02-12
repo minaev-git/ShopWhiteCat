@@ -105,20 +105,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-ProductList.propTypes = {
-  categories: PropTypes.shape({
-    category: PropTypes.object,
-    loadingCategory: PropTypes.bool
-  }).isRequired,
-  categoriesActions: PropTypes.shape({
-    getCategory: PropTypes.func,
-    getSubCategory: PropTypes.func
-  }).isRequired,
-  productsActions: PropTypes.shape({
-    addProduct: PropTypes.func
-  }).isRequired,
-  type: PropTypes.string.isRequired,
-  idActiveCategory: PropTypes.string.isRequired
-};
-
 export default connect(mapStateToProps, mapDispatchToProps)(ProductList);

@@ -1,19 +1,17 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import transliterate  from 'global/transliterate';
-import styles from './breadCrumb.css';
+import React from "react";
+import { Link } from "react-router-dom";
+import styles from "./breadCrumb.css";
 
-const MiniNavMenu = state => {
-  let categoryLink = '';
-  let presentCategory = { name: '' };
+const BreadCrumb = props => {
 
-  if (state.type === 'category') {
-    categoryLink = state.categoryNav;
-  }
-  if (state.type === 'childCategory') {
-    categoryLink = state.categoryNav.category || { name: '' };
-    presentCategory = state.categoryNav;
-  }
+  const BreadCrumbLinks = (props.linkArr || []).map((value)=>{
+    return(
+      <Link to={value.link}>
+        {value.name}
+        <p>/</p>
+      </Link>
+    )
+  })
 
   return (
     <div className={styles.miniNavMenu}>
@@ -21,24 +19,9 @@ const MiniNavMenu = state => {
         Главная
         <p>/</p>
       </Link>
-      <Link
-        to={`/category/${transliterate(categoryLink.name)}/${categoryLink.id}`}
-      >
-        {categoryLink.name}
-        <p>/</p>
-      </Link>
-      <Link
-        to={`/subcategory/${transliterate(
-          presentCategory.name,
-        )}/${presentCategory.id}`}
-      >
-        {presentCategory.name}
-        <p>/</p>
-      </Link>
+      {BreadCrumbLinks}
     </div>
   );
 };
 
-// Исправить 
-
-export default MiniNavMenu;
+export default BreadCrumb;

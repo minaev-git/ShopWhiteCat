@@ -1,7 +1,7 @@
 // @flow
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import PropTypes from "prop-types";
+import transliterate from "global/transliterate";
 import { bindActionCreators } from "redux";
 import type { Category } from "type/category";
 import BreadCrumb from "components/Elements/Navigation/breadcrumb/BreadCrumb";
@@ -24,17 +24,25 @@ class CategoryPage extends Component<Props> {
   }
 
   render() {
+    const type="category";
     const { categories = [] } = this.props.categories.entity;
     const isFetchingCategories = this.props.categories.isFetching;
     const categoryLink = this.props.categoryLink.entity;
     const isFetchingСategoryLink = this.props.categoryLink.isFetching;
+    const category = this.props.category.entity;
+    const isFetchingCategory = this.props.category.isFetching;
 
-    const miniNavMenu = isFetchingСategoryLink ? null : (
-      <BreadCrumb
-        type={this.props.type}
-        idActiveCategory={this.props.match.params.id}
-        categoryNav={categoryLink}
-      />
+    const breadCrumbLinks = isFetchingCategory
+      ? null
+      : [
+          {
+            name: category.name,
+            link: `/category/${transliterate(category.name)}/${category.id}`
+          }
+        ];
+
+    const miniNavMenu = isFetchingCategory ? null : (
+      <BreadCrumb linkArr={breadCrumbLinks} />
     );
 
     if (isFetchingCategories || isFetchingСategoryLink) {
@@ -48,7 +56,7 @@ class CategoryPage extends Component<Props> {
     return (
       <div className="fluid-container">
         <div className={`row hiddenDesktop ${styles.mobileNavChild}`}>
-          <MobileMiniNav categories={categoryLink} type={this.props.type} />
+          <MobileMiniNav categories={categoryLink} type={type} />
         </div>
         <div className={`row hiddenMobile ${styles.miniNav}`}>
           {miniNavMenu}
@@ -56,7 +64,7 @@ class CategoryPage extends Component<Props> {
         <div className="row">
           <NavMenu categories={categories} />
           <ProductList
-            type={this.props.type}
+            type={type}
             idActiveCategory={this.props.match.params.id}
           />
         </div>
@@ -68,35 +76,16 @@ class CategoryPage extends Component<Props> {
 function mapStateToProps(state) {
   return {
     categoryLink: state.categoryLink,
-    categories: state.categories
+    categories: state.categories,
+    category: state.category
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     actionsCategories: bindActionCreators(actionsCategories, dispatch),
-    actionsCategoryLink: bindActionCreators(actionsCategoryLink, dispatch),
+    actionsCategoryLink: bindActionCreators(actionsCategoryLink, dispatch)
   };
 }
-
-CategoryPage.propTypes = {
-  categories: PropTypes.shape({
-    categoriesNav: PropTypes.array,
-    categoryLink: PropTypes.object,
-    loadingCategories: PropTypes.bool,
-    loadingCategoryLink: PropTypes.bool
-  }).isRequired,
-  categoriesActions: PropTypes.shape({
-    getCategories: PropTypes.func,
-    getCategoryLink: PropTypes.func,
-    getChildCategoryLink: PropTypes.func
-  }).isRequired,
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      id: PropTypes.string
-    })
-  }).isRequired,
-  type: PropTypes.string.isRequired
-};
 
 export default connect(mapStateToProps, mapDispatchToProps)(CategoryPage);

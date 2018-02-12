@@ -1,7 +1,7 @@
 // @flow
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import PropTypes from "prop-types";
+import transliterate from "global/transliterate";
 import { bindActionCreators } from "redux";
 import type { Category } from "type/category";
 import BreadCrumb from "components/Elements/Navigation/breadcrumb/BreadCrumb";
@@ -26,17 +26,33 @@ class CategoryPage extends Component<Props> {
   }
 
   render() {
+    const type="childCategory"
     const { categories = [] } = this.props.categories.entity;
     const isFetchingCategories = this.props.categories.isFetching;
     const categoryLink = this.props.subCategoryLink.entity;
     const isFetchingСategoryLink = this.props.subCategoryLink.isFetching;
+    const subCategory = this.props.subCategory.entity;
+    const isFetchingSubCategory = this.props.subCategory.isFetching;
 
-    const miniNavMenu = isFetchingСategoryLink ? null : (
-      <BreadCrumb
-        type={this.props.type}
-        idActiveCategory={this.props.match.params.id}
-        categoryNav={categoryLink}
-      />
+    const breadCrumbLinks = isFetchingSubCategory
+      ? null
+      : [
+          {
+            name: subCategory.category.name,
+            link: `/category/${transliterate(subCategory.category.name)}/${
+              subCategory.category.id
+            }`
+          },
+          {
+            name: subCategory.name,
+            link: `/subcategory/${transliterate(subCategory.name)}/${
+              subCategory.id
+            }`
+          }
+        ];
+
+    const miniNavMenu = isFetchingSubCategory ? null : (
+      <BreadCrumb linkArr={breadCrumbLinks} />
     );
 
     if (isFetchingCategories || isFetchingСategoryLink) {
@@ -50,7 +66,7 @@ class CategoryPage extends Component<Props> {
     return (
       <div className="fluid-container">
         <div className={`row hiddenDesktop ${styles.mobileNavChild}`}>
-          <MobileMiniNav categories={categoryLink} type={this.props.type} />
+          <MobileMiniNav categories={categoryLink} type={type} />
         </div>
         <div className={`row hiddenMobile ${styles.miniNav}`}>
           {miniNavMenu}
@@ -58,7 +74,7 @@ class CategoryPage extends Component<Props> {
         <div className="row">
           <NavMenu categories={categories} />
           <SubProductList
-            type={this.props.type}
+            type={type}
             idActiveCategory={this.props.match.params.id}
           />
         </div>
@@ -70,35 +86,19 @@ class CategoryPage extends Component<Props> {
 function mapStateToProps(state) {
   return {
     subCategoryLink: state.subCategoryLink,
-    categories: state.categories
+    categories: state.categories,
+    subCategory: state.subCategory
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     actionsCategories: bindActionCreators(actionsCategories, dispatch),
-    actionsSubCategoryLink: bindActionCreators(actionsSubCategoryLink, dispatch)
+    actionsSubCategoryLink: bindActionCreators(
+      actionsSubCategoryLink,
+      dispatch
+    ),
   };
 }
-
-CategoryPage.propTypes = {
-  categories: PropTypes.shape({
-    categoriesNav: PropTypes.array,
-    categoryLink: PropTypes.object,
-    loadingCategories: PropTypes.bool,
-    loadingCategoryLink: PropTypes.bool
-  }).isRequired,
-  categoriesActions: PropTypes.shape({
-    getCategories: PropTypes.func,
-    getCategoryLink: PropTypes.func,
-    getChildCategoryLink: PropTypes.func
-  }).isRequired,
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      id: PropTypes.string
-    })
-  }).isRequired,
-  type: PropTypes.string.isRequired
-};
 
 export default connect(mapStateToProps, mapDispatchToProps)(CategoryPage);
