@@ -6,6 +6,7 @@
   display: inline-block;
   width: 11.25em;
   height: 14.875em;
+  margin-left: 0.1em;
 }
 .productTile h3 {
   display: inline-block;
@@ -75,12 +76,13 @@
 @media screen and (max-width: 767px){
   .productTile {
     display: flex;
-    min-height: 16em;
+    min-height: 14em;
     position: relative;
   }
   .productTile a img {
     width: 8.9376em;
     height: 11.8125em;
+    margin: 0.7em;
   }
   .productTile h3 {
     width: 100%;
@@ -92,9 +94,8 @@
   }
   .productTile .bottomElement {
     width: 100%;
-    position: absolute;
-    bottom: 0;
-    right: 0;
+    margin-top: 7em;
+    vertical-align: bottom;
   }
   .customRadio span {
     width: 1.45em;

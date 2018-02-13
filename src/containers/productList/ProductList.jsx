@@ -73,9 +73,7 @@ class ProductList extends Component {
           </h2>
           <div className={styles.miniNav}>
             <BreadCrumb
-              type={this.props.type}
-              idActiveCategory={this.props.idActiveCategory}
-              categoryNav={category}
+              breadCrumbLinks={this.props.breadCrumbLinks}
             />
           </div>
           <div className={styles.sort}>

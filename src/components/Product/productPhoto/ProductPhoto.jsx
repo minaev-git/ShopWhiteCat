@@ -7,16 +7,14 @@ import miniPhoto3 from "./miniPhoto3.png";
 import miniPhoto4 from "./miniPhoto4.png";
 
 export default class ProductPhoto extends Component {
-  constructor(props, context) {
-    super(props, context);
-    this.state = {
-      currentImg: this.props.photos[0] || "",
-      focusImg: null
-    };
-    this.changeImg = this.changeImg.bind(this);
-  }
+  state = {
+    currentImg: this.props.photos[0] || "",
+    focusImg: null
+  };
 
-  changeImg(event) {
+  initialImg = photo => {};
+
+  changeImg = event => {
     if (this.state.focusImg) {
       this.state.focusImg.classList.remove(styles.active);
     }
@@ -28,12 +26,31 @@ export default class ProductPhoto extends Component {
       focusImg: event.target
     }));
     event.persist();
-  }
+  };
 
   render() {
-    const photos = (this.props.photos || []).map((photo, index) => (
-      <img onClick={this.changeImg} src={photo} alt="пяу это же тест" />
-    ));
+    let photos = { length: 0 };
+    if (this.state.focusImg === null) {
+      photos = (this.props.photos || []).map((photo, index) => {
+        if (index === 0) {
+          return (
+            <img
+              onClick={this.changeImg}
+              className={styles.active}
+              src={photo}
+              alt="пяу это же тест"
+            />
+          );
+        }
+        return (
+          <img onClick={this.changeImg} src={photo} alt="пяу это же тест" />
+        );
+      });
+    } else {
+      photos = (this.props.photos || []).map(photo => (
+        <img onClick={this.changeImg} src={photo} alt="пяу это же тест" />
+      ));
+    }
 
     return (
       <div className={styles.productPhoto}>

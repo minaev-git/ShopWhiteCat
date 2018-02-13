@@ -10,12 +10,12 @@ type Props = {
   type: string
 };
 
-const MobileMinCategory = (props: Props) => {
+const MobileMinNav = (props: Props) => {
   if (props.type === "childCategory") {
     return (
       <div className={styles.category}>
         <Link
-          to={`/${props.type}/${transliterate(
+          to={`/category/${transliterate(
             props.categories.category.name
           )}/${props.categories.category.id}`}
           key={props.categories.category.id}
@@ -28,7 +28,7 @@ const MobileMinCategory = (props: Props) => {
   }
   const categories = (props.categories.child_categories || []).map(category => (
     <Link
-      to={`/${props.type}/${transliterate(category.name)}/${category.id}`}
+      to={`/subcategory/${transliterate(category.name)}/${category.id}`}
       key={category.id}
     >
       {category.name}
@@ -38,4 +38,4 @@ const MobileMinCategory = (props: Props) => {
   return <div className={styles.category}>{categories}</div>;
 };
 
-export default MobileMinCategory;
+export default MobileMinNav;

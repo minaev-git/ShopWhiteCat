@@ -42,7 +42,7 @@ class CategoryPage extends Component<Props> {
         ];
 
     const miniNavMenu = isFetchingCategory ? null : (
-      <BreadCrumb linkArr={breadCrumbLinks} />
+      <BreadCrumb breadCrumbLinks={breadCrumbLinks} />
     );
 
     if (isFetchingCategories || isFetchingСategoryLink) {
@@ -64,6 +64,7 @@ class CategoryPage extends Component<Props> {
         <div className="row">
           <NavMenu categories={categories} />
           <ProductList
+            breadCrumbLinks={breadCrumbLinks}
             type={type}
             idActiveCategory={this.props.match.params.id}
           />

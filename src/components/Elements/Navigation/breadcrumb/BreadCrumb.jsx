@@ -4,7 +4,7 @@ import styles from "./breadCrumb.css";
 
 const BreadCrumb = props => {
 
-  const BreadCrumbLinks = (props.linkArr || []).map((value)=>{
+  const BreadCrumbLinks = (props.breadCrumbLinks || []).map((value)=>{
     return(
       <Link to={value.link}>
         {value.name}
