@@ -12,8 +12,6 @@ export default class ProductPhoto extends Component {
     focusImg: null
   };
 
-  initialImg = photo => {};
-
   changeImg = event => {
     if (this.state.focusImg) {
       this.state.focusImg.classList.remove(styles.active);
@@ -30,12 +28,11 @@ export default class ProductPhoto extends Component {
 
   render() {
     let photos = { length: 0 };
-    if (this.state.focusImg === null) {
+    if (this.state.focusImg === null ) {
       photos = (this.props.photos || []).map((photo, index) => {
         if (index === 0) {
           return (
             <img
-              onClick={this.changeImg}
               className={styles.active}
               src={photo}
               alt="пяу это же тест"

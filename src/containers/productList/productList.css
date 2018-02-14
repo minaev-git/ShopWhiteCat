@@ -59,6 +59,9 @@
   .productList {
     margin: 0;
   }
+  .productList .sort {
+    margin-top: 2em;
+  }
   .productList h2 {
     margin-bottom: 0.5em;
   }

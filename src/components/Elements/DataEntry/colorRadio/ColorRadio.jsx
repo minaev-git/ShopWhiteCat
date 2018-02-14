@@ -19,7 +19,6 @@ export default class ColorRadio extends Component<Props> {
 
   render() {
     const colors = this.props.colors.map((color, index) => {
-      console.log(`${color.id}_${color.pivot.product_id}`)
       if (index === 0) {
         return (
           <label

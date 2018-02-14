@@ -36,7 +36,11 @@ const ProductTile = (props: Props) => {
   );
 
   return (
-    <div className={styles.productTile}>
+    <div
+      className={`${styles.productTile} ${
+        props.status === "sale" ? styles.sale : ""
+      }`}
+    >
       <Link
         to={`/product/${transliterate(props.product.name)}/${props.product.id}`}
       >
@@ -55,6 +59,7 @@ const ProductTile = (props: Props) => {
         <p>{props.product.seo_description}</p>
         <div className={styles.bottomElement}>
           <ColorRadio
+            className={styles.colorRadio}
             colors={props.product.colors}
             onChangeColor={props.onChangeColor}
           />

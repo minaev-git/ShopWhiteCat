@@ -2,6 +2,9 @@
   box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.15);
   margin-bottom: 1em;
 }
+.sale {
+  border-left: 4px solid red;
+}
 .productTile a img {
   display: inline-block;
   width: 11.25em;
@@ -12,20 +15,20 @@
   display: inline-block;
   margin-top: 0;
   max-width: 23em;
-  font: 1.125em 'Open Sans';
+  font: 1.125em "Open Sans";
   font-weight: 600;
   color: #444444;
 }
 .productTile form {
-  display: inline-block; 
+  display: inline-block;
   position: relative;
-  width: 38em;
+  width: 36.9em;
   height: 100%;
   vertical-align: top;
   margin: 0 0 0 1em;
   padding-top: 1em;
 }
-.productTile form > p{
+.productTile form > p {
   min-height: 4em;
 }
 .productTile form img {
@@ -37,11 +40,10 @@
   max-width: 30.78em;
   word-wrap: break-word;
   white-space: pre-wrap;
-  font: 0.875em 'Open Sans';
+  font: 0.875em "Open Sans";
   font-weight: 300;
 }
 .productTile .bottomElement {
-  margin-right: 1em;
   margin-top: 2.5em;
   vertical-align: bottom;
   padding-bottom: 1em;
@@ -54,26 +56,36 @@
   border-radius: 2px;
   outline: none;
   background-color: #fffefe;
-  font: 1.3125em 'Oswald';
+  font: 1.3125em "Oswald";
 }
 .productTile button:hover {
   color: #08a8b0;
   border: 1px solid #08a8b0;
 }
-@media screen and (max-width: 1199px){
+@media screen and (max-width: 1199px) {
   .productTile form {
-    width: 36em;
+    width: 35em;
   }
 }
-@media screen and (max-width: 991px){
+@media screen and (max-width: 991px) {
+  .productTile a img {
+    width: 9.9376em;
+    height: 12.8125em;
+  }
   .productTile form {
-    width: 25.9em;
+    width: 27.1em;
+  }
+  .sale form {
+    width: 26.8em;
   }
   .productTile form > img {
     display: none;
   }
+  .productTile .bottomElement {
+    margin-right: 1.2em;
+  }
 }
-@media screen and (max-width: 767px){
+@media screen and (max-width: 767px) {
   .productTile {
     display: flex;
     min-height: 14em;
@@ -91,27 +103,53 @@
   .productTile form {
     width: 100%;
     margin: 0 1em 0 0;
+    float: right;
   }
   .productTile .bottomElement {
     width: 100%;
-    margin-top: 7em;
+    margin-top: 8em;
     vertical-align: bottom;
   }
-  .customRadio span {
-    width: 1.45em;
-    height: 1.45em;
+  .colorRadio {
+    left: -9em;
+    bottom: 1em;
   }
-  .customRadio input[type=radio]:checked + span:after{
+  .colorRadio p {
+    font-size: 1em;
+  }
+  .colorRadio span{
+    position: relative;
+    left: 0;
+    width: 1.55em;
+    height: 1.55em;
+  }
+  .colorRadio input[type=radio]:checked + span:after{
     position: absolute;
-    top: 0.25em;
-    left: 0.36em;
+    z-index: 5;
+    font-size: 1.5em;
+    top: -0.02em;
+    left: 0.12em;
     content: '\2714';
     color: white;
   }
   .productTile button {
     margin: 0 0 0 0;
+    float: right;
   }
   .productTile form > p {
     display: none;
+  }
+}
+@media screen and (max-width: 330px) {
+  .productTile .bottomElement {
+    margin-top: 5em;
+  }
+  .productTile a img {
+    width: 6.9376em;
+    height: 7.8125em;
+  }
+  .colorRadio {
+    left: -8em;
+    bottom: 1em;
   }
 }

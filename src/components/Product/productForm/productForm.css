@@ -35,7 +35,7 @@
   color: #08a8b0;
   border: 1px solid #08a8b0;
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
   .titleSelect {
     margin-top: 1.5em;
     font: 1em "Open Sans";
