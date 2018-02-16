@@ -42,6 +42,11 @@
   left: -1.05em;
   color: #ffaf0a;
 }
+@media screen and (max-width: 991px) {
+  .navMenu {
+    width: 12em;
+  }
+}
 @media screen and (max-width: 767px ){
   .navMenu {
     display: none;

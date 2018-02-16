@@ -13,7 +13,6 @@ export function getSubCategoryLink(id) {
     dispatch(fetchSubCategoryLinkRequest());
     axios({
       method: "get",
-      /* url: `http://192.168.0.107/api/getChildCategory/${id}` */
       url: `${prodAddress}/api/getChildCategoryLink/${id}`
     })
       .then(response => {

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import ProductTile from "components/Category/productTile/ProductTile";
 import BreadCrumb from "components/Elements/Navigation/breadcrumb/BreadCrumb";
@@ -10,36 +11,29 @@ import * as actionsProduct from "redux/modules/product";
 import styles from "./productList.css";
 
 class ProductList extends Component {
-  constructor(props, context) {
-    super(props, context);
-    this.sortProducts = this.sortProducts.bind(this);
+
+  state = {
+    sort: null
   }
 
   componentDidMount() {
-    this.props.actionsCategory.getCategory(this.props.idActiveCategory);
+    this.props.actionsCategory.getCategory(this.props.match.params.id);
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.idActiveCategory !== prevProps.idActiveCategory) {
-      this.props.actionsCategory.getCategory(this.props.idActiveCategory);
+    if (this.props.match.params.id !== prevProps.match.params.id) {
+      this.props.actionsCategory.getCategory(this.props.match.params.id);
     }
   }
 
-  sortProducts(typeSort) {
-    switch (typeSort) {
-      case "novelty":
-        this.props.actionsCategory.getCategory(this.props.idActiveCategory);
-        break;
-      case "price":
-        this.props.actionsCategory.getCategory(
-          this.props.idActiveCategory,
-          typeSort
-        );
-        break;
-      default:
-        return null;
-    }
-    return null;
+  sortProducts = (typeSort) => {
+    this.props.actionsCategory.getCategory(
+      this.props.match.params.id,
+      typeSort
+    );
+    this.setState(()=>({
+      sort: typeSort
+    }))
   }
 
   render() {
@@ -78,8 +72,16 @@ class ProductList extends Component {
           </div>
           <div className={styles.sort}>
             <p>сортировать:</p>
-            <button onClick={() => this.sortProducts("price")}>по цене</button>
-            <button onClick={() => this.sortProducts("novelty")}>
+            <button
+              className={this.state.sort === "price" ? styles.activeSort : ""}
+              onClick={() => this.sortProducts("price")}
+            >
+              по цене
+            </button>
+            <button
+              className={this.state.sort === "novelty" ? styles.activeSort : ""}
+              onClick={() => this.sortProducts("novelty")}
+            >
               по новинкам
             </button>
           </div>
@@ -103,4 +105,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProductList);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ProductList));

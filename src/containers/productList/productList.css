@@ -42,6 +42,10 @@
   outline: none;
   background-color: white;
 }
+.sort .activeSort {
+  color: #08a8b0;
+  border-bottom: 1px solid #08a8b0;
+}
 .sort button:hover {
   color: #08a8b0;
 }

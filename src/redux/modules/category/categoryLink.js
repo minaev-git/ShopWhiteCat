@@ -13,25 +13,7 @@ export function getCategoryLink(id) {
     dispatch(fetchCategoryLinkRequest());
     axios({
       method: "get",
-      /* url: `http://laravel.app/api/getChildCategory/${id}` */
       url: `${prodAddress}/api/getCategoryLink/${id}`
-    })
-      .then(response => {
-        dispatch(fetchCategoryLinkSuccess(response.data));
-      })
-      .catch(error => {
-        dispatch(fetchCategoryLinkFailure(error.message));
-      });
-  };
-}
-
-export function getSubCategoryLink(id) {
-  return dispatch => {
-    dispatch(fetchCategoryLinkRequest());
-    axios({
-      method: "get",
-      /* url: `http://192.168.0.107/api/getChildCategory/${id}` */
-      url: `${prodAddress}/api/getChildCategoryLink/${id}`
     })
       .then(response => {
         dispatch(fetchCategoryLinkSuccess(response.data));

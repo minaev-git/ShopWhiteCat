@@ -25,8 +25,16 @@ class CategoryPage extends Component<Props> {
     );
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.match.params.id !== prevProps.match.params.id) {
+      this.props.actionsSubCategoryLink.getSubCategoryLink(
+        this.props.match.params.id
+      );
+    }
+  }
+
   render() {
-    const type="childCategory"
+    const type = "childCategory";
     const { categories = [] } = this.props.categories.entity;
     const isFetchingCategories = this.props.categories.isFetching;
     const categoryLink = this.props.subCategoryLink.entity;
@@ -95,10 +103,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     actionsCategories: bindActionCreators(actionsCategories, dispatch),
-    actionsSubCategoryLink: bindActionCreators(
-      actionsSubCategoryLink,
-      dispatch
-    ),
+    actionsSubCategoryLink: bindActionCreators(actionsSubCategoryLink, dispatch)
   };
 }
 

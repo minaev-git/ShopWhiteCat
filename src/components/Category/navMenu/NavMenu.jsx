@@ -14,7 +14,7 @@ const NavMenu = ({ categories }: Props) => {
   const categoriesList: Array<Node> = categories.map(category => (
     <div key={category.id}>
       <NavLink
-        to={`/category/${transliterate(category.name)}/${category.id}`}
+        to={`/category/mainCategory/${transliterate(category.name)}/${category.id}`}
         activeClassName={styles.active}
       >
         {category.name}
@@ -22,8 +22,7 @@ const NavMenu = ({ categories }: Props) => {
       </NavLink>
       {category.child_categories.map(childCategory => (
         <NavLink
-          to={`/subcategory/${transliterate(childCategory.name)}
-          /${childCategory.id}`}
+          to={`/category/subCategory/${transliterate(childCategory.name)}/${childCategory.id}`}
           className={styles.childCategory}
           activeClassName={styles.active}
           key={childCategory.id}

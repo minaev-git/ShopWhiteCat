@@ -13,7 +13,6 @@ export function getCategory(id, sort = null) {
     dispatch(fetchCategoryRequest());
     axios({
       method: "get",
-      /* url: `http://laravel.app/api/getCategory/${id}` */
       url: `${prodAddress}/api/getCategory/${id}`,
       params: {
         order: sort

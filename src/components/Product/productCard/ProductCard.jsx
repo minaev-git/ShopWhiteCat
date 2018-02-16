@@ -22,7 +22,7 @@ const ProductCard = (props: Props) => (
       <PhotoSlider photos={props.product.images} />
     </div>
     <ProductForm product={props.product} />
-    <div className={`hiddenDesktop ${styles.mobileSlider}`}>
+    <div className={`hiddenDesktop ${styles.mobileDropDown}`}>
       <MobileDropDown title="Характеристики" text={props.product.seo_description} />
     </div>
     <ProductDescription product={props.product} />

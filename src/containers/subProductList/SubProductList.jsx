@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import ProductTile from "components/Category/productTile/ProductTile";
 import BreadCrumb from "components/Elements/Navigation/breadcrumb/BreadCrumb";
 import Spinner from "components/Elements/Feedback/spinner/Spinner";
@@ -9,39 +10,29 @@ import * as actionsProduct from "redux/modules/product";
 import styles from "./SubProductList.css";
 
 class ProductList extends Component {
-  constructor(props, context) {
-    super(props, context);
-    this.sortProducts = this.sortProducts.bind(this);
-  }
+  state = {
+    sort: null
+  };
 
   componentDidMount() {
-    this.props.actionsSubCategory.getSubCategory(this.props.idActiveCategory);
+    this.props.actionsSubCategory.getSubCategory(this.props.match.params.id);
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.idActiveCategory !== prevProps.idActiveCategory) {
-      this.props.actionsSubCategory.getSubCategory(this.props.idActiveCategory);
+    if (this.props.match.params.id !== prevProps.match.params.id) {
+      this.props.actionsSubCategory.getSubCategory(this.props.match.params.id);
     }
   }
 
-  sortProducts(typeSort) {
-    switch (typeSort) {
-      case "novelty":
-        this.props.actionsSubCategory.getSubCategory(
-          this.props.idActiveCategory
-        );
-        break;
-      case "price":
-        this.props.actionsCategory.getCategory(
-          this.props.idActiveCategory,
-          typeSort
-        );
-        break;
-      default:
-        return null;
-    }
-    return null;
-  }
+  sortProducts = typeSort => {
+    this.props.actionsSubCategory.getSubCategory(
+      this.props.match.params.id,
+      typeSort
+    );
+    this.setState(() => ({
+      sort: typeSort
+    }));
+  };
 
   render() {
     const category = this.props.subCategory.entity;
@@ -73,14 +64,20 @@ class ProductList extends Component {
             </span>{" "}
           </h2>
           <div className={styles.miniNav}>
-            <BreadCrumb
-              breadCrumbLinks={this.props.breadCrumbLinks}
-            />
+            <BreadCrumb breadCrumbLinks={this.props.breadCrumbLinks} />
           </div>
           <div className={styles.sort}>
             <p>сортировать:</p>
-            <button onClick={() => this.sortProducts("price")}>по цене</button>
-            <button onClick={() => this.sortProducts("novelty")}>
+            <button
+              className={this.state.sort === "price" ? styles.activeSort : ""}
+              onClick={() => this.sortProducts("price")}
+            >
+              по цене
+            </button>
+            <button
+              className={this.state.sort === "novelty" ? styles.activeSort : ""}
+              onClick={() => this.sortProducts("novelty")}
+            >
               по новинкам
             </button>
           </div>
@@ -104,4 +101,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProductList);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ProductList));

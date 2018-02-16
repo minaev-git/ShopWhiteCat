@@ -11,10 +11,7 @@ type Props = {
 const SaleProduct = (props: Props) => {
   const saleProducts = props.saleProducts.map(saleProduct => (
     <ProductBox
-      name={saleProduct.name}
-      price={saleProduct.price}
-      salePrice={saleProduct.sale_price}
-      images={saleProduct.images}
+      product={saleProduct}
       key={saleProduct.id}
     />
   ));

@@ -1,6 +1,8 @@
 // @flow
 import React, { Component } from "react";
+import { Route } from "react-router-dom";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import transliterate from "global/transliterate";
 import { bindActionCreators } from "redux";
 import type { Category } from "type/category";
@@ -10,7 +12,9 @@ import Spinner from "components/Elements/Feedback/spinner/Spinner";
 import MobileMiniNav from "components/Elements/Navigation/mobileMiniNav/MobileMiniNav";
 import * as actionsCategories from "redux/modules/category/categories";
 import * as actionsCategoryLink from "redux/modules/category/categoryLink";
+import * as actionsSubCategoryLink from "redux/modules/category/subCategoryLink";
 import ProductList from "../productList/ProductList";
+import SubProductList from "../subProductList/SubProductList";
 import styles from "./Category.css";
 
 type Props = {
@@ -23,26 +27,50 @@ class CategoryPage extends Component<Props> {
     this.props.actionsCategoryLink.getCategoryLink(this.props.match.params.id);
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.match.params.id !== prevProps.match.params.id) {
+      this.props.actionsCategoryLink.getCategoryLink(
+        this.props.match.params.id
+      );
+    }
+  }
+
   render() {
-    const type="category";
     const { categories = [] } = this.props.categories.entity;
     const isFetchingCategories = this.props.categories.isFetching;
     const categoryLink = this.props.categoryLink.entity;
     const isFetchingСategoryLink = this.props.categoryLink.isFetching;
-    const category = this.props.category.entity;
-    const isFetchingCategory = this.props.category.isFetching;
+    const subCategoryLink = this.props.subCategoryLink.entity;
+    const isFetchingSubСategoryLink = this.props.subCategoryLink.isFetching;
 
-    const breadCrumbLinks = isFetchingCategory
+    const breadCrumbLinksCategory = isFetchingСategoryLink
       ? null
       : [
           {
-            name: category.name,
-            link: `/category/${transliterate(category.name)}/${category.id}`
+            name: categoryLink.name,
+            link: `/category/mainCategory/${transliterate(categoryLink.name)}/${categoryLink.id}`
           }
         ];
 
-    const miniNavMenu = isFetchingCategory ? null : (
-      <BreadCrumb breadCrumbLinks={breadCrumbLinks} />
+    const breadCrumbLinksSubCategory = isFetchingSubСategoryLink
+      ? null
+      : [
+          {
+            name: subCategoryLink.category.name,
+            link: `/category/mainCategory/${transliterate(subCategoryLink.category.name)}/${
+              subCategoryLink.category.id
+            }`
+          },
+          {
+            name: subCategoryLink.name,
+            link: `/category/subCategory/${transliterate(subCategoryLink.name)}/${
+              subCategoryLink.id
+            }`
+          }
+        ];
+
+    const miniNavMenu = isFetchingСategoryLink ? null : (
+      <BreadCrumb breadCrumbLinks={breadCrumbLinksCategory} />
     );
 
     if (isFetchingCategories || isFetchingСategoryLink) {
@@ -56,17 +84,27 @@ class CategoryPage extends Component<Props> {
     return (
       <div className="fluid-container">
         <div className={`row hiddenDesktop ${styles.mobileNavChild}`}>
-          <MobileMiniNav categories={categoryLink} type={type} />
+          <MobileMiniNav categories={categoryLink} type={'category'} />
         </div>
         <div className={`row hiddenMobile ${styles.miniNav}`}>
           {miniNavMenu}
         </div>
         <div className="row">
           <NavMenu categories={categories} />
-          <ProductList
-            breadCrumbLinks={breadCrumbLinks}
-            type={type}
-            idActiveCategory={this.props.match.params.id}
+          <Route
+            path="/category/:name/:id/mainCategory/"
+            render={() => (
+              <ProductList type="category" breadCrumbLinks={breadCrumbLinksCategory} />
+            )}
+          />
+          <Route
+            path="/category/:name/:id/subCategory/"
+            render={() => (
+              <SubProductList
+                type="childCategory"
+                breadCrumbLinks={breadCrumbLinksSubCategory}
+              />
+            )}
           />
         </div>
       </div>
@@ -77,16 +115,19 @@ class CategoryPage extends Component<Props> {
 function mapStateToProps(state) {
   return {
     categoryLink: state.categoryLink,
-    categories: state.categories,
-    category: state.category
+    subCategoryLink: state.subCategoryLink,
+    categories: state.categories
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     actionsCategories: bindActionCreators(actionsCategories, dispatch),
-    actionsCategoryLink: bindActionCreators(actionsCategoryLink, dispatch)
+    actionsCategoryLink: bindActionCreators(actionsCategoryLink, dispatch),
+    actionsSubCategoryLink: bindActionCreators(actionsSubCategoryLink, dispatch)
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CategoryPage);
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(CategoryPage)
+);
