@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 
 function sendProduct(Component) {
   return class SendProduct extends React.Component {
@@ -31,7 +30,6 @@ function sendProduct(Component) {
     }
 
     onChangeColor(id) {
-      console.log(this.state.product)
       this.setState(prevState => ({
         product: {
           ...prevState.product,

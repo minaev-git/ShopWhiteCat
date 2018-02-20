@@ -2,43 +2,50 @@ import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import PropTypes from "prop-types";
+import transliterate from "global/transliterate";
 import ProductTile from "components/Category/productTile/ProductTile";
 import BreadCrumb from "components/Elements/Navigation/breadcrumb/BreadCrumb";
 import Spinner from "components/Elements/Feedback/spinner/Spinner";
 import * as actionsCategory from "redux/modules/category/category";
 import * as actionsProduct from "redux/modules/product";
+import * as actionsCategoryLink from "redux/modules/category/categoryLink";
 import styles from "./productList.css";
 
 class ProductList extends Component {
-
   state = {
     sort: null
-  }
+  };
 
   componentDidMount() {
     this.props.actionsCategory.getCategory(this.props.match.params.id);
+    this.props.actionsCategoryLink.getCategoryLink(this.props.match.params.id);
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.match.params.id !== prevProps.match.params.id) {
       this.props.actionsCategory.getCategory(this.props.match.params.id);
+      this.props.actionsCategoryLink.getCategoryLink(
+        this.props.match.params.id
+      );
+      this.sortProducts(null);
     }
   }
 
-  sortProducts = (typeSort) => {
+  sortProducts = typeSort => {
     this.props.actionsCategory.getCategory(
       this.props.match.params.id,
       typeSort
     );
-    this.setState(()=>({
+    this.setState(() => ({
       sort: typeSort
-    }))
-  }
+    }));
+  };
 
   render() {
     const category = this.props.category.entity;
     const isFetchingCategory = this.props.category.isFetching;
+    const categoryLink = this.props.categoryLink.entity;
+    const isFetchingСategoryLink = this.props.categoryLink.isFetching;
 
     const productsBlock = (category.products || []).map(product => (
       <ProductTile
@@ -48,7 +55,18 @@ class ProductList extends Component {
       />
     ));
 
-    if (isFetchingCategory) {
+    const breadCrumbLinksCategory = isFetchingСategoryLink
+      ? null
+      : [
+          {
+            name: categoryLink.name,
+            link: `/category/mainCategory/${transliterate(categoryLink.name)}/${
+              categoryLink.id
+            }`
+          }
+        ];
+
+    if (isFetchingCategory || isFetchingСategoryLink) {
       return (
         <div className={styles.spinner}>
           <Spinner />
@@ -66,9 +84,7 @@ class ProductList extends Component {
             </span>{" "}
           </h2>
           <div className={styles.miniNav}>
-            <BreadCrumb
-              breadCrumbLinks={this.props.breadCrumbLinks}
-            />
+            <BreadCrumb breadCrumbLinks={breadCrumbLinksCategory} />
           </div>
           <div className={styles.sort}>
             <p>сортировать:</p>
@@ -94,15 +110,19 @@ class ProductList extends Component {
 
 function mapStateToProps(state) {
   return {
-    category: state.category
+    category: state.category,
+    categoryLink: state.categoryLink
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     actionsCategory: bindActionCreators(actionsCategory, dispatch),
-    actionsProduct: bindActionCreators(actionsProduct, dispatch)
+    actionsProduct: bindActionCreators(actionsProduct, dispatch),
+    actionsCategoryLink: bindActionCreators(actionsCategoryLink, dispatch)
   };
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ProductList));
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(ProductList)
+);

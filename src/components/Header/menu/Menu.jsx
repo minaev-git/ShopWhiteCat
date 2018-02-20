@@ -10,7 +10,7 @@ const Menu = state => {
     childCategories = (category.child_categories || []).map(childCategory => (
       <li>
         <NavLink
-          to={`/category/${transliterate(childCategory.name)}/subCategory${
+          to={`/category/subCategory/${transliterate(childCategory.name)}/${
             childCategory.id
           }`}
           key={childCategory.id}
@@ -24,7 +24,7 @@ const Menu = state => {
     return (
       <li>
         <NavLink
-          to={`/category/${transliterate(category.name)}/${category.id}/mainCategory`}
+          to={`/category/mainCategory/${transliterate(category.name)}/${category.id}`}
           key={category.id}
         >
           {category.name}

@@ -2,11 +2,13 @@ import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
+import transliterate from "global/transliterate";
 import ProductTile from "components/Category/productTile/ProductTile";
 import BreadCrumb from "components/Elements/Navigation/breadcrumb/BreadCrumb";
 import Spinner from "components/Elements/Feedback/spinner/Spinner";
 import * as actionsSubCategory from "redux/modules/category/subCategory";
 import * as actionsProduct from "redux/modules/product";
+import * as actionsSubCategoryLink from "redux/modules/category/subCategoryLink";
 import styles from "./SubProductList.css";
 
 class ProductList extends Component {
@@ -16,11 +18,14 @@ class ProductList extends Component {
 
   componentDidMount() {
     this.props.actionsSubCategory.getSubCategory(this.props.match.params.id);
+    this.props.actionsSubCategoryLink.getSubCategoryLink(this.props.match.params.id);
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.match.params.id !== prevProps.match.params.id) {
       this.props.actionsSubCategory.getSubCategory(this.props.match.params.id);
+      this.props.actionsSubCategoryLink.getSubCategoryLink(this.props.match.params.id);
+      this.sortProducts(null);
     }
   }
 
@@ -37,6 +42,8 @@ class ProductList extends Component {
   render() {
     const category = this.props.subCategory.entity;
     const isFetchingCategory = this.props.subCategory.isFetching;
+    const subCategoryLink = this.props.subCategoryLink.entity;
+    const isFetchingSubСategoryLink = this.props.subCategoryLink.isFetching;
 
     const productsBlock = (category.products || []).map(product => (
       <ProductTile
@@ -45,6 +52,23 @@ class ProductList extends Component {
         addProduct={this.props.actionsProduct.addProduct}
       />
     ));
+
+    const breadCrumbLinksSubCategory = isFetchingSubСategoryLink
+    ? null
+    : [
+        {
+          name: subCategoryLink.category.name,
+          link: `/category/mainCategory/${transliterate(subCategoryLink.category.name)}/${
+            subCategoryLink.category.id
+          }`
+        },
+        {
+          name: subCategoryLink.name,
+          link: `/category/subCategory/${transliterate(subCategoryLink.name)}/${
+            subCategoryLink.id
+          }`
+        }
+      ];
 
     if (isFetchingCategory) {
       return (
@@ -64,7 +88,7 @@ class ProductList extends Component {
             </span>{" "}
           </h2>
           <div className={styles.miniNav}>
-            <BreadCrumb breadCrumbLinks={this.props.breadCrumbLinks} />
+            <BreadCrumb breadCrumbLinks={breadCrumbLinksSubCategory} />
           </div>
           <div className={styles.sort}>
             <p>сортировать:</p>
@@ -90,14 +114,16 @@ class ProductList extends Component {
 
 function mapStateToProps(state) {
   return {
-    subCategory: state.subCategory
+    subCategory: state.subCategory,
+    subCategoryLink: state.subCategoryLink
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     actionsSubCategory: bindActionCreators(actionsSubCategory, dispatch),
-    actionsProduct: bindActionCreators(actionsProduct, dispatch)
+    actionsProduct: bindActionCreators(actionsProduct, dispatch),
+    actionsSubCategoryLink: bindActionCreators(actionsSubCategoryLink, dispatch)
   };
 }
 

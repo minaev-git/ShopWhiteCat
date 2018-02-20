@@ -31,7 +31,7 @@ export default class MobileMenu extends Component {
 
     const categories = this.props.categories.map(category => (
       <Link
-        to={`/Category/${transliterate(category.name)}/${category.id}`}
+        to={`/category/mainCategory/${transliterate(category.name)}/${category.id}`}
         onClick={this.closeAll}
         key={category.id}
       >

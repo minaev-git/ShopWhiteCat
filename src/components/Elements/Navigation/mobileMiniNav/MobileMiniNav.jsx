@@ -15,7 +15,7 @@ const MobileMinNav = (props: Props) => {
     return (
       <div className={styles.category}>
         <Link
-          to={`/category/${transliterate(
+          to={`/category/mainCategory/${transliterate(
             props.categories.category.name
           )}/${props.categories.category.id}`}
           key={props.categories.category.id}
@@ -28,7 +28,7 @@ const MobileMinNav = (props: Props) => {
   }
   const categories = (props.categories.child_categories || []).map(category => (
     <Link
-      to={`/subcategory/${transliterate(category.name)}/${category.id}`}
+      to={`/category/subCategory/${transliterate(category.name)}/${category.id}`}
       key={category.id}
     >
       {category.name}
