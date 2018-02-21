@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import { bindActionCreators } from "redux";
 import { getCartProducts } from "redux/modules/cart/getCartProducts";
 import ProductCard from "components/CartPage/productCard/ProductCard";
@@ -10,28 +11,33 @@ class CartPage extends Component {
   componentDidMount() {
     this.props.getCartProducts();
   }
+
+  componentDidUpdate() {
+    
+  }
+
   render() {
-    if (this.props.cartProducts.isFetching) {
+    if (this.props.cartProducts.isFetcing) {
       return null;
     }
 
     let emptyCart = null;
-
-    if (this.props.cartProducts.entity.products.length === 0) {
+    if (!this.props.cartProducts.entity.products) {
       emptyCart = <p>Корзина пустует, Милорд</p>;
     }
 
-    const products = this.props.cartProducts.entity.products.map(product => {
-      return <ProductCard product={product} />;
-    });
+    const products = (this.props.cartProducts.entity.products || []).map(
+      product => (
+        <ProductCard product={product} reloadCount={this.reloadCount} />
+      )
+    );
 
     return (
       <div className={styles.cartPage}>
         <div className={styles.productList}>
           {emptyCart}
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
+          {products}
+          {/*<ProductCard product={[]} reloadCount={this.reloadCount} />*/}
         </div>
         <TotalBlock totalPrice={this.props.cartProducts.entity.totalPrice} />
       </div>
@@ -51,4 +57,6 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CartPage);
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(CartPage)
+);

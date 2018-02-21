@@ -13,7 +13,6 @@ export function getCount() {
     dispatch(requestGetCount());
     axios({
       method: "get",
-      /* url: `http://laravel.app/api/getCount}` */
       url: `${prodAddress}/api/getCount`
     })
       .then(response => {
@@ -27,7 +26,7 @@ export function getCount() {
 
 const entity = createReducer({}, 0).on(
   successGetCount,
-  (state, count) => ({ ...state, count })
+  (state, count) => ({ ...state, ...count })
 );
 
 const error = createReducer({}, "").on(

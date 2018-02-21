@@ -1,3 +1,3 @@
-const prodAddress = 'http://192.168.0.107';
+const prodAddress = '';
 
 export default prodAddress

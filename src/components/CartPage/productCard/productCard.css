@@ -2,14 +2,17 @@
   position: relative;
   margin-bottom: 2.5em;
   width: 100%;
+  box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.1);
 }
-.productCard h4{
+.productCard > p{
   display: inline-block;
-  margin: 0.5em 0 0 1em;
+  margin: 0.3em 0 0 1em;
+  width: 21em;
   vertical-align: top;
-  font: 1.43em "Open Sans";
+  font: 1.35em "Open Sans";
   font-weight: 400;
   color: #444444;
+  overflow-wrap: break-word;
 }
 .productCard img{
   display: inline-block;
@@ -18,14 +21,15 @@
 }
 .productCard .price {
   display: block;
+  font-size: 1.15em;
   position: absolute;
-  right: 50%;
-  bottom: 0;
+  right: 45%;
+  bottom: 0.3em;
 }
 .delete {
   position: absolute;
-  bottom: 0;
-  right: 0;
+  bottom: 0.6em;
+  right: 1em;
   width: 5.68em;
   height: 1.625em;
   border-radius: 0.125em;

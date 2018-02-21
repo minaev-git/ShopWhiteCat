@@ -28,6 +28,7 @@ export function addToCart(product) {
 const error = createReducer({}, "")
   .on(failureAddToCart, errorMessage => errorMessage)
 
+
 export const add = combineReducers({
   isFetcingAddToCart: makeIsFetching(
     requestAddToCart,

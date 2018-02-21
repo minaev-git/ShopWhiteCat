@@ -13,7 +13,6 @@ export function getCartProducts() {
     dispatch(requestGetCartProducts());
     axios({
       method: "get",
-      /* url: `http://laravel.app/api/getCartProducts}` */
       url: `${prodAddress}/api/getCartProducts`
     })
       .then(response => {
