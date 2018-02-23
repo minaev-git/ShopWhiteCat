@@ -15,7 +15,7 @@ const PriceBox = (props: Props) => (
       className={
         props.status === "sale"
           ? `${styles.sale} ${props.className.sale}`
-          : styles.price
+          : `${styles.price} ${props.className.price}`
       }
     >
       <span>{props.salePrice} р</span>
@@ -27,7 +27,8 @@ const PriceBox = (props: Props) => (
 PriceBox.defaultProps = {
   className: {
     priceBox: '',
-    sale: ''
+    sale: '',
+    price: ''
   }
 };
 

@@ -1,8 +1,8 @@
 .productCount {
   margin-left: 1em;
   position: absolute;
-  right: 0.7em;
-  top: 0.3em;
+  right: 0.75em;
+  top: 4em;
 }
 .productCount button{
   display: inline-block;
@@ -13,7 +13,7 @@
 }
 .productCount p {
   display: inline-block;
-  margin: 0 0.2em;
+  margin: 0 0.3em;
   font-size: 1em;
   color: #303030;
 }

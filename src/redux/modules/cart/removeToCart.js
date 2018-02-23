@@ -11,7 +11,7 @@ const failureRemoveToCart = createAction();
 export function removeToCart(product) {
   return dispatch => {
     dispatch(requestRemoveToCart());
-    return axios({
+    axios({
       method: "post",
       url: `${prodAddress}/api/removeCart`,
       data: { ...product }

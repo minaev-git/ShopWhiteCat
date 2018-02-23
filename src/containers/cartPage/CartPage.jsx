@@ -11,9 +11,9 @@ class CartPage extends Component {
   componentDidMount() {
     this.props.getCartProducts();
   }
-
-  componentDidUpdate() {
-    
+  
+  componentWillUnmount() {
+    this.props.getCartProducts();
   }
 
   render() {
@@ -37,7 +37,6 @@ class CartPage extends Component {
         <div className={styles.productList}>
           {emptyCart}
           {products}
-          {/*<ProductCard product={[]} reloadCount={this.reloadCount} />*/}
         </div>
         <TotalBlock totalPrice={this.props.cartProducts.entity.totalPrice} />
       </div>

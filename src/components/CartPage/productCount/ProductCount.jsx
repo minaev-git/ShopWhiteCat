@@ -51,12 +51,11 @@ class ProductCount extends Component {
       url: `${prodAddress}/api/minusCart`,
       data: {
         id: this.props.product.id,
-        colorId: this.props.product.color.id,
-        childId: this.props.product.child.id
+        color: this.props.product.color.id,
+        child: this.props.product.child.id
       }
     })
       .then(response => {
-        console.log(response.data)
         this.setState(() => ({
           count: response.data
         }));

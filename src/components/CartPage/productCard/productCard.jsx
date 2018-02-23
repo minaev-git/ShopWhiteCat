@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { getCartProducts } from "redux/modules/cart/getCartProducts";
 import { removeToCart } from "redux/modules/cart/removeToCart";
 import PriceBox from "components/Elements/DataDisplay/priceBox/PriceBox";
 import ProductCount from "../productCount/ProductCount";
@@ -10,6 +9,7 @@ import testImg from "./miniPhoto1.png";
 
 class ProductCard extends Component {
   state = {
+    hideProduct: false,
     count: this.props.product.count || 1,
     product: {
       id: this.props.product.id,
@@ -24,28 +24,51 @@ class ProductCard extends Component {
     }));
   };
 
-  removeProduct = async () => {
-    await this.props.removeToCart(this.state.product);
-    console.log(this.props.removeToCart(this.state.product))
-    this.props.getCartProducts();
-  }
+  removeProduct = () => {
+    this.props.removeToCart(this.state.product);
+    this.setState(prevState => ({
+      hideProduct: !prevState.hideProduct
+    }));
+  };
 
   render() {
+    if (this.state.hideProduct) {
+      return null;
+    }
+
+    let color = {};
+
+    if (this.props.product.color.hasOwnProperty('hex')) {
+      color = {
+        backgroundColor: this.props.product.color.hex
+      };
+    }
+
     return (
       <div className={styles.productCard}>
-        <img
-          src={JSON.parse(this.props.product.images)[0]}
-          alt={this.props.product.name}
-        />
+        <div className={styles.photo}>
+          <img
+            src={JSON.parse(this.props.product.images)[0]}
+            alt={this.props.product.name}
+          />
+          <div className={styles.color} style={color} />
+        </div>
         <p>
-          {this.props.product.name}
+          {`${this.props.product.name} `}
+          <span className={styles.childName}>
+            {this.props.product.child.name}
+          </span>
           <ProductCount
             reloadPrice={this.reloadPrice}
             product={this.props.product}
           />
         </p>
         <PriceBox
-          className={{ priceBox: styles.price }}
+          className={{
+            priceBox: styles.priceBox,
+            price: styles.price,
+            sale: styles.sale
+          }}
           status=""
           price={this.props.product.price * this.state.count}
           salePrice="255"
@@ -66,7 +89,6 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    getCartProducts: bindActionCreators(getCartProducts, dispatch),
     removeToCart: bindActionCreators(removeToCart, dispatch)
   };
 }
