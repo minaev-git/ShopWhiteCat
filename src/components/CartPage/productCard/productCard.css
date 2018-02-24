@@ -15,15 +15,11 @@
   overflow-wrap: break-word;
 }
 .childName {
+  display: block;
+  margin-top: 0.4em;
   font-size: 0.7em;
   color: #b2b2b2;
   word-break: keep-all;
-}
-.photo {
-  display: inline-block;
-  position: relative;
-  width: 8.625em;
-  height: 11.43em;
 }
 .productCard img {
   display: inline-block;
@@ -31,17 +27,16 @@
   height: 11.43em;
 }
 .color {
-  position: absolute;
-  right: 0;
-  bottom: 0;
   width: 1em;
   height: 1em;
+  margin-top: 0.5em;
+  border-radius: 20%;
 }
 .productCard .priceBox {
   display: block;
   position: absolute;
   right: 0;
-  top: 0.8em;
+  top: 0.9em;
 }
 .productCard .price {
   margin-right: 0.6em;
@@ -77,5 +72,19 @@
   .productCard .price {
     margin-right: 0.8em;
     font-size: 1.8em;
+  }
+}
+@media screen and (max-width: 767px) {
+  .productCard {
+    margin-bottom: 1em;
+  }
+  .productCard .price {
+    margin-right: 0.6em;
+    margin-top: 0.5em;
+    font-size: 2.31em;
+    font-weight: 400;
+  }
+  .delete {
+    font-size: 1.1em;
   }
 }

@@ -1,14 +1,15 @@
 .productForm{
   display: flex;
   position: relative;
-  margin-left: 1em;
+  margin-left: 2.3em;
   flex-direction: column;
   flex-grow: 2;
 }
 .specification {
-  font: 0.95em "Open Sans";
   display: inline-block;
   max-width: 30em;
+  font: 0.95em "Open Sans";
+  font-weight: 300;
   white-space: pre-wrap;
 }
 .productForm .colorRadio p{

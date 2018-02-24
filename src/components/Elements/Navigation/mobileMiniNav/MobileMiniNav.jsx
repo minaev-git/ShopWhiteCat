@@ -21,7 +21,7 @@ const MobileMinNav = (props: Props) => {
           key={props.categories.category.id}
         >
           {props.categories.category.name}
-          <p>&gt;</p>
+          <p>&lt;</p>
         </Link>
       </div>
     );

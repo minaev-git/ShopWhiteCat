@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { removeToCart } from "redux/modules/cart/removeToCart";
+import { getTotalPrice } from "redux/modules/cart/getTotalPrice";
 import PriceBox from "components/Elements/DataDisplay/priceBox/PriceBox";
 import ProductCount from "../productCount/ProductCount";
 import styles from "./productCard.css";
@@ -24,8 +25,9 @@ class ProductCard extends Component {
     }));
   };
 
-  removeProduct = () => {
-    this.props.removeToCart(this.state.product);
+  removeProduct = async () => {
+    await this.props.removeToCart(this.state.product);
+    this.props.getTotalPrice();
     this.setState(prevState => ({
       hideProduct: !prevState.hideProduct
     }));
@@ -46,18 +48,16 @@ class ProductCard extends Component {
 
     return (
       <div className={styles.productCard}>
-        <div className={styles.photo}>
-          <img
-            src={JSON.parse(this.props.product.images)[0]}
-            alt={this.props.product.name}
-          />
-          <div className={styles.color} style={color} />
-        </div>
+        <img
+          src={JSON.parse(this.props.product.images)[0]}
+          alt={this.props.product.name}
+        />
         <p>
           {`${this.props.product.name} `}
           <span className={styles.childName}>
             {this.props.product.child.name}
           </span>
+          <div className={styles.color} style={color} />
           <ProductCount
             reloadPrice={this.reloadPrice}
             product={this.props.product}
@@ -83,13 +83,14 @@ class ProductCard extends Component {
 
 function mapStateToProps(state) {
   return {
-    remove: state.cart.remove
+    remove: state.cart.remove,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    removeToCart: bindActionCreators(removeToCart, dispatch)
+    removeToCart: bindActionCreators(removeToCart, dispatch),
+    getTotalPrice: bindActionCreators(getTotalPrice, dispatch)
   };
 }
 

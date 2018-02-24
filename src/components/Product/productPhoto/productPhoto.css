@@ -20,4 +20,5 @@
 }
 .alternativeImage .active{
   opacity: 1;
+  outline: 2px solid #08a8b0;
 }

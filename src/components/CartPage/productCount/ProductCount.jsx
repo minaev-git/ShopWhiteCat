@@ -1,12 +1,9 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { withRouter } from "react-router-dom";
 import prodAddress from "redux/prodAddress";
+import { getTotalPrice } from "redux/modules/cart/getTotalPrice";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { removeToCart } from "redux/modules/cart/removeToCart";
-import * as actionsAddToCart from "redux/modules/cart/addToCart";
-import * as actionsMinusProductToCart from "redux/modules/cart/minusProductToCart";
 import styles from "./productCount.css";
 
 class ProductCount extends Component {
@@ -36,6 +33,7 @@ class ProductCount extends Component {
           count: response.data
         }));
         this.props.reloadPrice(response.data);
+        this.props.getTotalPrice();
       })
       .catch(errorRequest => {
         this.setState(() => ({
@@ -60,6 +58,7 @@ class ProductCount extends Component {
           count: response.data
         }));
         this.props.reloadPrice(response.data);
+        this.props.getTotalPrice();
       })
       .catch(errorRequest => {
         this.setState(() => ({
@@ -81,22 +80,13 @@ class ProductCount extends Component {
 }
 
 function mapStateToProps(state) {
-  return {
-    cart: state.cart
-  };
+  return {};
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    actionsRemoveToCart: bindActionCreators(removeToCart, dispatch),
-    actionsAddToCart: bindActionCreators(actionsAddToCart, dispatch),
-    actionsMinusProductToCart: bindActionCreators(
-      actionsMinusProductToCart,
-      dispatch
-    )
+    getTotalPrice: bindActionCreators(getTotalPrice, dispatch)
   };
 }
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(ProductCount)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(ProductCount);

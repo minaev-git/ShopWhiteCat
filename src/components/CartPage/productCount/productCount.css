@@ -17,3 +17,14 @@
   font-size: 1em;
   color: #303030;
 }
+@media screen and (max-width: 767px) {
+  .productCount {
+    top: 5em;
+  }
+  .productCount p {
+    font-size: 1.5em;
+  }
+  .productCount button{
+    font-size: 1.5em;
+  }
+}

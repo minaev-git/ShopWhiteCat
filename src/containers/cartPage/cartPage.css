@@ -7,3 +7,14 @@
 .productList {
   flex-grow: 2;
 }
+@media screen and (max-width: 767px) {
+  .cartPage {
+    margin-top: 5em;
+    flex-direction: column;
+  }
+  .line {
+    width: 100%;
+    margin-bottom: 3em;
+    border-bottom: 2px solid #c6c6c6;
+  }
+}

@@ -28,7 +28,7 @@ export default class MobileDropDown extends Component {
     return (
       <div className={styles.dropDown}>
         <button onClick={this.toOpenDropDown}>
-          Характеристики<span>&gt;</span>
+          {this.props.title}<span>&gt;</span>
         </button>
       </div>
     );
