@@ -7,6 +7,7 @@ import { getTotalPrice } from "redux/modules/cart/getTotalPrice";
 import ProductCard from "components/CartPage/productCard/ProductCard";
 import MobileDropDown from "components/Elements/DataDisplay/mobileDropDown/MobileDropDown";
 import TotalBlock from "components/CartPage/totalBlock/TotalBlock";
+import CheckOutForm from "containers/checkOutForm/CheckOutForm";
 import styles from "./cartPage.css";
 
 class CartPage extends Component {
@@ -46,10 +47,11 @@ class CartPage extends Component {
         <TotalBlock totalPrice={this.props.totalPrice.entity} />
         <div className={`hiddenDesktop`}>
           <div className={styles.line} />
-          <MobileDropDown title="Москва" text={"Рома жирный и некрасивый"}/>
-          <MobileDropDown title="Воронеж" text={"Рома жирный и некрасивый"}/>
-          <MobileDropDown title="Блабла" text={"Рома жирный и некрасивый"}/>
+          <MobileDropDown title="Москва" text={"Рома жирный и некрасивый"} />
+          <MobileDropDown title="Воронеж" text={"Рома жирный и некрасивый"} />
+          <MobileDropDown title="Блабла" text={"Рома жирный и некрасивый"} />
         </div>
+        <CheckOutForm />
       </div>
     );
   }

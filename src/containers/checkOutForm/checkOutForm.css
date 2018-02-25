@@ -1,0 +1,9 @@
+.animatedError input {
+  border: 1px solid red;
+}
+.animatedValid input {
+  border: 1px solid green;
+}
+.inputGroup {
+  border: 1px solid #555555;
+}
