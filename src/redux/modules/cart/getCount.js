@@ -26,7 +26,7 @@ export function getCount() {
 
 const entity = createReducer({}, 0).on(
   successGetCount,
-  (state, count) => ({ ...state, ...count })
+  (state, count) => count
 );
 
 const error = createReducer({}, "").on(

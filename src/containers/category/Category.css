@@ -1,3 +1,6 @@
+.category {
+  min-height: 100em;
+}
 .miniNav {
   margin-left: 1em;
 }

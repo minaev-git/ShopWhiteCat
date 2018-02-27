@@ -4,6 +4,7 @@ import prodAddress from "redux/prodAddress";
 import { getTotalPrice } from "redux/modules/cart/getTotalPrice";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import { getCount } from 'redux/modules/cart/getCount';
 import styles from "./productCount.css";
 
 class ProductCount extends Component {
@@ -34,6 +35,7 @@ class ProductCount extends Component {
         }));
         this.props.reloadPrice(response.data);
         this.props.getTotalPrice();
+        this.props.getCount();
       })
       .catch(errorRequest => {
         this.setState(() => ({
@@ -59,6 +61,7 @@ class ProductCount extends Component {
         }));
         this.props.reloadPrice(response.data);
         this.props.getTotalPrice();
+        this.props.getCount();
       })
       .catch(errorRequest => {
         this.setState(() => ({
@@ -85,7 +88,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    getTotalPrice: bindActionCreators(getTotalPrice, dispatch)
+    getTotalPrice: bindActionCreators(getTotalPrice, dispatch),
+    getCount: bindActionCreators(getCount, dispatch)
   };
 }
 

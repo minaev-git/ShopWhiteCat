@@ -1,24 +1,26 @@
 import React from "react";
 import { withFormik } from "formik";
 import Yup from "yup";
+import axios from "axios";
 import classnames from "classnames";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
 import InputMask from "react-input-mask";
+import prodAddress from "redux/prodAddress";
 import styles from "./checkOutForm.css";
 
 const formikEnchancer = withFormik({
   validationSchema: Yup.object().shape({
-    firstName: Yup.string().required("Нужно указать имя"),
+    firstName: Yup.string().required("*Нужно указать имя"),
     email: Yup.string()
       .email(
-        "E-mail должен состоять из имени почтового ящика разделенного @ и домена, например IvanIvanov@yandex.ru"
+        "*E-mail должен состоять из имени почтового ящика разделенного @ и домена, например IvanIvanov@yandex.ru"
       )
-      .required("Нужно указать E-mail"),
-    phone: Yup.string().matches(
-      /^((\+?7|8)[ \-] ?)?((\(\d{3}\))|(\d{3}))?([ \-])?(\d{3}[\- ]?\d{2}[\- ]?\d{2})$/,
-      "Нужно ввести номер телефона"
-    ),
+      .required("*Нужно указать E-mail"),
+    phone: Yup.string()
+      .required("*Нужно ввести номер")
+      .matches(
+        /^((\+?7|8)[ \-] ?)?((\(\d{3}\))|(\d{3}))?([ \-])?(\d{3}[\- ]?\d{2}[\- ]?\d{2})$/,
+        "*Нужно ввести номер телефона"
+      ),
     address: Yup.string(),
     metro: Yup.string(),
     additionalInfo: Yup.string()
@@ -27,14 +29,32 @@ const formikEnchancer = withFormik({
   mapPropsToValues: ({ user }) => ({
     ...user
   }),
+
   handleSubmit: (payload, { setSubmitting }) => {
-    console.log(payload.address);
+    axios({
+      method: "post",
+      url: `${prodAddress}/api/createOrder`,
+      data: {
+        fio: payload.firstName,
+        email: payload.email,
+        tel: payload.phone,
+        address: payload.address,
+        metro: payload.metro,
+        other: payload.additionalInfo
+      }
+    })
+      .then(response => {
+      })
+      .catch(error => {
+        console.log(error.message)
+      });
     setSubmitting(false);
   },
   displayName: "checkOutForm"
 });
 
-const InputFeedback = ({ error }) => (error ? <div>{error}</div> : null);
+const InputFeedback = ({ error }) =>
+  error ? <div className={styles.inputFeedBack}>{error}</div> : null;
 
 const TextInput = ({
   type,
@@ -50,7 +70,7 @@ const TextInput = ({
     [styles.inputGroup],
     {
       [styles.animatedError]: !!error,
-      [styles.animatedValid]: value && !error
+      [styles.animatedValid]: value && typeof error === "undefined"
     },
     className
   );
@@ -66,6 +86,56 @@ const TextInput = ({
         {...props}
       />
       <InputFeedback error={error} />
+    </div>
+  );
+};
+
+const TextInputNotValidate = ({
+  type,
+  id,
+  label,
+  value,
+  onChange,
+  className,
+  ...props
+}) => {
+  const classes = classnames([styles.inputGroup], className);
+
+  return (
+    <div className={classes}>
+      <input
+        id={id}
+        className={styles.textInput}
+        type={type}
+        value={value}
+        onChange={onChange}
+        {...props}
+      />
+    </div>
+  );
+};
+
+const TextArea = ({
+  type,
+  id,
+  label,
+  value,
+  onChange,
+  className,
+  ...props
+}) => {
+  const classes = classnames([styles.inputGroup], className);
+
+  return (
+    <div className={classes}>
+      <textarea
+        id={id}
+        className={`${styles.textInput} ${styles.textArea}`}
+        type={type}
+        value={value}
+        onChange={onChange}
+        {...props}
+      />
     </div>
   );
 };
@@ -112,77 +182,98 @@ const CheckOutForm = props => {
     errors,
     handleChange,
     handleBlur,
+    handleShowCheckOutForm,
+    createOrder,
     handleSubmit,
     isSubmitting
   } = props;
   return (
-    <form onSubmit={handleSubmit}>
-      <TextInput
-        id="firstName"
-        type="text"
-        placeholder="ФИО"
-        error={touched.firstName && errors.firstName}
-        value={values.firstName}
-        onChange={handleChange}
-        onBlur={handleBlur}
-      />
-      <PhoneInput
-        id="phone"
-        type="text"
-        placeholder="Телефон"
-        error={touched.phone && errors.phone}
-        value={values.phone}
-        onChange={handleChange}
-        onBlur={handleBlur}
-      />
-      <TextInput
-        id="email"
-        type="text"
-        placeholder="E-mail"
-        error={touched.email && errors.email}
-        value={values.email}
-        onChange={handleChange}
-        onBlur={handleBlur}
-      />
-      <TextInput
-        id="address"
-        type="text"
-        placeholder="Адрес"
-        error={touched.address && errors.address}
-        value={values.address}
-        onChange={handleChange}
-        onBlur={handleBlur}
-      />
-      <TextInput
-        id="metro"
-        type="text"
-        placeholder="Метро"
-        error={touched.metro && errors.metro}
-        value={values.metro}
-        onChange={handleChange}
-        onBlur={handleBlur}
-      />
-      <TextInput
-        id="additionalInfo"
-        type="text"
-        placeholder="Дополнительная информация"
-        error={touched.additionalInfo && errors.additionalInfo}
-        value={values.additionalInfo}
-        onChange={handleChange}
-        onBlur={handleBlur}
-      />
-      <button type="submit" disabled={isSubmitting}>
-        Отправить
-      </button>
-    </form>
+    <div className={styles.shadowLayout}>
+      <form onSubmit={handleSubmit} className={styles.checkOutForm}>
+        <button
+          className={styles.close}
+          onClick={handleShowCheckOutForm}
+          type="button"
+        />
+        <h4>Контактная информация</h4>
+        <TextInput
+          id="firstName"
+          type="text"
+          placeholder="ФИО *"
+          error={touched.firstName && errors.firstName}
+          value={values.firstName}
+          onChange={handleChange}
+          onBlur={handleBlur}
+        />
+        <PhoneInput
+          id="phone"
+          type="text"
+          placeholder="Телефон *"
+          error={touched.phone && errors.phone}
+          value={values.phone}
+          onChange={handleChange}
+          onBlur={handleBlur}
+        />
+        <TextInput
+          id="email"
+          type="text"
+          placeholder="E-mail *"
+          error={touched.email && errors.email}
+          value={values.email}
+          onChange={handleChange}
+          onBlur={handleBlur}
+        />
+        <div className={styles.line} />
+        <TextInputNotValidate
+          id="address"
+          type="text"
+          placeholder="Адрес"
+          error={touched.address && errors.address}
+          value={values.address}
+          onChange={handleChange}
+          onBlur={handleBlur}
+        />
+        <TextInputNotValidate
+          id="metro"
+          type="text"
+          placeholder="Метро"
+          error={touched.metro && errors.metro}
+          value={values.metro}
+          onChange={handleChange}
+          onBlur={handleBlur}
+        />
+        <TextArea
+          id="additionalInfo"
+          type="text"
+          placeholder="Дополнительная информация"
+          error={touched.additionalInfo && errors.additionalInfo}
+          value={values.additionalInfo}
+          onChange={handleChange}
+          onBlur={handleBlur}
+        />
+        <button type="submit" className={styles.submit} disabled={isSubmitting}>
+          Отправить
+        </button>
+      </form>
+    </div>
   );
 };
 
 const EnchancedCheckOutForm = formikEnchancer(CheckOutForm);
 
-const CheckOutFormModal = () => (
-  <div>
-    <EnchancedCheckOutForm user={{ email: "", firstName: "" }} />
+const CheckOutFormModal = props => (
+  <div className={props.checkOutFormShow ? styles.show : styles.hide}>
+    <EnchancedCheckOutForm
+      handleShowCheckOutForm={props.handleShowCheckOutForm}
+      user={{
+        email: "",
+        firstName: "",
+        phone: "",
+        address: "",
+        metro: "",
+        additionalInfo: ""
+      }}
+    />
   </div>
 );
 

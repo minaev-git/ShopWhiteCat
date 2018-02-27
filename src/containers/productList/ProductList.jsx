@@ -6,6 +6,7 @@ import transliterate from "global/transliterate";
 import ProductTile from "components/Category/productTile/ProductTile";
 import BreadCrumb from "components/Elements/Navigation/breadcrumb/BreadCrumb";
 import Spinner from "components/Elements/Feedback/spinner/Spinner";
+import { getCount } from 'redux/modules/cart/getCount';
 import * as actionsCategory from "redux/modules/category/category";
 import * as actionsProduct from "redux/modules/product";
 import * as actionsCategoryLink from "redux/modules/category/categoryLink";
@@ -52,6 +53,7 @@ class ProductList extends Component {
         product={product}
         key={product.id}
         addProduct={this.props.actionsProduct.addProduct}
+        getCount={this.props.getCount}
       />
     ));
 
@@ -119,7 +121,8 @@ function mapDispatchToProps(dispatch) {
   return {
     actionsCategory: bindActionCreators(actionsCategory, dispatch),
     actionsProduct: bindActionCreators(actionsProduct, dispatch),
-    actionsCategoryLink: bindActionCreators(actionsCategoryLink, dispatch)
+    actionsCategoryLink: bindActionCreators(actionsCategoryLink, dispatch),
+    getCount: bindActionCreators(getCount, dispatch)
   };
 }
 

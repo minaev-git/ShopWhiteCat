@@ -1,0 +1,83 @@
+footer {
+  width: 103%;
+  height: 11em;
+  margin-top: 3em;
+  margin-bottom: -1.2em;
+  margin-left: -1em;
+  background-color: #303030;
+}
+.logoLayout {
+  text-align: left;
+  display: inline-block;
+  margin: 1.5em 0 0 5em;
+}
+.logoLayout img{
+  display: inline-block;
+  width: 1.8125em;
+  height: 2.43;
+}
+.logoLayout h2{
+  display: inline-block;
+  vertical-align: top;
+  margin: 0.15em 0 0 0.3em;
+  font: 1.31em "Oswald";
+  font-weight: 400;
+  color: white;
+}
+.logoLayout h3{
+  display: block;
+  margin: -0.45em 0 0 1.6em;
+  text-align: top;
+  color: white;
+  font: 0.875em "Oswald";
+  font-weight: 400;
+}
+.contacts {
+  display: inline-block;
+  margin: 0.7em 0 0 3em;
+  color: white;
+}
+.contacts p{
+  margin: 0;
+  font: 0.75em "Oswald";
+  font-weight: 300;
+  line-height: 1.6em;
+}
+.info {
+  float: right;
+  margin-right: 5em;
+  color: white;
+}
+.info h3 {
+  margin-bottom: 0.5em;
+  font: 1.2em "Oswald";
+  font-weight: 400;
+}
+.info a{
+  display: block;
+  text-align: right;
+  font: 0.875em "Oswald";
+  font-weight: 300;
+}
+@media screen and (max-width: 1199px) {
+  footer {
+    width: 104%;
+    margin-left: -1.2em;
+  }
+}
+@media screen and (max-width: 991px){
+  footer {
+    width: 106%;
+  }
+}
+@media screen and (max-width: 767px ){
+  .logoLayout {
+    text-align: left;
+    display: inline-block;
+    margin: 2em 0 0 2em;
+  }
+  footer {
+    width: 108%;
+    margin-left: -1.3em;
+  }
+}

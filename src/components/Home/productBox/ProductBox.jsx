@@ -1,7 +1,11 @@
 // @flow
-import React from "react";
+import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import transliterate from "global/transliterate";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+import * as actionsProduct from "redux/modules/product";
+import { getCount } from "redux/modules/cart/getCount";
 import styles from "./productBox.css";
 
 type Props = {
@@ -10,23 +14,47 @@ type Props = {
   salePrice: number
 };
 
-const ProductBox = (props: Props) => (
-  <div className={styles.productBox}>
-    <Link
-      to={`/product/${transliterate(props.product.name)}/${props.product.id}`}
-    >
-      <h3>{props.product.name}</h3>
-      <div>
-        <img
-          src={JSON.parse(props.product.images)[0]}
-          alt={props.product.name}
-        />
-      </div>
-      <p className={styles.salePrice}>{props.product.sale_price}р</p>
-      <p>{props.product.price}р</p>
-    </Link>
-    <button>Купить</button>
-  </div>
-);
+class ProductBox extends Component<Props> {
+  addProductToCart = async () => {
+    await this.props.actionsProduct.addProduct({
+      id: this.props.product.id
+    });
+    this.props.getCount();
+  };
 
-export default ProductBox;
+  render() {
+    return (
+      <div className={styles.productBox}>
+        <Link
+          to={`/product/${transliterate(this.props.product.name)}/${
+            this.props.product.id
+          }`}
+        >
+          <h3>{this.props.product.name}</h3>
+          <div>
+            <img
+              src={JSON.parse(this.props.product.images)[0]}
+              alt={this.props.product.name}
+            />
+          </div>
+          <p className={styles.salePrice}>{this.props.product.sale_price}р</p>
+          <p>{this.props.product.price}р</p>
+        </Link>
+        <button onClick={this.addProductToCart}>Купить</button>
+      </div>
+    );
+  }
+}
+
+function mapStateToProps() {
+  return {};
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actionsProduct: bindActionCreators(actionsProduct, dispatch),
+    getCount: bindActionCreators(getCount, dispatch)
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductBox);

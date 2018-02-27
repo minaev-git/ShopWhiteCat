@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { removeToCart } from "redux/modules/cart/removeToCart";
 import { getTotalPrice } from "redux/modules/cart/getTotalPrice";
+import { getCount } from 'redux/modules/cart/getCount';
 import PriceBox from "components/Elements/DataDisplay/priceBox/PriceBox";
 import ProductCount from "../productCount/ProductCount";
 import styles from "./productCard.css";
@@ -28,6 +29,7 @@ class ProductCard extends Component {
   removeProduct = async () => {
     await this.props.removeToCart(this.state.product);
     this.props.getTotalPrice();
+    this.props.getCount();
     this.setState(prevState => ({
       hideProduct: !prevState.hideProduct
     }));
@@ -90,7 +92,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     removeToCart: bindActionCreators(removeToCart, dispatch),
-    getTotalPrice: bindActionCreators(getTotalPrice, dispatch)
+    getTotalPrice: bindActionCreators(getTotalPrice, dispatch),
+    getCount: bindActionCreators(getCount, dispatch)
   };
 }
 

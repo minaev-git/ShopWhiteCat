@@ -38,7 +38,7 @@ class CategoryPage extends Component<Props> {
     }
 
     return (
-      <div className="fluid-container">
+      <div className={`fluid-container ${styles.category}`}>
         <div className={`row hiddenDesktop ${styles.mobileNavChild}`}>
           <Route
             path="/category/mainCategory/:name/:id"

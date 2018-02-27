@@ -8,7 +8,7 @@ export default class TotalBlock extends Component {
       <div className={styles.totalBlock}>
         <p className={styles.total}>Итого :</p>
         <p className={styles.totalPrice}>{this.props.totalPrice}р</p>
-        <button className={styles.checkOut}>Оформить заказ</button>
+        <button onClick={this.props.handleShowCheckOutForm} className={styles.checkOut}>Оформить заказ</button>
       </div>
     )
   }

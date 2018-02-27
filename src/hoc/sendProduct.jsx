@@ -17,7 +17,6 @@ function sendProduct(Component) {
       this.onChangeChildProduct = this.onChangeChildProduct.bind(this);
       this.onChangeColor = this.onChangeColor.bind(this);
       this.changeProduct = this.changeProduct.bind(this);
-      this.onSubmit = this.onSubmit.bind(this);
     }
 
     onChangeChildProduct(value) {
@@ -38,10 +37,11 @@ function sendProduct(Component) {
       }));
     }
 
-    onSubmit(event) {
+    onSubmit = async event => {
       event.preventDefault();
-      this.props.addProduct(this.state.product);
-    }
+      await this.props.addProduct(this.state.product);
+      this.props.getCount();
+    };
 
     changeProduct(child) {
       return () => {
@@ -54,7 +54,7 @@ function sendProduct(Component) {
         }
       };
     }
-    
+
     render() {
       return (
         <Component

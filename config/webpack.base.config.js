@@ -28,9 +28,9 @@ export default new Config().merge({
         test: /\.(jpg|png|svg)$/,
         loader: "file-loader",
         options: {
-          name: "./images/[name]__[hash:base64:5].[ext]"
+          name: "./images/[name]__[hash:base64:5].[ext]",
         }
-      }
+      },
     ]
   },
   plugins: [

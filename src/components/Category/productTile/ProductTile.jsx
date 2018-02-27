@@ -1,7 +1,9 @@
 // @flow
-import React from "react";
+import React, { Component } from "react";
 import type { Element } from "react";
+
 import { Link } from "react-router-dom";
+
 import type { Product } from "type/product";
 import transliterate from "global/transliterate";
 import sendProduct from "hoc/sendProduct";
@@ -10,6 +12,7 @@ import Option from "components/Elements/DataEntry/select/Option";
 import ColorRadio from "components/Elements/DataEntry/colorRadio/ColorRadio";
 import PriceBox from "components/Elements/DataDisplay/priceBox/PriceBox";
 import Popover from "components/Elements/DataDisplay/popover/Popover";
+
 import styles from "./productTile.css";
 
 type Props = {
@@ -20,61 +23,72 @@ type Props = {
   changeProduct: Function,
   onSubmit: Function,
   onChangeChildProduct: Function,
-  onChangeColor: Function
+  onChangeColor: Function,
+  getCount: Function
 };
 
-const ProductTile = (props: Props) => {
-  const childProducts: Array<Element<any>> = props.product.child_products.map(
-    childProduct => (
-      <Option
-        onClick={props.changeProduct(childProduct)}
-        key={childProduct.id}
-        id={childProduct.id}
-        value={childProduct.name}
-      />
-    )
-  );
+class ProductTile extends Component<Props> {
 
-  return (
-    <div
-      className={`${styles.productTile} ${
-        props.status === "sale" ? styles.sale : ""
-      }`}
-    >
-      <Link
-        to={`/product/${transliterate(props.product.name)}/${props.product.id}`}
+  render() {
+    const childProducts: Array<Element<any>> = this.props.product.child_products.map(
+      childProduct => (
+        <Option
+          onClick={this.props.changeProduct(childProduct)}
+          key={childProduct.id}
+          id={childProduct.id}
+          value={childProduct.name}
+        />
+      )
+    );
+
+    return (
+      <div
+        className={`${styles.productTile} ${
+          this.props.status === "sale" ? styles.sale : ""
+        }`}
       >
-        <img src={JSON.parse(props.product.images)[0]} alt="Тестики" />
-      </Link>
-      <form onSubmit={props.onSubmit}>
-        <img src={props.product.brand} alt="тест" />
         <Link
-          to={`/product/${transliterate(props.product.name)}/${
-            props.product.id
+          to={`/product/${transliterate(this.props.product.name)}/${
+            this.props.product.id
           }`}
         >
-          <h3>{props.product.name}</h3>
+          <img src={JSON.parse(this.props.product.images)[0]} alt="Тестики" />
         </Link>
-        <Select onChange={props.onChangeChildProduct}>{childProducts}</Select>
-        <p>{props.product.seo_description}</p>
-        <div className={styles.bottomElement}>
-          <ColorRadio
-            className={styles.colorRadio}
-            colors={props.product.colors}
-            onChangeColor={props.onChangeColor}
-          />
-          <PriceBox
-            status={props.status}
-            salePrice={props.salePrice}
-            price={props.price}
-          />
-          <Popover>
-            <button type="submit">Купить</button>
-          </Popover>
-        </div>
-      </form>
-    </div>
-  );
-};
+        <form onSubmit={this.props.onSubmit}>
+          <img src={this.props.product.brand} alt="тест" />
+          <Link
+            to={`/product/${transliterate(this.props.product.name)}/${
+              this.props.product.id
+            }`}
+          >
+            <h3>{this.props.product.name}</h3>
+          </Link>
+          <Select onChange={this.props.onChangeChildProduct}>{childProducts}</Select>
+          <p>{this.props.product.seo_description}</p>
+          <div className={styles.bottomElement}>
+            <ColorRadio
+              className={styles.colorRadio}
+              colors={this.props.product.colors}
+              onChangeColor={this.props.onChangeColor}
+            />
+            <PriceBox
+              status={this.props.status}
+              salePrice={this.props.salePrice}
+              price={this.props.price}
+            />
+            <Popover>
+              <button type="submit">
+                Купить
+              </button>
+            </Popover>
+          </div>
+        </form>
+      </div>
+    );
+  }
+}
 
-export default sendProduct(ProductTile);
+
+
+export default sendProduct(ProductTile)
+

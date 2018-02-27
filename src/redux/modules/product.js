@@ -32,7 +32,7 @@ export function getProduct(id) {
 export function addProduct(product) {
   return dispatch => {
     dispatch(requestAddProduct());
-    axios({
+    return axios({
       method: "post",
       url: `${prodAddress}/api/addCart`,
       data: { ...product }
