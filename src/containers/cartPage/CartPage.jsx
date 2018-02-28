@@ -40,7 +40,7 @@ class CartPage extends Component {
     }
 
     let emptyCart = null;
-    if (this.props.count.entity === 0) {
+    if (this.props.count.entity === 1) {
       emptyCart = (
         <div className={styles.emptyCart}>
           <p>
@@ -74,7 +74,7 @@ class CartPage extends Component {
             {products}
             {/*<ProductCard product={{name: 'швабра', images: [''], child: {name: '20x20'}, color: {hex: 'red'}, price: 2000, count: 2}} reloadCount={this.reloadCount} />*/}
           </div>
-          {this.props.count.entity > 0 ? (
+          {this.props.count.entity > -1 ? (
             <TotalBlock
               handleShowCheckOutForm={this.handleShowCheckOutForm}
               totalPrice={this.props.totalPrice.entity}
