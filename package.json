@@ -6,6 +6,7 @@
   "dependencies": {
     "axios": "^0.16.2",
     "babel-polyfill": "^6.26.0",
+    "browserslist": "^3.1.1",
     "classnames": "^2.2.5",
     "formik": "^0.11.11",
     "history": "^4.6.3",
@@ -30,7 +31,7 @@
     "yup": "^0.24.1"
   },
   "devDependencies": {
-    "autoprefixer": "^7.1.2",
+    "autoprefixer": "^7.2.6",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.25.0",
     "babel-eslint": "^8.0.1",
@@ -73,16 +74,6 @@
     "build-dev": "set NODE_ENV=development&& babel-node server.js",
     "build-prod": "set NODE_ENV=production&& webpack && babel-node server.js",
     "flow": "flow"
-  },
-  "browserslist": {
-    "production": [
-      "last 2 version",
-      "ie 10"
-    ],
-    "development": [
-      "last 2 version",
-      "ie 10"
-    ]
   },
   "repository": {
     "type": "git",

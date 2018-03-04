@@ -43,10 +43,9 @@ const formikEnchancer = withFormik({
         other: payload.additionalInfo
       }
     })
-      .then(response => {
-      })
+      .then(response => {})
       .catch(error => {
-        console.log(error.message)
+        console.log(error.message);
       });
     setSubmitting(false);
   },
@@ -188,7 +187,7 @@ const CheckOutForm = props => {
     isSubmitting
   } = props;
   return (
-    <div className={styles.shadowLayout}>
+    <div className={styles.overlay}>
       <form onSubmit={handleSubmit} className={styles.checkOutForm}>
         <button
           className={styles.close}

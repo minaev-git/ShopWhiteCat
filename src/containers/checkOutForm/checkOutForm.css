@@ -1,36 +1,39 @@
-.shadowLayout {
-  width: 100%;
-  height: 100%;
-  position: absolute;
+.overlay {
+  position: fixed;
   top: 0;
-  background-color: rgba(0, 0, 0, 0.3);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+	left: 0;
+	width: 100%;
+  height: 100%;
+  z-index: 20;
+	background-color: rgba(0, 0, 0, 0.7);
 }
 .checkOutForm {
   position: fixed;
+  z-index: 25;
   background-color: white;
-  z-index: 10;
   width: 28.125em;
-  min-height: 26.3em;
+  min-width: 320px;
   padding: 0 1.5em;
   border: 1px solid #bababa;
   border-radius: 4px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 .checkOutForm .close {
   position: absolute;
   right: 1em;
   top: 1em;
   height: 1.1em;
+  max-height: 100%;
   width: 1.1em;
   background-color: white;
   border: none;
   outline: none;
   cursor: pointer;
-  background-image: url('assets/close.svg');
+  background-image: url("assets/close.svg");
   background-repeat: no-repeat;
-  background-size: 100%; 
+  background-size: 100%;
 }
 .checkOutForm h4 {
   text-align: center;
@@ -46,17 +49,17 @@
 }
 .checkOutForm .textInput {
   position: relative;
-  height: 1.6785em;
+  height: 2.2em;
   width: 100%;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  padding-left: 1em;
   margin: 0.5em 0;
-  padding: 1em 1em;
-  padding-right: 2.5em;
   border: 1px solid #ededed;
   border-radius: 4px;
   font: 0.85em "Open Sans";
   font-weight: 400;
   color: #2e2d2d;
-  line-height: 1.47em;
 }
 .checkOutForm .textArea {
   height: 7em;
@@ -73,10 +76,10 @@
 .checkOutForm .inputGroup {
   position: relative;
 }
-.checkOutForm .animatedValid input{
+.checkOutForm .animatedValid input {
   border: 1px solid #00a007;
 }
-.checkOutForm .animatedValid:before{
+.checkOutForm .animatedValid:before {
   position: absolute;
   z-index: 11;
   right: 0.6em;
@@ -84,15 +87,15 @@
   content: "";
   width: 0.9em;
   height: 0.9em;
-  background-image: url('assets/check.svg');
+  background-image: url("assets/check.svg");
   background-repeat: no-repeat;
-  background-size: 100%; 
+  background-size: 100%;
   background-position: 50%;
 }
 .checkOutForm .animatedError input {
   border: 1px solid red;
 }
-.checkOutForm .animatedError:before{
+.checkOutForm .animatedError:before {
   position: absolute;
   z-index: 11;
   right: 0.6em;
@@ -100,12 +103,12 @@
   content: "";
   width: 0.9em;
   height: 0.9em;
-  background-image: url('assets/attention.svg');
+  background-image: url("assets/attention.svg");
   background-repeat: no-repeat;
-  background-size: 100%; 
+  background-size: 100%;
   background-position: 50%;
 }
-.checkOutForm input:focus{
+.checkOutForm input:focus {
   z-index: 12;
   background-color: white;
 }
@@ -121,12 +124,13 @@
   height: 1.8em;
   margin-top: 2em;
   margin-bottom: 1em;
+  padding-bottom: 0.1em;
   background-color: #08a8b0;
   color: white;
   border: none;
   border-radius: 2px;
 }
-.submit:hover{
+.submit:hover {
   background-color: white;
   border: 1px solid #08a8b0;
   color: #08a8b0;
@@ -137,4 +141,59 @@
 }
 .hide {
   display: none;
+}
+@media screen and (max-width: 767px) {
+  .overlay {
+    overflow-y: scroll;
+    background-color: white;
+  }
+  .checkOutForm {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+  }
+  .checkOutForm .textInput {
+    position: relative;
+    height: 2.5em;
+    width: 100%;
+    font-size: 1em;
+  }
+  .checkOutForm .close {
+    width: 1.6em;
+    height: 1.6em;
+    top: 1.5em;
+    right: 1.4em;
+  }
+  .checkOutForm h4 {
+    font-size: 1.3em;
+  }
+  .checkOutForm .textArea {
+    height: 6em;
+  }
+  .inputFeedBack {
+    font-size: 0.8em;
+  }
+  .inputFeedBack {
+    text-align: left;
+  }
+  .checkOutForm .animatedValid:before {
+    right: 0.8em;
+    top: 1.2em;
+    width: 1em;
+    height: 1em;
+  }
+  .checkOutForm .animatedError:before {
+    right: 0.8em;
+    top: 1.2em;
+    width: 1em;
+    height: 1em;
+  }
+  .submit {
+    display: inline-block;
+    float: none;
+    width: 10em;
+    height: 2em;
+    margin-top: 1.5em;
+  }
 }

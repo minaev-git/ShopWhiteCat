@@ -40,7 +40,7 @@ class CartPage extends Component {
     }
 
     let emptyCart = null;
-    if (this.props.count.entity === 1) {
+    if (this.props.count.entity < 1) {
       emptyCart = (
         <div className={styles.emptyCart}>
           <p>

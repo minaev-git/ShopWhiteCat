@@ -11,5 +11,6 @@ module.exports = {
     'css-mqpacker': {},
     'postcss-cssnext': {},
     'cssnano': {},
+    'autoprefixer': {}
   }
 }
