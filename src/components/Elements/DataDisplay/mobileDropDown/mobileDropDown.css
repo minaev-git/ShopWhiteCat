@@ -23,9 +23,3 @@
   top: 0.5em;
   transform: rotate(90deg)
 }
-.dropDown p {
-  font: 1.1em "Open Sans";
-  font-weight: 300;
-  margin-left: 0.25em;
-  white-space: pre-wrap;
-}

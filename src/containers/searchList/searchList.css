@@ -1,0 +1,46 @@
+.searchList {
+  margin-left: 1em;
+  margin-top: 2em;
+}
+.searchList h2 {
+  font: 1.5em "Open Sans";
+  font-weight: 600;
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  border-bottom: 1px solid #303030;
+  padding-bottom: 0.45em;
+}
+.spinner {
+  height: 30em;
+  width: 40em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.searchListError {
+  margin-top: 6em;
+  width: 40em;
+}
+.error {
+  font: 1.4em "Open Sans";
+  text-align: center;
+  margin-left: 4em;
+  vertical-align: top;
+}
+@media screen and (max-width: 991px) {
+  .error {
+    margin-left: 1em;
+  }
+}
+@media screen and (max-width: 767px) {
+  .searchList {
+    margin: 0;
+  }
+  .searchList h2 {
+    margin-bottom: 0.5em;
+  }
+  .searchList h2 span {
+    display: none;
+  }
+}

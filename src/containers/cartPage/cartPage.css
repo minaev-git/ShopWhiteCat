@@ -46,6 +46,9 @@
     margin-top: 5em;
     flex-direction: column;
   }
+  .title h2{
+    margin-top: 4.2em;
+  }
   .line {
     width: 100%;
     margin-bottom: 3em;

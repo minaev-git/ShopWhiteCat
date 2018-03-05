@@ -13,7 +13,7 @@ export function getSaleProducts() {
     dispatch(fetchSaleProductsRequest());
     axios({
       method: "get",
-      url: "http://192.168.0.107/api/getSection/sale"
+      url: `${prodAddress}/api/getSection/sale`
     })
       .then(response => {
         dispatch(fetchSaleProductsSuccess(response.data.products));

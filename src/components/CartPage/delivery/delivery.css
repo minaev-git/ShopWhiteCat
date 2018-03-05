@@ -1,0 +1,45 @@
+.delivery h2 {
+  margin: 0.5em 0 0.3em 0.5em;
+  font: 1.5em "Open Sans";
+  line-height: 30px;
+  font-weight: 600;
+  color: #303030;
+}
+.delivery .line {
+  width: 100%;
+  height: 1px;
+  margin-bottom: 1em;
+  background-color: #303030;
+}
+.delivery .description {
+  margin-left: 0.3em;
+}
+.delivery .description p{
+  margin: 0.25em 0;
+  font: 1em "Open Sans";
+  font-weight: 400;
+  color: #303030;
+  white-space: pre-line;
+}
+.delivery .description .priceTitle{
+  margin: 0.9em 0;
+  font: 1.5em "Open Sans";
+  font-weight: 400;
+  color: #303030;
+  white-space: pre-line;
+}
+.delivery .description h5{
+  margin: 0.9em 0;
+  font: 1.375em "Open Sans";
+  font-weight: 400;
+  color: #303030;
+  white-space: pre-wrap;
+}
+.delivery .description .blue {
+  color: #08a8b0;
+}
+.delivery .description .red {
+  color: #ff0000;
+}
+
+

@@ -17,18 +17,18 @@ export default class MobileDropDown extends Component {
       return (
         <div className={styles.dropDown}>
           <button onClick={this.toOpenDropDown}>
-            {this.props.title}<span className={styles.closeArrow}>&gt;</span>
+            {this.props.title}
+            <span className={styles.closeArrow}>&gt;</span>
           </button>
-          <p>
-            {this.props.text}
-          </p>
+          {this.props.text}
         </div>
       );
     }
     return (
       <div className={styles.dropDown}>
         <button onClick={this.toOpenDropDown}>
-          {this.props.title}<span>&gt;</span>
+          {this.props.title}
+          <span>&gt;</span>
         </button>
       </div>
     );

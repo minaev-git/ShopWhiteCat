@@ -6,8 +6,9 @@ import { bindActionCreators } from "redux";
 import { getCartProducts } from "redux/modules/cart/getCartProducts";
 import { getTotalPrice } from "redux/modules/cart/getTotalPrice";
 import ProductCard from "components/CartPage/productCard/ProductCard";
-import MobileDropDown from "components/Elements/DataDisplay/mobileDropDown/MobileDropDown";
 import TotalBlock from "components/CartPage/totalBlock/TotalBlock";
+import Delivery from "components/CartPage/delivery/Delivery";
+import DeliveryMobile from "components/CartPage/delivery/DeliveryMobile";
 import CheckOutForm from "containers/checkOutForm/CheckOutForm";
 import ModalPortal from "components/Elements/Portal/ModalPortal";
 import cartIcon from "./cart.jpg";
@@ -82,9 +83,7 @@ class CartPage extends Component {
           ) : null}
           <div className={`hiddenDesktop`}>
             <div className={styles.line} />
-            <MobileDropDown title="Москва" text={"Рома жирный и некрасивый"} />
-            <MobileDropDown title="Воронеж" text={"Рома жирный и некрасивый"} />
-            <MobileDropDown title="Блабла" text={"Рома жирный и некрасивый"} />
+            <DeliveryMobile />
           </div>
           <ModalPortal>
             <CheckOutForm
@@ -92,6 +91,9 @@ class CartPage extends Component {
               handleShowCheckOutForm={this.handleShowCheckOutForm}
             />
           </ModalPortal>
+        </div>
+        <div className={`hiddenMobile`}>
+          <Delivery />
         </div>
       </div>
     );

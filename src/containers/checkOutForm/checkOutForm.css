@@ -148,6 +148,7 @@
     background-color: white;
   }
   .checkOutForm {
+    border: none;
     position: absolute;
     width: 100%;
     height: 100%;
@@ -169,7 +170,7 @@
     font-size: 1.3em;
   }
   .checkOutForm .textArea {
-    height: 6em;
+    height: 9em;
   }
   .inputFeedBack {
     font-size: 0.8em;

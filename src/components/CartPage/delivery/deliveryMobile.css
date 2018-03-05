@@ -1,0 +1,29 @@
+.deliveryMobile {
+  margin-top: 4.5em;
+}
+.deliveryMobile h2 {
+  font: 1.5em "Open Sans";
+  font-weight: 600;
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  border-bottom: 1px solid #303030;
+  padding-bottom: 0.45em;
+  margin-bottom: 0.5em;
+}
+.deliveryMobile p {
+  font: 1.1em "Open Sans";
+  white-space: pre-wrap;
+  line-height: 1.5em;
+}
+.deliveryMobile .description p{
+  word-wrap: normal;
+  font-size: 1.1em;
+  margin: 0.8em 0 0.8em 0em;
+}
+.deliveryMobile .blue {
+  color: #08a8b0;
+}
+.deliveryMobile .red {
+  color: #ff0000;
+}

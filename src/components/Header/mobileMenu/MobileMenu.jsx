@@ -14,7 +14,7 @@ export default class MobileMenu extends Component {
     isOpenCatalog: false
   }
 
-  closeAll = () => {
+  handleAll = () => {
     this.handleMenu();
     this.handleCatalog();
   };
@@ -32,7 +32,7 @@ export default class MobileMenu extends Component {
     const categories = this.props.categories.map(category => (
       <Link
         to={`/category/mainCategory/${transliterate(category.name)}/${category.id}`}
-        onClick={this.closeAll}
+        onClick={this.handleAll}
         key={category.id}
       >
         {category.name}
@@ -56,12 +56,10 @@ export default class MobileMenu extends Component {
               <p>Каталог товаров</p>
               <p>&gt;</p>
             </button>
-            <Link to="/Category" onClick={this.handleMenu}>
+            <Link to="/delivery" onClick={this.handleMenu}>
               Доставка и оплата
             </Link>
-            <Link to="/">Доставка и оплата</Link>
-            <Link to="/">Подарки</Link>
-            <Link to="/">Доставка и оплата</Link>
+            <Link to="/gift" onClick={this.handleMenu}>Подарки</Link>
           </div>
           <div
             className={`${styles.hiddenMenu} ${styles.catalog}`}
@@ -70,7 +68,7 @@ export default class MobileMenu extends Component {
             <button className={styles.back} onClick={this.handleCatalog}>
               <img src={back} alt="Закрыть" />
             </button>
-            <button className={styles.closeMenu} onClick={this.closeAll}>
+            <button className={styles.closeMenu} onClick={this.handleAll}>
               <img src={close} alt="Закрыть" />
             </button>
             {categories}

@@ -1,9 +1,7 @@
 // @flow
 import React, { Component } from "react";
 import type { Element } from "react";
-
 import { Link } from "react-router-dom";
-
 import type { Product } from "type/product";
 import transliterate from "global/transliterate";
 import sendProduct from "hoc/sendProduct";

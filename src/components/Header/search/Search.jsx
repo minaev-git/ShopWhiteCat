@@ -1,22 +1,47 @@
 import React, { Component } from "react";
+import { bindActionCreators } from "redux";
+import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import transliterate from "global/transliterate";
+import { getSearch } from "redux/modules/search";
 import styles from "./search.css";
 import close from "./close.svg";
 
-export default class Search extends Component {
+class Search extends Component {
   state = {
-    isOpen: false
+    isOpen: false,
+    searchValue: ""
   };
 
-  handleSearch = () => {
-    this.setState(prevState => ({ isOpen: !prevState.isOpen }));
+  onChangeSearch = event => {
+    this.setState(() => ({
+      searchValue: event.target.value
+    }));
+    event.persist();
+  };
+
+  handleSubmit = event => {
+    this.props.history.push(`/search/${encodeURIComponent(this.state.searchValue)}`);
+    this.setState(prevState => ({
+      isOpen: !prevState.isOpen,
+      searchValue: ""
+    }));
+    event.preventDefault();
   };
 
   render() {
     return (
       <div className="col-xl-5 col-lg-5 col-md-5 col-sm-2 col-2">
-        <div className={styles.search}>
-          <input type="text" placeholder="Поиск..." />
-          <button onClick={this.handleSearch}>
+        <form className={styles.search} onSubmit={this.handleSubmit}>
+          <input
+            type="text"
+            placeholder="Поиск..."
+            ref={input => input && input.focus()}
+            onInput={this.onChangeSearch}
+            value={this.state.searchValue}
+          />
+          <button type="submit">
             <svg x="0px" y="0px" viewBox="0 0 475.084 475.084">
               <path d="M464.524,412.846l-97.929-97.925c23.6-34.068,35.406-72.047,35.406-113.917c0-27.218-5.284-53.249-15.852-78.087
           c-10.561-24.842-24.838-46.254-42.825-64.241c-17.987-17.987-39.396-32.264-64.233-42.826
@@ -28,21 +53,36 @@ export default class Search extends Component {
           c35.212,0,65.331,12.519,90.364,37.546c25.033,25.026,37.548,55.15,37.548,90.36C328.911,236.214,316.392,266.329,291.363,291.358z" />
             </svg>
           </button>
-        </div>
-        <div
+        </form>
+        <form
           className={styles.hiddenSearch}
           style={{ display: this.state.isOpen ? "block" : "none" }}
+          onSubmit={this.handleSubmit}
         >
           <input
             type="text"
             placeholder="Поиск..."
             ref={input => input && input.focus()}
+            value={this.state.searchValue}
+            onChange={this.onChangeSearch}
           />
-          <button onClick={this.handleSearch}>
+          <button type="submit">
             <img src={close} alt="Закрыть" />
           </button>
-        </div>
+        </form>
       </div>
     );
   }
 }
+
+function mapStateToProps(state) {
+  return {};
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    getSearch: bindActionCreators(getSearch, dispatch)
+  };
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Search));

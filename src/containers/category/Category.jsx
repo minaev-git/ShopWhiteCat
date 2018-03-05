@@ -14,6 +14,7 @@ import MobileMiniNavSubCategory from "components/Category/mobileMiniNavSubCatego
 import * as actionsCategories from "redux/modules/category/categories";
 import ProductList from "../productList/ProductList";
 import SubProductList from "../subProductList/SubProductList";
+import SearchList from "../searchList/SearchList";
 import styles from "./Category.css";
 
 type Props = {
@@ -67,7 +68,11 @@ class CategoryPage extends Component<Props> {
           />
           <Route
             path="/category/subCategory/:name/:id"
-            render={SubProductList}
+            component={SubProductList}
+          />
+          <Route
+            path="/search/:searchValue"
+            component={SearchList}
           />
         </div>
       </div>
