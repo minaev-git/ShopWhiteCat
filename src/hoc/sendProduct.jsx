@@ -1,25 +1,22 @@
-import React from "react";
+import React, { Component } from "react";
 
 function sendProduct(Component) {
-  return class SendProduct extends React.Component {
-    constructor(props) {
-      super(props);
-      this.state = {
-        price: this.props.product.price,
-        salePrice: this.props.product.sale_price,
-        status: this.props.product.status,
-        product: {
-          id: this.props.product.id,
-          child: null,
-          color: null
-        }
-      };
-      this.onChangeChildProduct = this.onChangeChildProduct.bind(this);
-      this.onChangeColor = this.onChangeColor.bind(this);
-      this.changeProduct = this.changeProduct.bind(this);
-    }
+  return class SendProduct extends Component {
 
-    onChangeChildProduct(value) {
+    state = {
+      price: this.props.product.price,
+      salePrice: this.props.product.sale_price,
+      status: this.props.product.status,
+      inCartButton: false,
+      product: {
+        id: this.props.product.id,
+        inCartButton: false,
+        child: null,
+        color: null
+      }
+    };
+
+    onChangeChildProduct = value => {
       this.setState(prevState => ({
         product: {
           ...prevState.product,
@@ -28,7 +25,7 @@ function sendProduct(Component) {
       }));
     }
 
-    onChangeColor(id) {
+    onChangeColor = id => {
       this.setState(prevState => ({
         product: {
           ...prevState.product,
@@ -41,9 +38,12 @@ function sendProduct(Component) {
       event.preventDefault();
       await this.props.addProduct(this.state.product);
       this.props.getCount();
+      this.setState(prevState => ({
+        inCartButton: !prevState.inCartButton
+      }));
     };
 
-    changeProduct(child) {
+    changeProduct = child => {
       return () => {
         this.setState(() => ({ price: child.price, status: child.status }));
         if (child.status === "sale") {

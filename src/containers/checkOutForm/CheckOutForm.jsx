@@ -5,6 +5,7 @@ import axios from "axios";
 import classnames from "classnames";
 import InputMask from "react-input-mask";
 import prodAddress from "redux/prodAddress";
+import SuccessOrder from "./SuccessOrder";
 import styles from "./checkOutForm.css";
 
 const formikEnchancer = withFormik({
@@ -47,7 +48,7 @@ const formikEnchancer = withFormik({
       .catch(error => {
         console.log(error.message);
       });
-    setSubmitting(false);
+    setSubmitting(true);
   },
   displayName: "checkOutForm"
 });
@@ -186,6 +187,15 @@ const CheckOutForm = props => {
     handleSubmit,
     isSubmitting
   } = props;
+
+  if (isSubmitting) {
+    return (
+      <div className={styles.overlay}>
+        <SuccessOrder handleShowCheckOutForm={handleShowCheckOutForm} />
+      </div>
+    );
+  }
+
   return (
     <div className={styles.overlay}>
       <form onSubmit={handleSubmit} className={styles.checkOutForm}>

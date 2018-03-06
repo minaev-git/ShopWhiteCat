@@ -9,11 +9,9 @@
   padding-top: 0.9em;
   background-color: white;
 }
-
 .mobileMenu > button {
   background-color: #08a8b0;
 }
-
 .mobileMenu > button img {
   background-color: #08a8b0;
   width: 2em;
@@ -27,7 +25,7 @@
   top: 0;
   z-index: 4;
   background-color: white;
-  font: 1.2em 'Oswald';
+  font: 1.2em "Oswald";
   font-weight: 300;
   height: 100%;
   width: 100%;
@@ -36,8 +34,8 @@
 }
 .hiddenMenu button {
   border-bottom: 1px solid #dddddd;
-  padding: 0.875em 0.8em 0.875em 0 ;
-  font: 1.2em 'Oswald';
+  padding: 0.875em 0.8em 0.875em 0;
+  font: 1.2em "Oswald";
   font-weight: 400;
   width: 100%;
   text-align: start;
@@ -46,7 +44,7 @@
   display: inline-block;
   margin: 0;
 }
-.hiddenMenu button p:last-child{
+.hiddenMenu button p:last-child {
   float: right;
 }
 .hiddenMenu a {
@@ -61,7 +59,7 @@
   width: 1.2em;
   height: 1.2em;
   float: right;
-  margin: 0  0.5em 0.5em 0;
+  margin: 0 0.5em 0.5em 0;
   border-bottom: none;
 }
 .closeMenu img {
@@ -72,7 +70,7 @@
   width: 1.2em;
   height: 1.2em;
   float: left;
-  margin: 0  0.5em 0.5em 0;
+  margin: 0 0.5em 0.5em 0;
   border-bottom: none;
 }
 .catalog .back img {

@@ -7,12 +7,12 @@
 .productCard > p {
   display: inline-block;
   margin: 0.9em 0 0 1em;
-  width: 23em;
+  width: 22em;
   vertical-align: top;
   font: 1.2em "Open Sans";
   font-weight: 400;
   color: #444444;
-  overflow-wrap: break-word;
+  word-break: keep-all;
 }
 .childName {
   display: block;
@@ -67,7 +67,10 @@
 }
 @media screen and (max-width: 991px) {
   .productCard > p {
-    width: 14em;
+    width: 13em;
+  }
+  .productCard .priceBox {
+    top: 0;
   }
   .productCard .price {
     margin-right: 0.8em;
@@ -77,14 +80,44 @@
 @media screen and (max-width: 767px) {
   .productCard {
     margin-bottom: 1em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .info {
+    height: 12.5em;
+    width: 20em;
+    text-align: end;
+  }
+  .productCard > p {
+    display: inline-block;
+    width: auto;
+    white-space: pre-line;
   }
   .productCard .price {
     margin-right: 0.6em;
     margin-top: 0.5em;
-    font-size: 2.31em;
-    font-weight: 400;
+    font-size: 2em;
   }
   .delete {
     font-size: 1.1em;
+  }
+}
+@media screen and (max-width: 400px) {
+  .productCard img {
+    display: inline-block;
+    width: 6.8em;
+    height: 8.6em;
+  }
+  .productCard > p {
+    font-size: 1.1em;
+  }
+  .info {
+    height: 11.5em;
+    width: 17em;
+    text-align: end;
+  }
+  .productCard .price {
+    font-size: 1.8em;
   }
 }

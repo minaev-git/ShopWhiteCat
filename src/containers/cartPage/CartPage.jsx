@@ -73,9 +73,9 @@ class CartPage extends Component {
           <div className={styles.productList}>
             {emptyCart}
             {products}
-            {/*<ProductCard product={{name: 'швабра', images: [''], child: {name: '20x20'}, color: {hex: 'red'}, price: 2000, count: 2}} reloadCount={this.reloadCount} />*/}
+            {/*<ProductCard product={{name: 'Салфетка для экранов - Smart 13х18 см', images: [''], child: {name: '20x20'}, color: {hex: 'red'}, price: 2000, count: 2}} reloadCount={this.reloadCount} />*/}
           </div>
-          {this.props.count.entity > -1 ? (
+          {this.props.count.entity > 0 ? (
             <TotalBlock
               handleShowCheckOutForm={this.handleShowCheckOutForm}
               totalPrice={this.props.totalPrice.entity}

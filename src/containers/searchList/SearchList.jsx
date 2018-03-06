@@ -61,7 +61,7 @@ class SearchList extends Component {
       <div className="col-xl-9 col-lg-9 col-md-9">
         <div className={styles.searchList}>
           <h2>
-            По запросу "{title}" получено
+            По запросу "{decodeURIComponent(title)}" получено
             <span className={styles.counterProduct}>
               {" "}
               {entity.length} товаров:

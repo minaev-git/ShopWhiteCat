@@ -8,23 +8,31 @@
   display: inline-block;
   background-color: white;
   border: none;
+  margin-left: 0;
   cursor: pointer;
   color: #303030;
 }
 .productCount p {
   display: inline-block;
   margin: 0 0.3em;
+  text-align: center;
   font-size: 1em;
   color: #303030;
 }
 @media screen and (max-width: 767px) {
   .productCount {
-    top: 5em;
+    top: 4em;
+    right: 0.5em;
   }
   .productCount p {
-    font-size: 1.5em;
+    font-size: 1.2em;
   }
   .productCount button{
     font-size: 1.5em;
+  }
+}
+@media screen and (max-width: 400px) {
+  .productCount {
+    right: 0.4em;
   }
 }

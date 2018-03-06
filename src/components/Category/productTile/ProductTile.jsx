@@ -9,7 +9,6 @@ import Select from "components/Elements/DataEntry/select/Select";
 import Option from "components/Elements/DataEntry/select/Option";
 import ColorRadio from "components/Elements/DataEntry/colorRadio/ColorRadio";
 import PriceBox from "components/Elements/DataDisplay/priceBox/PriceBox";
-import Popover from "components/Elements/DataDisplay/popover/Popover";
 
 import styles from "./productTile.css";
 
@@ -26,18 +25,17 @@ type Props = {
 };
 
 class ProductTile extends Component<Props> {
-
   render() {
-    const childProducts: Array<Element<any>> = this.props.product.child_products.map(
-      childProduct => (
-        <Option
-          onClick={this.props.changeProduct(childProduct)}
-          key={childProduct.id}
-          id={childProduct.id}
-          value={childProduct.name}
-        />
-      )
-    );
+    const childProducts: Array<
+      Element<any>
+    > = this.props.product.child_products.map(childProduct => (
+      <Option
+        onClick={this.props.changeProduct(childProduct)}
+        key={childProduct.id}
+        id={childProduct.id}
+        value={childProduct.name}
+      />
+    ));
 
     return (
       <div
@@ -61,7 +59,9 @@ class ProductTile extends Component<Props> {
           >
             <h3>{this.props.product.name}</h3>
           </Link>
-          <Select onChange={this.props.onChangeChildProduct}>{childProducts}</Select>
+          <Select onChange={this.props.onChangeChildProduct}>
+            {childProducts}
+          </Select>
           <p>{this.props.product.seo_description}</p>
           <div className={styles.bottomElement}>
             <ColorRadio
@@ -74,11 +74,15 @@ class ProductTile extends Component<Props> {
               salePrice={this.props.salePrice}
               price={this.props.price}
             />
-            <Popover>
+            {this.props.inCartButton ? (
+              <Link className={styles.linkToCart} to="/cart">
+                Перейти в корзину
+              </Link>
+            ) : (
               <button type="submit">
                 Купить
               </button>
-            </Popover>
+            )}
           </div>
         </form>
       </div>
@@ -86,7 +90,4 @@ class ProductTile extends Component<Props> {
   }
 }
 
-
-
-export default sendProduct(ProductTile)
-
+export default sendProduct(ProductTile);

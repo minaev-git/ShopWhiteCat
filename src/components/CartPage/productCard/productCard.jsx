@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { removeToCart } from "redux/modules/cart/removeToCart";
 import { getTotalPrice } from "redux/modules/cart/getTotalPrice";
-import { getCount } from 'redux/modules/cart/getCount';
+import { getCount } from "redux/modules/cart/getCount";
 import PriceBox from "components/Elements/DataDisplay/priceBox/PriceBox";
 import ProductCount from "../productCount/ProductCount";
 import styles from "./productCard.css";
@@ -42,7 +42,7 @@ class ProductCard extends Component {
 
     let color = {};
 
-    if (this.props.product.color.hasOwnProperty('hex')) {
+    if (this.props.product.color.hasOwnProperty("hex")) {
       color = {
         backgroundColor: this.props.product.color.hex
       };
@@ -50,10 +50,7 @@ class ProductCard extends Component {
 
     return (
       <div className={styles.productCard}>
-        <img
-          src={JSON.parse(this.props.product.images)[0]}
-          alt={this.props.product.name}
-        />
+        <img src={JSON.parse(this.props.product.images)[0]} alt={this.props.product.name} />
         <p>
           {`${this.props.product.name} `}
           <span className={styles.childName}>
@@ -65,19 +62,21 @@ class ProductCard extends Component {
             product={this.props.product}
           />
         </p>
-        <PriceBox
-          className={{
-            priceBox: styles.priceBox,
-            price: styles.price,
-            sale: styles.sale
-          }}
-          status=""
-          price={this.props.product.price * this.state.count}
-          salePrice="255"
-        />
-        <button onClick={this.removeProduct} className={styles.delete}>
-          Удалить
-        </button>
+        <div className={styles.info}>
+          <PriceBox
+            className={{
+              priceBox: styles.priceBox,
+              price: styles.price,
+              sale: styles.sale
+            }}
+            status=""
+            price={this.props.product.price * this.state.count}
+            salePrice="255"
+          />
+          <button onClick={this.removeProduct} className={styles.delete}>
+            Удалить
+          </button>
+        </div>
       </div>
     );
   }
@@ -85,7 +84,7 @@ class ProductCard extends Component {
 
 function mapStateToProps(state) {
   return {
-    remove: state.cart.remove,
+    remove: state.cart.remove
   };
 }
 
