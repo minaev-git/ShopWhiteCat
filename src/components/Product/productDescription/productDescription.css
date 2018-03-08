@@ -11,8 +11,15 @@
   color: #303030;
 }
 .productDescription .description {
-  font: 0.95em "Open Sans";
-  white-space: pre-wrap;
-  font-weight: 300;
+  font: 1.05em "Open Sans";
+  white-space: pre-line;
+  line-height: 1.7em;
+  font-weight: 400;
   color: #131313;
+}
+@media screen and (max-width: 767px) {
+  .productDescription .description {
+    font: 1em "Open Sans";
+    line-height: 1.35em;
+  }
 }

@@ -21,7 +21,7 @@ const PhotoBanner = state => {
   `;
 
   return (
-    <Link to="/category" className={styles.photoLink}>
+    <Link to={state.link} className={styles.photoLink}>
       <Photo className={styles.photoBanner}>
         <span>
           <h2>{state.text.heading}</h2>
@@ -44,7 +44,5 @@ const PhotoBanner = state => {
     </Link>
   );
 };
-
-// Исправить 
 
 export default PhotoBanner;

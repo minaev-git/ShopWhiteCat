@@ -33,5 +33,12 @@
   .productCard .mobileDropDown {
     margin-top: 1em;
     width: 100%;
+    font: 1em "Open Sans";
+    font-weight: 400;
+    white-space: pre-line;
+  }
+  .productCard .mobileDropDown p{
+    margin-left: 0.5em;
+    line-height: 2em;
   }
 }

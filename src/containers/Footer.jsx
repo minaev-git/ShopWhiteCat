@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import catLogo from "assets/cat.png";
 import styles from "./styles/Footer.css";
 
@@ -18,9 +19,9 @@ class Footer extends Component {
           </div>
         <div className={styles.info}>
           <h3>Информация</h3>
-          <a>Подарки</a>
-          <a>Доставка и оплата</a>
-          <a>Контакты</a>
+          <Link to="/gift">Подарки</Link>
+          <Link to="/delivery">Доставка и оплата</Link>
+          <Link to="/contacts">Контакты</Link>
         </div>
       </footer>
     );

@@ -1,5 +1,6 @@
 // @flow
 import React from "react";
+import { Link } from "react-router-dom";
 import styles from "./infoBox.css";
 
 type Props = {
@@ -7,15 +8,18 @@ type Props = {
   text: {
     heading: string,
     content: string
-  }
-}
+  },
+  link: string
+};
 
 const InfoBox = (props: Props) => (
   <div className={styles.infoBox}>
-    <img src={props.icon} alt={props.text.heading} />
-    <h3>{props.text.heading}</h3>
+    <Link to={props.link}>
+      <img src={props.icon} alt={props.text.heading} />
+    </Link>
+    <Link to={props.link}><h3>{props.text.heading}</h3></Link>
     <div>
-      <p>{props.text.content}</p>
+      {props.text.content}
     </div>
   </div>
 );

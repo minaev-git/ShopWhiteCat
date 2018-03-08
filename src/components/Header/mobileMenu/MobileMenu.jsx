@@ -28,7 +28,6 @@ export default class MobileMenu extends Component {
   }
 
   render() {
-
     const categories = this.props.categories.map(category => (
       <Link
         to={`/category/mainCategory/${transliterate(category.name)}/${category.id}`}
@@ -60,6 +59,7 @@ export default class MobileMenu extends Component {
               Доставка и оплата
             </Link>
             <Link to="/gift" onClick={this.handleMenu}>Подарки</Link>
+            <Link to="/contacts" onClick={this.handleMenu}>Контакты</Link>
           </div>
           <div
             className={`${styles.hiddenMenu} ${styles.catalog}`}

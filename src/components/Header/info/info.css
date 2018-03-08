@@ -6,6 +6,52 @@
   background-color: #08a8b0;
   box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.23);
   border-radius: 2px;
+  cursor: pointer;
+}
+.popover {
+  padding: 0 1em;
+}
+.popover h3 {
+  font: 1.2em "Open Sans";
+  font-weight: 600;
+}
+.popover a {
+  display: block;
+  margin-top: 0.75em;
+  padding-bottom: 0.1em;
+  width: 100%;
+  text-align: start;
+  font-size: 1.15em;
+  color: rgb(70, 70, 70);
+  border-bottom: 1px solid rgb(214, 214, 214);
+  background-size: 1.2em 1.2em;
+  background-repeat: no-repeat;
+  background-position: right 0.25em;
+}
+.delivery {
+  background-image: url("assets/delivery.svg");
+}
+.delivery:hover{
+  background-image: url("assets/deliveryHover.svg");
+}
+.popover .gift {
+  background-image: url("assets/gift.svg");
+  background-position: right 0.17em;
+} 
+.gift:hover{
+  background-image: url("assets/giftHover.svg");
+}
+.contacts {
+  background-image: url("assets/email.svg");
+}
+.contacts:hover {
+  background-image: url("assets/emailHover.svg");
+}
+.popover a:last-of-type{
+  margin-bottom: 0.75em;
+}
+.popover a:hover{
+  color: #08a8b0;
 }
 .info img {
   width: 1.625em;

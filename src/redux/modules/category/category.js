@@ -11,7 +11,7 @@ const fetchCategoryFailure = createAction();
 export function getCategory(id, sort = null) {
   return dispatch => {
     dispatch(fetchCategoryRequest());
-    axios({
+    return axios({
       method: "get",
       url: `${prodAddress}/api/getCategory/${id}`,
       params: {

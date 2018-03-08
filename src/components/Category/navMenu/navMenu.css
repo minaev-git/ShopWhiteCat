@@ -1,24 +1,25 @@
 .navMenu {
   width: 15em;
-  margin-left: 0.8em;
   margin-top: 5.5em;
 }
 .navMenu h2 {
-  font: 1.25em 'Open Sans';
+  font: 1.25em "Open Sans";
   font-weight: 600;
+  margin-left: 1em;
 }
 .navMenu > div {
   margin-bottom: 1em;
 }
-.navMenu > div a:first-child{
+.navMenu > div a:first-child {
   width: 12.5em;
 }
 .navMenu a {
   position: relative;
   display: inline-block;
-  font: 1.125em 'Open Sans';
+  font: 1.125em "Open Sans";
   font-weight: 300;
   color: #484848;
+  padding-left: 1em;
 }
 .navMenu a p {
   position: absolute;
@@ -29,25 +30,28 @@
 }
 .navMenu .childCategory {
   display: block;
-  font: 1em 'Open Sans';
+  font: 1em "Open Sans";
   font-weight: 300;
-  margin-left: 1em;
+  padding-left: 2em;
 }
 .navMenu .active {
   font-weight: 600;
 }
-.navMenu .active::before{
-  content: "▶";
-  position: absolute;
-  left: -1.05em;
-  color: #ffaf0a;
+.navMenu .active {
+  background-image: url("assets/arrow.svg");
+  background-repeat: no-repeat;
+  background-size: 0.9em 0.9em;
+  background-position: 0em center;
+}
+.navMenu .childCategory.active {
+  background-position: 1em center;
 }
 @media screen and (max-width: 991px) {
   .navMenu {
     width: 12em;
   }
 }
-@media screen and (max-width: 767px ){
+@media screen and (max-width: 767px) {
   .navMenu {
     display: none;
   }

@@ -10,6 +10,7 @@
   max-width: 30em;
   font: 0.95em "Open Sans";
   font-weight: 300;
+  line-height: 1.7em;
   white-space: pre-wrap;
 }
 .productForm .colorRadio p{
@@ -36,12 +37,32 @@
   color: #08a8b0;
   border: 1px solid #08a8b0;
 }
+.linkToCart {
+  display: inline-block;
+  width: 8.72em;
+  margin: 2em 1em 0 0;
+  padding: 0.05em 0.75em;
+  cursor: pointer;
+  border: 1px solid #000000;
+  border-radius: 2px;
+  outline: none;
+  color: black;
+  background-color: #fffefe;
+  font: 1.3125em 'Oswald';
+}
+.linkToCart:hover {
+  color: #08a8b0;
+  border: 1px solid #08a8b0;
+}
 @media screen and (max-width: 767px) {
   .titleSelect {
     margin-top: 1.5em;
     font: 1em "Open Sans";
     line-height: 0.5em;
     font-weight: 400;
+  }
+  .productForm {
+    margin-left: 0;
   }
   .productForm .colorRadio {
     position: relative;
@@ -68,6 +89,11 @@
     margin-bottom: 1.5em;
   }
   .productForm .sendProduct button{
+    position: absolute;
+    right: 0;
+    margin-right: 0;
+  }
+  .linkToCart {
     position: absolute;
     right: 0;
     margin-right: 0;

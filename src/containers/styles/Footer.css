@@ -60,8 +60,12 @@ footer {
 }
 .info a{
   display: block;
+  color: white;
   font: 0.875em "Oswald";
   font-weight: 300;
+}
+.info a:hover{
+  color: #08a8b0;
 }
 @media screen and (max-width: 1199px) {
   footer {

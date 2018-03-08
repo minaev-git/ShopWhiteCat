@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import PropTypes from "prop-types";
 import * as saleProductsAction from "redux/modules/saleProducts";
-import MobileMiniNav from "components/Elements/Navigation/mobileMiniNav/MobileMiniNav";
 import PhotoBanner from "components/Home/photoBanner/PhotoBanner";
 import photo1 from "components/Home/photoBanner/phote1.jpg";
 import photo2 from "components/Home/photoBanner/phote2.jpg";
@@ -21,7 +20,9 @@ import styles from "./styles/Home.css";
 
 class Home extends Component {
   componentDidMount() {
+    document.title = "«Белый кот» — Главная страница";
     this.props.saleProductsAction.getSaleProducts();
+    window.scrollTo(0, 0);
   }
 
   render() {
@@ -51,6 +52,7 @@ class Home extends Component {
                 height: "36.05em"
               }}
               text={textPhotoBanner.text1}
+              link="/category/subCategory/polotentsa-bannie/41"
             />
           </div>
           <div className="col-xl-7 col-lg-7 col-md-7">
@@ -62,6 +64,7 @@ class Home extends Component {
                 height: "19.36em"
               }}
               text={textPhotoBanner.text2}
+              link="/category/mainCategory/salfetki/25"
             />
             <PhotoBanner
               photo={photo3}
@@ -71,6 +74,7 @@ class Home extends Component {
                 height: "15.6875em"
               }}
               text={textPhotoBanner.text3}
+              link="/category/subCategory/schetki-dlya-pola/26"
             />
           </div>
         </div>
@@ -84,6 +88,7 @@ class Home extends Component {
               height: "17.375em"
             }}
             text={textPhotoBanner.text1}
+            link="/category/subCategory/polotentsa-bannie/41"
           />
         </div>
         <HeadingBar
@@ -102,6 +107,7 @@ class Home extends Component {
               height: "17.375em"
             }}
             text={textPhotoBanner.text2}
+            link="/category/mainCategory/salfetki/25"
           />
         </div>
         <HeadingBar
@@ -120,6 +126,7 @@ class Home extends Component {
               height: "17.375em"
             }}
             text={textPhotoBanner.text3}
+            link="/category/subCategory/schetki-dlya-pola/26"
           />
         </div>
         <HeadingBar

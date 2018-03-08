@@ -6,6 +6,7 @@ import transliterate from "global/transliterate";
 import ProductTile from "components/Category/productTile/ProductTile";
 import BreadCrumb from "components/Elements/Navigation/breadcrumb/BreadCrumb";
 import Spinner from "components/Elements/Feedback/spinner/Spinner";
+import { getCount } from 'redux/modules/cart/getCount';
 import * as actionsSubCategory from "redux/modules/category/subCategory";
 import * as actionsProduct from "redux/modules/product";
 import * as actionsSubCategoryLink from "redux/modules/category/subCategoryLink";
@@ -17,6 +18,7 @@ class ProductList extends Component {
   };
 
   componentDidMount() {
+    window.scrollTo(0, 0);
     this.props.actionsSubCategory.getSubCategory(this.props.match.params.id);
     this.props.actionsSubCategoryLink.getSubCategoryLink(this.props.match.params.id);
   }
@@ -26,6 +28,7 @@ class ProductList extends Component {
       this.props.actionsSubCategory.getSubCategory(this.props.match.params.id);
       this.props.actionsSubCategoryLink.getSubCategoryLink(this.props.match.params.id);
       this.sortProducts(null);
+      window.scrollTo(0, 0);
     }
   }
 
@@ -50,6 +53,7 @@ class ProductList extends Component {
         product={product}
         key={product.id}
         addProduct={this.props.actionsProduct.addProduct}
+        getCount={this.props.getCount}
       />
     ));
 
@@ -77,6 +81,8 @@ class ProductList extends Component {
         </div>
       );
     }
+
+    document.title = `«Белый кот» — ${this.props.subCategoryLink.entity.name}`;
 
     return (
       <div className="col-xl-9 col-lg-9 col-md-9">
@@ -123,7 +129,8 @@ function mapDispatchToProps(dispatch) {
   return {
     actionsSubCategory: bindActionCreators(actionsSubCategory, dispatch),
     actionsProduct: bindActionCreators(actionsProduct, dispatch),
-    actionsSubCategoryLink: bindActionCreators(actionsSubCategoryLink, dispatch)
+    actionsSubCategoryLink: bindActionCreators(actionsSubCategoryLink, dispatch),
+    getCount: bindActionCreators(getCount, dispatch)
   };
 }
 

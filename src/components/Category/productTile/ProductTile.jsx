@@ -47,6 +47,7 @@ class ProductTile extends Component<Props> {
           to={`/product/${transliterate(this.props.product.name)}/${
             this.props.product.id
           }`}
+          className={styles.imgLink}
         >
           <img src={JSON.parse(this.props.product.images)[0]} alt="Тестики" />
         </Link>

@@ -9,14 +9,19 @@
   margin-bottom: 0;
 }
 .articles .date {
-  font: 0.75em 'Open Sans';
+  font: 0.9em 'Open Sans';
   font-weight: 300;
-  margin-bottom: 2.2em;
+  margin-bottom: 1.5em;
 }
 .articles p {
-  font: 1em 'Lora',serif;
+  font: 1.05em 'Open Sans';
   color: #303030;
   line-height: 1.7em;
+}
+@media screen and (max-width: 991px){
+  .articles {
+    margin-left: 5.5em;
+  }
 }
 @media screen and (max-width: 767px){
   .articles {
@@ -24,6 +29,7 @@
     margin-right: 1em;
   }
   .articles p {
-    font: 1.1em 'Lora';
+    font: 1.1em 'Open Sans';
+    line-height: 1.65em;
   }
 }

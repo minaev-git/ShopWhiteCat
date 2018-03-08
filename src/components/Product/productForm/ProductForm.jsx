@@ -2,6 +2,7 @@
 import React from "react";
 import type { Product } from "type/product";
 import sendProduct from "hoc/sendProduct";
+import { Link } from "react-router-dom";
 import Select from "components/Elements/DataEntry/select/Select";
 import Option from "components/Elements/DataEntry/select/Option";
 import ColorRadio from "components/Elements/DataEntry/colorRadio/ColorRadio";
@@ -13,6 +14,7 @@ type Props = {
   status: string,
   price: number,
   salePrice: number,
+  inCartButton: boolean,
   changeProduct: Function,
   onSubmit: Function,
   onChangeChildProduct: Function,
@@ -65,7 +67,13 @@ const ProductForm = (props: Props) => {
           price={props.price}
           salePrice={props.salePrice}
         />
-        <button type="submit">Добавить в корзину</button>
+        {props.inCartButton ? (
+          <Link className={styles.linkToCart} to="/cart">
+            Перейти в корзину
+          </Link>
+        ) : (
+          <button type="submit">Добавить в корзину</button>
+        )}
       </div>
     </form>
   );

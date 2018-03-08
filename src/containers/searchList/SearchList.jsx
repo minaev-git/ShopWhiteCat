@@ -13,6 +13,7 @@ import styles from "./searchList.css";
 class SearchList extends Component {
   componentDidMount() {
     this.props.getSearch(this.props.match.params.searchValue);
+    document.title = `«Белый кот» — Поиск…`;
   }
 
   componentDidUpdate(prevProps) {

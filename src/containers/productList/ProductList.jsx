@@ -18,6 +18,7 @@ class ProductList extends Component {
   };
 
   componentDidMount() {
+    window.scrollTo(0, 0);
     this.props.actionsCategory.getCategory(this.props.match.params.id);
     this.props.actionsCategoryLink.getCategoryLink(this.props.match.params.id);
   }
@@ -29,6 +30,7 @@ class ProductList extends Component {
         this.props.match.params.id
       );
       this.sortProducts(null);
+      window.scrollTo(0, 0);
     }
   }
 
@@ -75,6 +77,8 @@ class ProductList extends Component {
         </div>
       );
     }
+
+    document.title = `«Белый кот» — ${this.props.categoryLink.entity.name}`;
 
     return (
       <div className="col-xl-9 col-lg-9 col-md-9">

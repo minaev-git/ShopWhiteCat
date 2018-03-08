@@ -5,6 +5,7 @@ import { withRouter } from "react-router-dom";
 import { bindActionCreators } from "redux";
 import { getCartProducts } from "redux/modules/cart/getCartProducts";
 import { getTotalPrice } from "redux/modules/cart/getTotalPrice";
+import { getCount } from "redux/modules/cart/getCount";
 import ProductCard from "components/CartPage/productCard/ProductCard";
 import TotalBlock from "components/CartPage/totalBlock/TotalBlock";
 import Delivery from "components/CartPage/delivery/Delivery";
@@ -22,6 +23,8 @@ class CartPage extends Component {
   componentDidMount() {
     this.props.getCartProducts();
     this.props.getTotalPrice();
+    document.title = `«Белый кот» — Корзина`;
+    window.scrollTo(0, 0);
   }
 
   componentWillUnmount() {
@@ -57,11 +60,14 @@ class CartPage extends Component {
       );
     }
 
-    const products = (this.props.cartProducts.entity.products || []).map(
-      product => (
-        <ProductCard product={product} reloadCount={this.reloadCount} />
-      )
-    );
+    let products = null;
+    if (this.props.count.entity > 0) {
+      products = (this.props.cartProducts.entity.products || []).map(
+        product => (
+          <ProductCard product={product} reloadCount={this.reloadCount} />
+        )
+      );
+    }
 
     return (
       <div>
@@ -87,6 +93,7 @@ class CartPage extends Component {
           </div>
           <ModalPortal>
             <CheckOutForm
+              getCount={this.props.getCount}
               checkOutFormShow={this.state.checkOutFormShow}
               handleShowCheckOutForm={this.handleShowCheckOutForm}
             />
@@ -111,7 +118,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     getCartProducts: bindActionCreators(getCartProducts, dispatch),
-    getTotalPrice: bindActionCreators(getTotalPrice, dispatch)
+    getTotalPrice: bindActionCreators(getTotalPrice, dispatch),
+    getCount: bindActionCreators(getCount, dispatch)
   };
 }
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Components } from "react";
 import { withFormik } from "formik";
 import Yup from "yup";
 import axios from "axios";
@@ -11,11 +11,6 @@ import styles from "./checkOutForm.css";
 const formikEnchancer = withFormik({
   validationSchema: Yup.object().shape({
     firstName: Yup.string().required("*Нужно указать имя"),
-    email: Yup.string()
-      .email(
-        "*E-mail должен состоять из имени почтового ящика разделенного @ и домена, например IvanIvanov@yandex.ru"
-      )
-      .required("*Нужно указать E-mail"),
     phone: Yup.string()
       .required("*Нужно ввести номер")
       .matches(
@@ -31,7 +26,7 @@ const formikEnchancer = withFormik({
     ...user
   }),
 
-  handleSubmit: (payload, { setSubmitting }) => {
+  handleSubmit: (payload, { setStatus }) => {
     axios({
       method: "post",
       url: `${prodAddress}/api/createOrder`,
@@ -44,11 +39,11 @@ const formikEnchancer = withFormik({
         other: payload.additionalInfo
       }
     })
-      .then(response => {})
+      .then(response => {
+        setStatus("success")
+      })
       .catch(error => {
-        console.log(error.message);
       });
-    setSubmitting(true);
   },
   displayName: "checkOutForm"
 });
@@ -180,18 +175,22 @@ const CheckOutForm = props => {
     values,
     touched,
     errors,
+    status,
     handleChange,
     handleBlur,
     handleShowCheckOutForm,
-    createOrder,
     handleSubmit,
-    isSubmitting
+    getCount,
+    isSubmitting,
   } = props;
 
-  if (isSubmitting) {
+  if (status === "success") {
     return (
       <div className={styles.overlay}>
-        <SuccessOrder handleShowCheckOutForm={handleShowCheckOutForm} />
+        <SuccessOrder
+          getCount={getCount}
+          handleShowCheckOutForm={handleShowCheckOutForm}
+        />
       </div>
     );
   }
@@ -223,7 +222,8 @@ const CheckOutForm = props => {
           onChange={handleChange}
           onBlur={handleBlur}
         />
-        <TextInput
+        <div className={styles.line} />
+        <TextInputNotValidate
           id="email"
           type="text"
           placeholder="E-mail *"
@@ -232,7 +232,6 @@ const CheckOutForm = props => {
           onChange={handleChange}
           onBlur={handleBlur}
         />
-        <div className={styles.line} />
         <TextInputNotValidate
           id="address"
           type="text"
@@ -260,7 +259,11 @@ const CheckOutForm = props => {
           onChange={handleChange}
           onBlur={handleBlur}
         />
-        <button type="submit" className={styles.submit} disabled={isSubmitting}>
+        <button
+          type="submit"
+          className={styles.submit}
+          disabled={isSubmitting}
+        >
           Отправить
         </button>
       </form>
@@ -274,6 +277,7 @@ const CheckOutFormModal = props => (
   <div className={props.checkOutFormShow ? styles.show : styles.hide}>
     <EnchancedCheckOutForm
       handleShowCheckOutForm={props.handleShowCheckOutForm}
+      getCount={props.getCount}
       user={{
         email: "",
         firstName: "",

@@ -3,7 +3,6 @@ import styles from "./totalBlock.css"
 
 export default class TotalBlock extends Component {
   render() {
-    console.log(this.props.totalPrice)
     return (
       <div className={styles.totalBlock}>
         <p className={styles.total}>Итого :</p>

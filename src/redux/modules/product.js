@@ -16,7 +16,7 @@ const failureAddProduct = createAction();
 export function getProduct(id) {
   return dispatch => {
     dispatch(requestGetProduct());
-    axios({
+    return axios({
       method: "get",
       url: `${prodAddress}/api/getProduct/${id}`
     })

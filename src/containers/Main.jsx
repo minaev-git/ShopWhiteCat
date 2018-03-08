@@ -6,6 +6,7 @@ import Product from "./product/Product";
 import CartPage from "./cartPage/CartPage";
 import GiftPage from "./giftPage/GiftPage";
 import DeliveryPage from "./DeliveryPage";
+import Contacts from "./contacts/Contacts"
 import styles from "./styles/Main.css"
 
 const Main = () => (
@@ -18,6 +19,7 @@ const Main = () => (
       <Route path="/gift" component={GiftPage} />
       <Route path="/delivery" component={DeliveryPage} />
       <Route path="/search/:searchValue" component={CategoryPage} />
+      <Route path="/contacts" component={Contacts} />
     </Switch>
   </div>
 );

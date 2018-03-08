@@ -13,6 +13,8 @@ import testImg from "./testImg.png";
 class GiftPage extends Component {
   componentDidMount() {
     this.props.getGiftProducts();
+    document.title = "«Белый кот» — Подарки";
+    window.scrollTo(0, 0);
   }
 
   render() {

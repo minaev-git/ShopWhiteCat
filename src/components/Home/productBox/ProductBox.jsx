@@ -15,11 +15,19 @@ type Props = {
 };
 
 class ProductBox extends Component<Props> {
+
+  state = {
+    inCartLink: false
+  }
+
   addProductToCart = async () => {
     await this.props.actionsProduct.addProduct({
       id: this.props.product.id
     });
     this.props.getCount();
+    this.setState(prevState=>({
+      inCartLink: !prevState.inCartLink
+    }))
   };
 
   render() {
@@ -40,7 +48,11 @@ class ProductBox extends Component<Props> {
           <p className={styles.salePrice}>{this.props.product.sale_price}р</p>
           <p>{this.props.product.price}р</p>
         </Link>
-        <button onClick={this.addProductToCart}>Купить</button>
+        {this.state.inCartLink ? (
+          <Link className={styles.inCartLink} to="/cart">Перейти в корзину</Link>
+        ) : (
+          <button onClick={this.addProductToCart}>Добавить в корзину</button>
+        )}
       </div>
     );
   }

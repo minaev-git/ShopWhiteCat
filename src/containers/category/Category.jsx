@@ -24,6 +24,7 @@ type Props = {
 class CategoryPage extends Component<Props> {
   componentDidMount() {
     this.props.actionsCategories.getCategories();
+    window.scrollTo(0, 0);
   }
 
   render() {

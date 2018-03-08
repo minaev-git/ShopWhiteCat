@@ -11,6 +11,7 @@ class Product extends Component {
 
   componentDidMount() {
     this.props.actionsProduct.getProduct(this.props.match.params.id);
+    window.scrollTo(0, 0);
   }
 
   render() {
@@ -24,6 +25,8 @@ class Product extends Component {
         </div>
       )
     }
+
+    document.title = `«Белый кот» — ${product.name}`;
 
     return (
       <div>

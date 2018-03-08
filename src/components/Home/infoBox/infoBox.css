@@ -7,18 +7,31 @@
   max-height: 5.125em;
 }
 .infoBox h3 {
+  color: black;
+  text-decoration: underline;
   font: 1.5em 'Oswald';
   font-weight: 500;
+}
+.infoBox h3:hover{
+  color: #08a8b0;
 }
 .infoBox div {
   width: 21.5em;
   margin: auto;
 }
 .infoBox p {
-  font: 0.875em 'Lora',serif;
+  font: 1em 'Open Sans';
   color: #303030;
   line-height: 1.7em;
   text-align: start;
+  white-space: pre-line;
+}
+.infoBox a {
+  color: #303030;
+  text-decoration: underline;
+}
+.infoBox a:hover {
+  color: #08a8b0;
 }
 @media screen and (max-width: 991px) {
   .infoBox div {
@@ -30,7 +43,7 @@
     width: 35em;
   }
   .infoBox p{
-    font-size: 1em
+    font-size: 1.1em
   }
 }
 @media screen and (max-width: 575px) {

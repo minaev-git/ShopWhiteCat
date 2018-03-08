@@ -11,7 +11,7 @@ const fetchCategoryLinkFailure = createAction();
 export function getCategoryLink(id) {
   return dispatch => {
     dispatch(fetchCategoryLinkRequest());
-    axios({
+    return axios({
       method: "get",
       url: `${prodAddress}/api/getCategoryLink/${id}`
     })

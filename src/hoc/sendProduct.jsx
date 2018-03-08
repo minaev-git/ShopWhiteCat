@@ -1,7 +1,7 @@
-import React, { Component } from "react";
+import React from "react";
 
 function sendProduct(Component) {
-  return class SendProduct extends Component {
+  return class SendProduct extends React.Component {
 
     state = {
       price: this.props.product.price,
