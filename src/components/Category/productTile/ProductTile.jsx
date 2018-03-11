@@ -9,6 +9,7 @@ import Select from "components/Elements/DataEntry/select/Select";
 import Option from "components/Elements/DataEntry/select/Option";
 import ColorRadio from "components/Elements/DataEntry/colorRadio/ColorRadio";
 import PriceBox from "components/Elements/DataDisplay/priceBox/PriceBox";
+import testImg from "./miniPhoto1.png";
 
 import styles from "./productTile.css";
 
@@ -43,16 +44,21 @@ class ProductTile extends Component<Props> {
           this.props.status === "sale" ? styles.sale : ""
         }`}
       >
-        <Link
-          to={`/product/${transliterate(this.props.product.name)}/${
-            this.props.product.id
-          }`}
-          className={styles.imgLink}
-        >
-          <img src={JSON.parse(this.props.product.images)[0]} alt="Тестики" />
-        </Link>
+        <div className={styles.imgContainer}>
+          <Link
+            to={`/product/${transliterate(this.props.product.name)}/${
+              this.props.product.id
+            }`}
+            className={styles.imgLink}
+          >
+            <img
+              src={JSON.parse(this.props.product.images)[0]}
+              alt={this.props.product.name}
+            />
+          </Link>
+        </div>
         <form onSubmit={this.props.onSubmit}>
-          <img src={this.props.product.brand} alt="тест" />
+          <img src={this.props.product.brand} alt={this.props.product.name} />
           <Link
             to={`/product/${transliterate(this.props.product.name)}/${
               this.props.product.id
@@ -71,6 +77,7 @@ class ProductTile extends Component<Props> {
               onChangeColor={this.props.onChangeColor}
             />
             <PriceBox
+              className={{ priceBox: styles.priceBox }}
               status={this.props.status}
               salePrice={this.props.salePrice}
               price={this.props.price}
@@ -80,9 +87,7 @@ class ProductTile extends Component<Props> {
                 Перейти в корзину
               </Link>
             ) : (
-              <button type="submit">
-                Купить
-              </button>
+              <button type="submit">Купить</button>
             )}
           </div>
         </form>

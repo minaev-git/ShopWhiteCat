@@ -12,7 +12,7 @@ const formikEnchancer = withFormik({
   validationSchema: Yup.object().shape({
     firstName: Yup.string().required("*Нужно указать имя"),
     phone: Yup.string()
-      .required("*Нужно ввести номер")
+      .required("*Нужно ввести номер телефона")
       .matches(
         /^((\+?7|8)[ \-] ?)?((\(\d{3}\))|(\d{3}))?([ \-])?(\d{3}[\- ]?\d{2}[\- ]?\d{2})$/,
         "*Нужно ввести номер телефона"
@@ -226,7 +226,7 @@ const CheckOutForm = props => {
         <TextInputNotValidate
           id="email"
           type="text"
-          placeholder="E-mail *"
+          placeholder="E-mail"
           error={touched.email && errors.email}
           value={values.email}
           onChange={handleChange}

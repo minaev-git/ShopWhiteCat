@@ -15,6 +15,9 @@ const ColorChoice = styled.div`
     position: absolute;
     left: -8em;
     bottom: 0.6em;
+    p {
+      text-align: start;
+    }
   }
 `;
 

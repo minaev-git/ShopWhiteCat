@@ -5,14 +5,12 @@
   position: relative;
   content: '';
   display: inline-block;
+  text-align: start;
   width: 1.185em;
   height: 1.185em;
   border-radius: 3px;
-  margin-left: 0.3em;
+  margin-right: 0.3em;
   cursor: pointer;
-}
-.customRadio:first-child span {
-  margin-left: 0;
 }
 .customRadio input[type=radio]:checked + span:after{
   position: absolute;

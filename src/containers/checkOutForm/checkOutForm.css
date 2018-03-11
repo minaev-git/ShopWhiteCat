@@ -24,7 +24,7 @@
   position: absolute;
   right: 1em;
   top: 1em;
-  height: 1.1em;
+  height: 2em;
   max-height: 100%;
   width: 1.1em;
   background-color: white;
@@ -162,7 +162,7 @@
   }
   .checkOutForm .close {
     width: 1.6em;
-    height: 1.6em;
+    height: 1.9em;
     top: 1.5em;
     right: 1.4em;
   }
