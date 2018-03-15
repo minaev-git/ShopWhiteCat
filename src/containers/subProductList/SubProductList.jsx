@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Helmet } from "react-helmet";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
@@ -82,10 +83,15 @@ class ProductList extends Component {
       );
     }
 
-    document.title = `«Белый кот» — ${this.props.subCategoryLink.entity.name}`;
-
     return (
       <div className="col-xl-9 col-lg-9 col-md-9">
+        <Helmet>
+          <title>{`«Белый кот» — ${this.props.subCategoryLink.entity.name}`}</title>
+          <meta
+            name="description"
+            content={category.seo_description}
+          />
+        </Helmet>
         <div className={styles.productList}>
           <h2>
             {category.name}

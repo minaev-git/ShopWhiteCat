@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Helmet } from "react-helmet";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { withRouter } from "react-router-dom";
@@ -13,7 +14,6 @@ import testImg from "./testImg.png";
 class GiftPage extends Component {
   componentDidMount() {
     this.props.getGiftProducts();
-    document.title = "«Белый кот» — Подарки";
     window.scrollTo(0, 0);
   }
 
@@ -42,6 +42,13 @@ class GiftPage extends Component {
 
     return (
       <div className={styles.giftPage}>
+        <Helmet>
+          <title>«Белый кот» — Подарки</title>
+          <meta
+            name="description"
+            content="Список подарков получаемых при заказе на сумму от 1000Р"
+          />
+        </Helmet>
         <h2>Подарки</h2>
         <div className={styles.line} />
         <p className={styles.description}>

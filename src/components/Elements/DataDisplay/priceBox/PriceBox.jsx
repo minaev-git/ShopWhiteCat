@@ -5,30 +5,37 @@ import styles from "./priceBox.css";
 type Props = {
   status: string,
   price: number,
-  salePrice: number,
+  salePrice: number
 };
 
-
-const PriceBox = (props: Props) => (
-  <div className={`${styles.priceBox} ${props.className.priceBox}`}>
-    <p
-      className={
-        props.status === "sale"
-          ? `${styles.sale} ${props.className.sale}`
-          : `${styles.price} ${props.className.price}`
-      }
-    >
-      <span>{props.salePrice} р</span>
-      {props.price} р
-    </p>
-  </div>
-);
+const PriceBox = (props: Props) => {
+  if (props.status === "sale") {
+    return (
+      <div className={`${styles.priceBox} ${props.className.priceBox}`}>
+        <p className={`${styles.sale} ${props.className.sale}`}>
+          {props.price} ₽
+          <span itemProp="price">{props.salePrice} ₽</span>
+        </p>
+      </div>
+    );
+  }
+  return (
+    <div className={`${styles.priceBox} ${props.className.priceBox}`}>
+      <p
+        itemProp="price"
+        className={`${styles.price} ${props.className.price}`}
+      >
+        {props.price} ₽
+      </p>
+    </div>
+  );
+};
 
 PriceBox.defaultProps = {
   className: {
-    priceBox: '',
-    sale: '',
-    price: ''
+    priceBox: "",
+    sale: "",
+    price: ""
   }
 };
 

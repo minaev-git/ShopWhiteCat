@@ -1,3 +1,4 @@
-const prodAddress = '';
+const prodAddress = "";
 
 export default prodAddress
+

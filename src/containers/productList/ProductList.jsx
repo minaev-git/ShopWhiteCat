@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Helmet } from "react-helmet";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
@@ -6,7 +7,7 @@ import transliterate from "global/transliterate";
 import ProductTile from "components/Category/productTile/ProductTile";
 import BreadCrumb from "components/Elements/Navigation/breadcrumb/BreadCrumb";
 import Spinner from "components/Elements/Feedback/spinner/Spinner";
-import { getCount } from 'redux/modules/cart/getCount';
+import { getCount } from "redux/modules/cart/getCount";
 import * as actionsCategory from "redux/modules/category/category";
 import * as actionsProduct from "redux/modules/product";
 import * as actionsCategoryLink from "redux/modules/category/categoryLink";
@@ -78,10 +79,15 @@ class ProductList extends Component {
       );
     }
 
-    document.title = `«Белый кот» — ${this.props.categoryLink.entity.name}`;
-
     return (
       <div className="col-xl-9 col-lg-9 col-md-9">
+        <Helmet>
+          <title>{`«Белый кот» — ${this.props.categoryLink.entity.name}`}</title>
+          <meta
+            name="description"
+            content={category.seo_description}
+          />
+        </Helmet>
         <div className={styles.productList}>
           <h2>
             {category.name}

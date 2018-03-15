@@ -1,15 +1,22 @@
 import React, { Component } from "react";
+import { Helmet } from "react-helmet";
 import styles from "./contacts.css";
 
 class Contacts extends Component {
   componentDidMount() {
-    document.title = "«Белый кот» — Контакты";
     window.scrollTo(0, 0);
   }
 
   render() {
     return (
       <div className={styles.contactsPage}>
+        <Helmet>
+          <title>«Белый кот» — Контакты</title>
+          <meta
+            name="description"
+            content="Контакты интернет-магазина «Белый кот»"
+          />
+        </Helmet>
         <h2>Контакты</h2>
         <div className={styles.line} />
         <div className={styles.description}>

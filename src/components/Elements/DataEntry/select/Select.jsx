@@ -80,14 +80,27 @@ export default class Select extends Component<Props, State> {
       return null;
     }
 
-    const items = React.Children.map(this.props.children, child => (
-      <li onClick={this.handleItemClick(child)}>{child}</li>
+    const items = React.Children.map(this.props.children, (child, index) => (
+      <li
+        role="option"
+        aria-selected="false"
+        id={`listbox1-${index}`}
+        onKeyDown={this.handleItemClick(child)}
+        onClick={this.handleItemClick(child)}
+      >
+        {child}
+      </li>
     ));
 
     return (
-      <ListBox className={this.props.className} styles={this.props.style} role="listbox">
+      <ListBox
+        role="listbox"
+        aria-activedescendant="listbox1-1"
+        className={this.props.className}
+        styles={this.props.style}
+      >
         <SelectItem styles={this.props.style} onClick={this.handleSelectClick}>
-          <li>{this.state.currentValue}</li>
+          <li role="option" aria-selected="true">{this.state.currentValue}</li>
           <img src={arrow} alt="Открыть" />
         </SelectItem>
         <ListItem isOpen={this.state.isOpen} styles={this.props.style}>

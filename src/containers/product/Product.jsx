@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Helmet } from "react-helmet";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
@@ -26,10 +27,15 @@ class Product extends Component {
       )
     }
 
-    document.title = `«Белый кот» — ${product.name}`;
-
     return (
       <div>
+        <Helmet>
+          <title>{`«Белый кот» — ${product.name}`}</title>
+          <meta
+            name="description"
+            content={product.seo_description}
+          />
+        </Helmet>
         <ProductCard product={product} />
       </div>
     );

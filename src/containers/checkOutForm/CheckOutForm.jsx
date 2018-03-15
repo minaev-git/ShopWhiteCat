@@ -215,7 +215,7 @@ const CheckOutForm = props => {
         />
         <PhoneInput
           id="phone"
-          type="text"
+          type="tel"
           placeholder="Телефон *"
           error={touched.phone && errors.phone}
           value={values.phone}

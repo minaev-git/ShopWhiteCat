@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Helmet } from "react-helmet";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { withRouter } from "react-router-dom";
@@ -23,7 +24,6 @@ class CartPage extends Component {
   componentDidMount() {
     this.props.getCartProducts();
     this.props.getTotalPrice();
-    document.title = `«Белый кот» — Корзина`;
     window.scrollTo(0, 0);
   }
 
@@ -71,6 +71,9 @@ class CartPage extends Component {
 
     return (
       <div>
+        <Helmet>
+          <title>«Белый кот» — Корзина</title>
+        </Helmet>
         <div className={styles.title}>
           <h2>Корзина</h2>
           <div className={styles.line} />

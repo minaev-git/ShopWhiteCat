@@ -71,10 +71,7 @@ class CategoryPage extends Component<Props> {
             path="/category/subCategory/:name/:id"
             component={SubProductList}
           />
-          <Route
-            path="/search/:searchValue"
-            component={SearchList}
-          />
+          <Route path="/search/:searchValue" component={SearchList} />
         </div>
       </div>
     );

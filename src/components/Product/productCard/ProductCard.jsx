@@ -17,10 +17,14 @@ type Props = {
 };
 
 const ProductCard = (props: Props) => (
-  <div className={styles.productCard}>
-    <h2 className={styles.title}>{props.product.name}</h2>
+  <div
+    className={styles.productCard}
+    itemScope
+    itemType="http://schema.org/Offer"
+  >
+    <h2 itemProp="name" className={styles.title}>{props.product.name}</h2>
     <div className="hiddenMobile">
-      <ProductPhoto photos={props.product.images} />
+      <ProductPhoto photos={props.product.images} product={props.product} />
     </div>
     <div className={`hiddenDesktop ${styles.mobileSlider}`}>
       <PhotoSlider photos={props.product.images} />
@@ -33,7 +37,9 @@ const ProductCard = (props: Props) => (
     <div className={`hiddenDesktop ${styles.mobileDropDown}`}>
       <MobileDropDown
         title="Характеристики"
-        text={<p className={styles.discription}>{props.product.seo_description}</p>}
+        text={
+          <p className={styles.discription}>{props.product.seo_description}</p>
+        }
       />
     </div>
     <ProductDescription product={props.product} />

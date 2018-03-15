@@ -21,8 +21,7 @@ type Props = {
   changeProduct: Function,
   onSubmit: Function,
   onChangeChildProduct: Function,
-  onChangeColor: Function,
-  getCount: Function
+  onChangeColor: Function
 };
 
 class ProductTile extends Component<Props> {
@@ -40,6 +39,8 @@ class ProductTile extends Component<Props> {
 
     return (
       <div
+        itemScope
+        itemType="http://schema.org/Offer"
         className={`${styles.productTile} ${
           this.props.status === "sale" ? styles.sale : ""
         }`}
@@ -52,6 +53,7 @@ class ProductTile extends Component<Props> {
             className={styles.imgLink}
           >
             <img
+              itemProp="image"
               src={JSON.parse(this.props.product.images)[0]}
               alt={this.props.product.name}
             />
@@ -64,7 +66,7 @@ class ProductTile extends Component<Props> {
               this.props.product.id
             }`}
           >
-            <h3>{this.props.product.name}</h3>
+            <h3 itemProp="name">{this.props.product.name}</h3>
           </Link>
           <Select onChange={this.props.onChangeChildProduct}>
             {childProducts}

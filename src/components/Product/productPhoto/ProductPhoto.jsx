@@ -35,17 +35,17 @@ export default class ProductPhoto extends Component {
             <img
               className={styles.active}
               src={photo}
-              alt="пяу это же тест"
+              alt={this.props.product.name}
             />
           );
         }
         return (
-          <img onClick={this.changeImg} src={photo} alt="пяу это же тест" />
+          <img onClick={this.changeImg} src={photo} alt={this.props.product.name} />
         );
       });
     } else {
       photos = (this.props.photos || []).map(photo => (
-        <img onClick={this.changeImg} src={photo} alt="пяу это же тест" />
+        <img onClick={this.changeImg} src={photo} alt={this.props.product.name} />
       ));
     }
 
@@ -54,7 +54,7 @@ export default class ProductPhoto extends Component {
         <img
           className={styles.currentPhoto}
           src={this.state.currentImg}
-          alt="Test"
+          alt={this.props.product.name}
         />
         {photos.length > 1 ? (
           <div className={styles.alternativeImage}>{photos}</div>

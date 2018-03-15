@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Helmet } from "react-helmet";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import PropTypes from "prop-types";
@@ -20,7 +21,6 @@ import styles from "./styles/Home.css";
 
 class Home extends Component {
   componentDidMount() {
-    document.title = "«Белый кот» — Главная страница";
     this.props.saleProductsAction.getSaleProducts();
     window.scrollTo(0, 0);
   }
@@ -41,6 +41,13 @@ class Home extends Component {
 
     return (
       <div className={`container-fluid ${styles.home}`}>
+        <Helmet>
+          <title>«Белый кот» — Главная страница</title>
+          <meta
+            name="description"
+            content="У нас представлены товары для уборки дома компании Белый кот и Smart. "
+          />
+        </Helmet>
         <div className={`row ${styles.photoBanner} hiddenMobile`}>
           <div className="col-xl-5 col-lg-5 col-md-5">
             <PhotoBanner
